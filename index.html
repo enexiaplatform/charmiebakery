@@ -81,7 +81,7 @@
 
     /* ── Hero (default = split) ──────────────────────────────── */
     .c-hero {
-      position: relative; min-height: 100vh; overflow: hidden;
+      position: relative; min-height: clamp(680px, calc(100vh - 72px), 820px); overflow: hidden;
       background: var(--ivory);
       display: grid; grid-template-columns: 1fr 1fr;
     }
@@ -103,8 +103,8 @@
     /* Left panel */
     .c-hero-left {
       position: relative; z-index: 1;
-      display: flex; flex-direction: column; justify-content: center;
-      padding: 110px max(48px,5vw) 110px max(48px,8vw);
+      display: flex; flex-direction: column; justify-content: flex-start;
+      padding: clamp(96px, 13vh, 138px) max(48px,5vw) 88px max(48px,8vw);
     }
     .c-hero-wordmark {
       font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400;
@@ -126,8 +126,8 @@
     /* Right panel */
     .c-hero-right {
       position: relative; z-index: 1;
-      display: flex; align-items: center; justify-content: center;
-      padding: 80px 8vw 80px 24px;
+      display: flex; align-items: flex-start; justify-content: center;
+      padding: clamp(112px, 16vh, 164px) 8vw 64px 24px;
     }
     .c-hero-img-wrap {
       position: relative;
@@ -167,7 +167,7 @@
 
     /* Scroll indicator */
     .c-hero-scroll {
-      position: absolute; bottom: 36px; left: 50%;
+      position: absolute; bottom: 24px; left: 50%;
       transform: translateX(-50%);
       display: flex; flex-direction: column; align-items: center; gap: 7px;
       z-index: 2; animation: scrollBob 2.8s ease-in-out infinite;
@@ -398,17 +398,19 @@
     /* ── Responsive ──────────────────────────────────────────── */
     @media (max-width: 900px) {
       .c-hero, .c-hero--split {
+        min-height: auto;
         display: flex; flex-direction: column;
-        align-items: center; justify-content: center;
+        align-items: center; justify-content: flex-start;
       }
       .c-hero-left, .c-hero--split .c-hero-left {
         text-align: center; align-items: center;
-        padding: 80px 32px 48px; order: 1;
+        padding: 56px 32px 64px; order: 1;
       }
       .c-hero-btns, .c-hero--split .c-hero-btns { justify-content: center; }
       .c-hero-copy { margin: 0 auto 36px; }
-      .c-hero-right { order: 0; padding: 60px 32px 0; }
+      .c-hero-right { order: 0; padding: 48px 32px 0; }
       .c-hero-img-wrap { width: min(260px, 70vw); }
+      .c-hero-scroll { display: none; }
     }
     @media (max-width: 768px) {
       .c-wrap { padding: 0 22px; }
