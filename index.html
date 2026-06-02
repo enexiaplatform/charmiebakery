@@ -37,6 +37,32 @@
     button { cursor: pointer; font-family: inherit; }
     a { text-decoration: none; color: inherit; }
 
+    .c-apology-banner {
+      position: relative;
+      z-index: 220;
+      padding: 18px 24px 16px;
+      border-bottom: 1px solid rgba(201,164,154,0.36);
+      background: linear-gradient(90deg, rgba(246,241,231,0.98), rgba(232,217,196,0.48), rgba(246,241,231,0.98));
+      text-align: center;
+    }
+    .c-apology-banner span {
+      display: inline-block;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(24px, 3.4vw, 44px);
+      font-style: italic;
+      color: var(--espresso);
+      line-height: 1.18;
+    }
+    .c-apology-banner small {
+      display: block;
+      margin-top: 4px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--dusty-rose);
+    }
+
     /* ── Fade-in ─────────────────────────────────────────────── */
     .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
     .fade-in.vis { opacity: 1; transform: none; }
@@ -415,6 +441,8 @@
       .c-hero-scroll { display: none; }
     }
     @media (max-width: 768px) {
+      .c-apology-banner { padding: 14px 18px 13px; }
+      .c-apology-banner small { font-size: 10px; letter-spacing: 1.6px; }
       .c-wrap { padding: 0 22px; }
       .c-nav  { padding: 14px 16px; gap: 12px; }
       .c-nav-logo { flex-shrink: 0; font-size: 20px; }
@@ -527,6 +555,10 @@
 
       return (
         <>
+          <div className="c-apology-banner" role="note" aria-label="Lời xin lỗi">
+            <span>Xin lỗi bé Chang nhiều</span>
+            <small>một lời xin lỗi dịu dàng gửi riêng cho em</small>
+          </div>
           <Nav scrolled={scrolled} />
           <Hero layout={t.heroLayout} />
           <Statement />
