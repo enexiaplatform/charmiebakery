@@ -2,11 +2,13 @@
 
 ## Structure
 
-- `index.html`: knowledge library and level filters.
+- `index.html`: knowledge library, text search, and level filters.
 - `article.html`: shared article reader.
+- `lab.html`: batch scaling and troubleshooting tools.
 - `data/articles.js`: article content and metadata.
 - `assets/journal.css`: Journal visual system and responsive layout.
 - `assets/journal.js`: card rendering, filtering, and article routing.
+- `assets/lab.js`: interactive Lab calculations and diagnosis.
 
 ## Add an article
 

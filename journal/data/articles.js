@@ -334,5 +334,163 @@ window.CHARMIE_ARTICLES = [
         url: "https://www.fda.gov/Food/GuidanceRegulation/RetailFoodProtection/IndustryandRegulatoryAssistanceandTrainingResources/ucm192177.htm"
       }
     ]
+  },
+  {
+    slug: "espresso-cho-tiramisu",
+    level: "Kỹ thuật",
+    order: 9,
+    title: "Espresso cho tiramisu: đậm nhưng không gắt",
+    summary: "Cách cân bằng độ cô đặc, vị đắng và lượng dịch để cà phê còn hiện diện sau lớp kem béo.",
+    readTime: "8 phút",
+    image: "../uploads/pasted-1779543950628-0.png",
+    intro: "Cà phê dùng cho tiramisu không cần giống hoàn toàn một shot để uống riêng. Nó phải đủ cô đặc để đi qua chất béo và đường, nhưng không mang theo vị cháy hoặc chát kéo dài.",
+    sections: [
+      {
+        title: "Tách độ đậm khỏi lượng nước",
+        body: [
+          "Muốn vị cà phê rõ hơn, hãy tăng độ cô đặc trước khi tăng tổng lượng dịch. Nhiều nước hơn có thể làm bánh nhão mà hương chưa chắc mạnh hơn.",
+          "Một mẻ thử nhỏ giúp bạn tìm vùng cân bằng: bánh nhận đủ hương, nhưng sau thời gian nghỉ vẫn giữ được cấu trúc."
+        ]
+      },
+      {
+        title: "Làm nguội và nếm lại",
+        body: [
+          "Cà phê thay đổi cảm nhận khi nguội. Một shot có vẻ cân bằng khi nóng có thể lộ vị chát hoặc rỗng khi về nhiệt độ phòng.",
+          "Hãy nếm dịch cà phê ở đúng trạng thái sẽ dùng để lắp bánh. Nếu thêm đường hoặc rượu thơm, nếm lại sau khi phối."
+        ]
+      },
+      {
+        title: "Ghi công thức pha như một nguyên liệu",
+        body: [
+          "Ghi khối lượng cà phê, lượng nước đầu ra, thời gian pha và tổng lượng dịch dùng cho một mẻ. Khi đổi hạt hoặc máy, bạn có điểm tham chiếu để điều chỉnh.",
+          "Đừng ghi đơn giản là “hai shot”. Kích thước shot và độ cô đặc có thể khác đáng kể giữa các quán và thiết bị."
+        ]
+      }
+    ],
+    takeaways: [
+      "Tăng độ cô đặc trước khi tăng lượng dịch.",
+      "Nếm cà phê sau khi nguội và sau khi phối.",
+      "Ghi đầu vào, đầu ra và lượng dịch dùng cho mẻ."
+    ],
+    sources: [
+      {
+        label: "Specialty Coffee Association — Water and Coffee Acidity",
+        url: "https://sca.coffee/sca-news/25/issue-9/english/water-and-coffee-acidity-how-to-adapt-your-water-for-different-extraction-methods-25-magazine-issue-9"
+      }
+    ]
+  },
+  {
+    slug: "cacao-va-lop-ket-thuc",
+    level: "Nền tảng",
+    order: 10,
+    title: "Cacao và lớp kết thúc: ít nhưng quyết định miếng đầu tiên",
+    summary: "Chọn cacao, rây đúng thời điểm và kiểm soát độ dày để bề mặt thơm mà không khô.",
+    readTime: "6 phút",
+    image: "../uploads/pasted-1779543992358-0.png",
+    intro: "Cacao là thành phần đầu tiên chạm mũi và lưỡi, dù khối lượng rất nhỏ. Một lớp phủ đúng giúp món bánh bớt ngọt và tạo cảm giác hoàn chỉnh.",
+    sections: [
+      {
+        title: "Không đường và đủ thơm",
+        body: [
+          "Cacao không đường giữ vai trò cân bằng vị ngọt. Mùi thơm nên sạch, không có cảm giác ẩm cũ hoặc mùi kho bảo quản.",
+          "Cacao có độ kiềm khác nhau sẽ cho màu và vị khác nhau. Hãy chọn theo tổng thể công thức thay vì chỉ nhìn màu càng đậm càng tốt."
+        ]
+      },
+      {
+        title: "Rây sát thời điểm phục vụ",
+        body: [
+          "Cacao hút ẩm từ bề mặt kem và chuyển dần sang màu sẫm. Rây sớm cho lớp hòa vào bánh; rây muộn tạo bề mặt khô, thơm và tương phản rõ.",
+          "Với hộp giao đi, có thể dùng một lớp mỏng khi hoàn thiện và bổ sung lớp rất nhẹ trước khi chụp hoặc phục vụ."
+        ]
+      },
+      {
+        title: "Độ dày vừa đủ",
+        body: [
+          "Lớp quá dày tạo cảm giác bột khô và đắng ở miếng đầu. Rây từ cao vừa phải, di chuyển đều và dừng khi không còn thấy mảng kem trắng lớn.",
+          "Cân lượng cacao cho một kích thước hộp giúp người làm khác nhau vẫn tạo cùng một bề mặt."
+        ]
+      }
+    ],
+    takeaways: [
+      "Dùng cacao không đường có mùi sạch.",
+      "Thời điểm rây quyết định bề mặt khô hay hòa vào kem.",
+      "Chuẩn hóa lượng cacao theo kích thước hộp."
+    ]
+  },
+  {
+    slug: "danh-gia-cam-quan",
+    level: "Nâng cao",
+    order: 11,
+    title: "Đánh giá cảm quan: nếm bánh bằng một ngôn ngữ chung",
+    summary: "Xây scorecard đơn giản để đội bếp mô tả độ ẩm, cấu trúc, vị và hậu vị nhất quán.",
+    readTime: "9 phút",
+    image: "../uploads/pasted-1779544236945-0.png",
+    intro: "“Ngon” là kết luận, chưa phải dữ liệu. Một scorecard ngắn giúp bạn biết mẻ này tốt ở đâu, lệch ở đâu và cần thay đổi điều gì.",
+    sections: [
+      {
+        title: "Chọn ít tiêu chí nhưng rõ",
+        body: [
+          "Bắt đầu với năm mục: độ ẩm bánh, độ mịn kem, độ rõ của cà phê, cân bằng ngọt - đắng và hậu vị. Chấm trên thang 1 đến 5 với mô tả ở hai đầu.",
+          "Không nên có quá nhiều mục trong lần đầu. Một biểu mẫu dài thường khiến người nếm bỏ qua hoặc chấm theo cảm tính."
+        ]
+      },
+      {
+        title: "Nếm trong cùng điều kiện",
+        body: [
+          "So sánh các mẻ ở cùng nhiệt độ phục vụ, cùng thời gian nghỉ và cùng kích thước muỗng. Điều kiện khác nhau có thể tạo cảm nhận khác dù công thức giống nhau.",
+          "Mã hóa mẫu nếu có thể để người nếm không biết mẻ nào là công thức mới."
+        ]
+      },
+      {
+        title: "Biến nhận xét thành hành động",
+        body: [
+          "“Bánh hơi khô” cần nối với biến có thể chỉnh: lượng dịch, cách thấm hoặc thời gian nghỉ. “Kem nặng” có thể liên quan tỷ lệ, mức đánh hoặc nhiệt độ phục vụ.",
+          "Chỉ đổi một hoặc hai biến trong mỗi mẻ thử. Nếu đổi quá nhiều, bạn sẽ không biết điều gì tạo ra kết quả."
+        ]
+      }
+    ],
+    takeaways: [
+      "Dùng 5 tiêu chí rõ thay vì một chữ “ngon”.",
+      "So sánh trong cùng điều kiện phục vụ.",
+      "Mỗi nhận xét phải nối với một biến có thể chỉnh."
+    ]
+  },
+  {
+    slug: "bao-bi-va-trai-nghiem-qua-tang",
+    level: "Nâng cao",
+    order: 12,
+    title: "Bao bì và trải nghiệm quà tặng",
+    summary: "Thiết kế hộp không chỉ để đẹp: nó phải giữ lạnh, bảo vệ cấu trúc và dẫn dắt khoảnh khắc mở quà.",
+    readTime: "8 phút",
+    image: "../uploads/pasted-1779544702147-0.png",
+    intro: "Một hộp tiramisu quà tặng bắt đầu được trải nghiệm trước khi mở nắp. Bao bì tốt kết hợp ba nhiệm vụ: bảo vệ sản phẩm, truyền đạt cách dùng và tạo cảm xúc.",
+    sections: [
+      {
+        title: "Bảo vệ cấu trúc trước",
+        body: [
+          "Hộp cần vừa sản phẩm để hạn chế trượt nhưng vẫn có khoảng thao tác. Nắp không được chạm cacao hoặc lớp trang trí.",
+          "Đế phẳng, thành đủ cứng và túi giao vừa kích thước giúp hộp ít nghiêng trong quá trình vận chuyển."
+        ]
+      },
+      {
+        title: "Thông tin cần nhìn thấy",
+        body: [
+          "Nhãn nên có tên vị, ngày hoàn thiện, hướng dẫn giữ lạnh, thời gian dùng khuyến nghị và cảnh báo dị ứng phù hợp.",
+          "Hướng dẫn nên ngắn và đặt ở nơi người nhận nhìn thấy trước khi bỏ hộp vào tủ lạnh."
+        ]
+      },
+      {
+        title: "Thiết kế khoảnh khắc mở",
+        body: [
+          "Thứ tự xuất hiện của ribbon, thiệp, lớp giấy và sản phẩm tạo nên nhịp mở quà. Mỗi chi tiết cần có lý do, tránh thêm vật liệu chỉ để lấp đầy.",
+          "Chụp lại quy trình đóng gói chuẩn để mọi đơn hàng giữ cùng một trải nghiệm."
+        ]
+      }
+    ],
+    takeaways: [
+      "Bảo vệ sản phẩm là nhiệm vụ đầu tiên của bao bì.",
+      "Hướng dẫn bảo quản phải dễ thấy và dễ hiểu.",
+      "Chuẩn hóa thứ tự đóng gói bằng hình ảnh."
+    ]
   }
 ];

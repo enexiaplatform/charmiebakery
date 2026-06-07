@@ -7,7 +7,11 @@
 
   function renderCard(article) {
     return `
-      <a class="j-card" href="${articleUrl(article.slug)}" data-level="${article.level}">
+      <a class="j-card" href="${articleUrl(article.slug)}" data-level="${article.level}" data-search-text="${[
+        article.title,
+        article.summary,
+        article.level
+      ].join(" ")}">
         <div class="j-card-image">
           <img src="${article.image}" alt="${article.title}">
           <span class="j-level">${article.level}</span>
@@ -32,22 +36,53 @@
 
     const filters = document.querySelectorAll("[data-filter]");
     const empty = document.querySelector("[data-empty]");
+    const search = document.querySelector("[data-search]");
+    const resultCount = document.querySelector("[data-result-count]");
+    let activeLevel = "Tất cả";
+    let query = "";
+
+    function normalize(value) {
+      return value
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/đ/g, "d")
+        .replace(/Đ/g, "D")
+        .toLowerCase()
+        .trim();
+    }
+
+    function applyFilters() {
+      let visible = 0;
+      const normalizedQuery = normalize(query);
+
+      grid.querySelectorAll(".j-card").forEach((card) => {
+        const matchesLevel = activeLevel === "Tất cả" || card.dataset.level === activeLevel;
+        const matchesQuery = !normalizedQuery || normalize(card.dataset.searchText).includes(normalizedQuery);
+        const show = matchesLevel && matchesQuery;
+        card.hidden = !show;
+        if (show) visible += 1;
+      });
+
+      if (empty) empty.style.display = visible ? "none" : "block";
+      if (resultCount) resultCount.textContent = `${visible} bài viết`;
+    }
 
     filters.forEach((button) => {
       button.addEventListener("click", () => {
-        const level = button.dataset.filter;
+        activeLevel = button.dataset.filter;
         filters.forEach((item) => item.classList.toggle("is-active", item === button));
-
-        let visible = 0;
-        grid.querySelectorAll(".j-card").forEach((card) => {
-          const show = level === "Tất cả" || card.dataset.level === level;
-          card.hidden = !show;
-          if (show) visible += 1;
-        });
-
-        if (empty) empty.style.display = visible ? "none" : "block";
+        applyFilters();
       });
     });
+
+    if (search) {
+      search.addEventListener("input", () => {
+        query = search.value;
+        applyFilters();
+      });
+    }
+
+    applyFilters();
   }
 
   function initArticle() {

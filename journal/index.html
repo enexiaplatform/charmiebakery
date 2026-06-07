@@ -16,6 +16,7 @@
       <div class="j-nav-links">
         <a href="#library">Thư viện</a>
         <a href="#learning-path">Lộ trình</a>
+        <a href="lab.html">Charmie Lab</a>
         <a class="j-nav-home" href="../index.html">Về cửa hàng</a>
       </div>
     </div>
@@ -62,6 +63,17 @@
     </div>
   </section>
 
+  <section class="j-lab-promo">
+    <div class="j-shell j-lab-promo-inner">
+      <div>
+        <span class="j-eyebrow">Charmie Lab · Thực hành</span>
+        <h2>Từ điều đã đọc đến một mẻ bánh có thể đo.</h2>
+        <p>Scale nguyên liệu theo số mẻ, tra nhanh nguyên nhân khi kem lỏng, bánh khô hoặc cấu trúc chưa ổn.</p>
+      </div>
+      <a class="j-primary-link" href="lab.html">Mở Charmie Lab <span aria-hidden="true">→</span></a>
+    </div>
+  </section>
+
   <main class="j-library" id="library">
     <div class="j-shell">
       <div class="j-library-head">
@@ -72,16 +84,23 @@
         </div>
       </div>
 
-      <div class="j-tools" aria-label="Lọc bài viết">
-        <button class="j-filter is-active" type="button" data-filter="Tất cả">Tất cả</button>
-        <button class="j-filter" type="button" data-filter="Nền tảng">Nền tảng</button>
-        <button class="j-filter" type="button" data-filter="Kỹ thuật">Kỹ thuật</button>
-        <button class="j-filter" type="button" data-filter="Khoa học">Khoa học</button>
-        <button class="j-filter" type="button" data-filter="Nâng cao">Nâng cao</button>
+      <div class="j-discovery">
+        <label class="j-search">
+          <span class="j-search-label">Tìm trong Journal</span>
+          <input type="search" placeholder="Ví dụ: mascarpone, espresso, kem lỏng..." autocomplete="off" data-search>
+        </label>
+        <div class="j-tools" aria-label="Lọc bài viết">
+          <button class="j-filter is-active" type="button" data-filter="Tất cả">Tất cả</button>
+          <button class="j-filter" type="button" data-filter="Nền tảng">Nền tảng</button>
+          <button class="j-filter" type="button" data-filter="Kỹ thuật">Kỹ thuật</button>
+          <button class="j-filter" type="button" data-filter="Khoa học">Khoa học</button>
+          <button class="j-filter" type="button" data-filter="Nâng cao">Nâng cao</button>
+        </div>
+        <p class="j-result-count" data-result-count aria-live="polite"></p>
       </div>
 
       <div class="j-grid" data-journal-grid></div>
-      <p class="j-empty" data-empty>Chưa có bài ở nhóm này.</p>
+      <p class="j-empty" data-empty>Chưa tìm thấy bài phù hợp. Thử một từ khóa ngắn hơn nhé.</p>
     </div>
   </main>
 

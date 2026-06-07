@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Charmie Lab — công cụ scale mẻ và chẩn đoán lỗi tiramisu trong bếp.">
+  <title>Charmie Lab — Công cụ thực hành tiramisu</title>
+  <link rel="icon" type="image/png" href="../uploads/charmie-favicon.png">
+  <link rel="apple-touch-icon" href="../uploads/charmie-favicon.png">
+  <link rel="stylesheet" href="assets/journal.css">
+</head>
+<body>
+  <nav class="j-nav">
+    <div class="j-shell j-nav-inner">
+      <a class="j-brand" href="../index.html">Charmie</a>
+      <div class="j-nav-links">
+        <a href="index.html">Journal</a>
+        <a href="#batch-scaler">Scale mẻ</a>
+        <a href="#troubleshooting">Tra lỗi</a>
+        <a class="j-nav-home" href="../index.html">Về cửa hàng</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="lab-hero">
+    <div class="j-shell lab-hero-inner">
+      <span class="j-eyebrow">Charmie Lab · Từ quan sát đến điều chỉnh</span>
+      <h1>Ghi lại. Đo được. Làm lại tốt hơn.</h1>
+      <p>Một góc thực hành nhỏ để scale nguyên liệu, đọc dấu hiệu của mẻ bánh và biến cảm giác trong bếp thành dữ liệu có thể dùng lại.</p>
+    </div>
+  </header>
+
+  <main class="lab-main">
+    <section class="j-shell lab-section" id="batch-scaler">
+      <div class="lab-section-head">
+        <div>
+          <span class="j-eyebrow">01 · Batch scaler</span>
+          <h2>Scale mẻ mà không mất tỷ lệ.</h2>
+        </div>
+        <p>Chỉnh mốc tham chiếu theo công thức của bạn, sau đó chọn số mẻ cần làm. Kết quả được làm tròn đến một chữ số thập phân.</p>
+      </div>
+
+      <div class="lab-scaler">
+        <div class="lab-control-panel">
+          <label class="lab-multiplier">
+            <span>Số mẻ</span>
+            <div class="lab-stepper">
+              <button type="button" data-step="-0.5" aria-label="Giảm nửa mẻ">−</button>
+              <input type="number" min="0.5" max="20" step="0.5" value="1" data-multiplier aria-label="Số mẻ">
+              <button type="button" data-step="0.5" aria-label="Tăng nửa mẻ">+</button>
+            </div>
+          </label>
+
+          <div class="lab-ingredients" data-ingredient-inputs></div>
+          <p class="lab-note">Đây là công cụ scale số học. Khi tăng mẻ, vẫn cần kiểm tra tải máy, kích thước âu và thời gian trộn thực tế.</p>
+        </div>
+
+        <div class="lab-result-panel" aria-live="polite">
+          <div class="lab-result-head">
+            <span>Nguyên liệu cần chuẩn bị</span>
+            <strong data-batch-label>1 mẻ</strong>
+          </div>
+          <div class="lab-results" data-scaled-results></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="lab-diagnosis-band" id="troubleshooting">
+      <div class="j-shell lab-section">
+        <div class="lab-section-head">
+          <div>
+            <span class="j-eyebrow">02 · Troubleshooting</span>
+            <h2>Mẻ bánh đang nói điều gì?</h2>
+          </div>
+          <p>Chọn dấu hiệu gần nhất. Hãy xem đây là hướng kiểm tra có thứ tự, không phải một kết luận duy nhất.</p>
+        </div>
+
+        <div class="lab-diagnosis">
+          <label class="lab-select-wrap">
+            <span>Dấu hiệu quan sát được</span>
+            <select data-symptom>
+              <option value="kem-long">Kem lỏng, khó giữ lớp</option>
+              <option value="kem-lon-con">Kem lợn cợn hoặc kém mịn</option>
+              <option value="tach-nuoc">Đáy hộp có nước sau khi nghỉ</option>
+              <option value="banh-kho">Lớp bánh còn khô ở giữa</option>
+              <option value="banh-nhao">Bánh nhão, mất cấu trúc</option>
+              <option value="ca-phe-gat">Vị cà phê gắt hoặc rỗng</option>
+              <option value="cat-khong-dung">Múc hoặc cắt không đứng lớp</option>
+            </select>
+          </label>
+
+          <div class="lab-diagnosis-result" data-diagnosis aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="j-shell lab-section lab-log">
+      <div class="lab-section-head">
+        <div>
+          <span class="j-eyebrow">03 · Nhật ký mẻ</span>
+          <h2>Sáu dòng đáng ghi lại.</h2>
+        </div>
+        <p>Một nhật ký ngắn nhưng đều đặn hữu ích hơn một biểu mẫu dài mà không ai muốn mở.</p>
+      </div>
+      <ol class="lab-log-grid">
+        <li><span>01</span><strong>Ngày và mã mẻ</strong><p>Đủ để truy lại nguyên liệu và người thực hiện.</p></li>
+        <li><span>02</span><strong>Nhiệt độ nguyên liệu</strong><p>Ghi ít nhất mascarpone, kem và espresso.</p></li>
+        <li><span>03</span><strong>Khối lượng thực tế</strong><p>Đặc biệt là phần dịch thấm và kem sau trộn.</p></li>
+        <li><span>04</span><strong>Thời gian thao tác</strong><p>Đánh kem, ráp lớp và thời gian nghỉ.</p></li>
+        <li><span>05</span><strong>Dấu hiệu quan sát</strong><p>Độ bóng, độ đứng, bọt khí và độ ẩm.</p></li>
+        <li><span>06</span><strong>Một thay đổi tiếp theo</strong><p>Chỉ chọn một biến chính cho mẻ thử kế tiếp.</p></li>
+      </ol>
+    </section>
+  </main>
+
+  <footer class="j-footer">
+    <div class="j-shell j-footer-inner">
+      <span>© 2026 Charmie Lab · Tiramisu Artisanal · Ho Chi Minh City</span>
+      <a href="index.html">Đọc Charmie Journal</a>
+    </div>
+  </footer>
+
+  <script src="assets/lab.js"></script>
+</body>
+</html>
