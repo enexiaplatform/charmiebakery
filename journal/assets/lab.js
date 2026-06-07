@@ -1,12 +1,22 @@
 (function () {
   const ingredients = [
-    { id: "mascarpone", name: "Mascarpone", amount: 250, unit: "g" },
-    { id: "cream", name: "Whipping cream", amount: 150, unit: "g" },
-    { id: "ladyfinger", name: "Ladyfinger", amount: 120, unit: "g" },
-    { id: "espresso", name: "Espresso", amount: 110, unit: "ml" },
-    { id: "sugar", name: "Đường", amount: 55, unit: "g" },
-    { id: "cacao", name: "Cacao", amount: 8, unit: "g" }
+    { id: "mascarpone", name: "Mascarpone", amount: 250, unit: "g", packSize: 250, packPrice: 115000 },
+    { id: "cream", name: "Whipping cream", amount: 150, unit: "g", packSize: 1000, packPrice: 180000 },
+    { id: "ladyfinger", name: "Ladyfinger", amount: 120, unit: "g", packSize: 200, packPrice: 85000 },
+    { id: "espresso", name: "Espresso", amount: 110, unit: "ml", packSize: 1000, packPrice: 120000 },
+    { id: "sugar", name: "Đường", amount: 55, unit: "g", packSize: 1000, packPrice: 32000 },
+    { id: "cacao", name: "Cacao", amount: 8, unit: "g", packSize: 100, packPrice: 65000 }
   ];
+
+  const storageKeys = {
+    costs: "charmie-lab-costs-v1",
+    logs: "charmie-lab-logs-v2"
+  };
+
+  const labState = {
+    multiplier: 1,
+    scaledAmounts: {}
+  };
 
   const diagnoses = {
     "kem-long": {
@@ -85,6 +95,37 @@
     return Number.isInteger(value) ? String(value) : value.toFixed(1);
   }
 
+  function formatCurrency(value) {
+    return `${Math.round(value).toLocaleString("vi-VN")}đ`;
+  }
+
+  function escapeHtml(value) {
+    return String(value || "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
+
+  function readStorage(key, fallback) {
+    try {
+      const value = window.localStorage.getItem(key);
+      return value ? JSON.parse(value) : fallback;
+    } catch (error) {
+      return fallback;
+    }
+  }
+
+  function writeStorage(key, value) {
+    try {
+      window.localStorage.setItem(key, JSON.stringify(value));
+      return true;
+    } catch (error) {
+      return false;
+    }
+  }
+
   function initScaler() {
     const inputRoot = document.querySelector("[data-ingredient-inputs]");
     const resultRoot = document.querySelector("[data-scaled-results]");
@@ -105,18 +146,22 @@
     function render() {
       const multiplier = Math.min(20, Math.max(0.5, Number(multiplierInput.value) || 1));
       multiplierInput.value = formatAmount(multiplier);
+      labState.multiplier = multiplier;
       if (batchLabel) batchLabel.textContent = `${formatAmount(multiplier)} mẻ`;
 
       resultRoot.innerHTML = ingredients.map((ingredient) => {
         const amountInput = inputRoot.querySelector(`[data-ingredient="${ingredient.id}"]`);
         const baseAmount = Math.max(0, Number(amountInput.value) || 0);
+        labState.scaledAmounts[ingredient.id] = baseAmount * multiplier;
         return `
           <div class="lab-result-row">
             <span>${ingredient.name}</span>
-            <strong>${formatAmount(baseAmount * multiplier)} <small>${ingredient.unit}</small></strong>
+            <strong>${formatAmount(labState.scaledAmounts[ingredient.id])} <small>${ingredient.unit}</small></strong>
           </div>
         `;
       }).join("");
+
+      document.dispatchEvent(new CustomEvent("charmie:scale-change"));
     }
 
     document.querySelectorAll("[data-step]").forEach((button) => {
@@ -129,6 +174,105 @@
     multiplierInput.addEventListener("change", render);
     inputRoot.addEventListener("input", render);
     render();
+  }
+
+  function initCosting() {
+    const inputRoot = document.querySelector("[data-cost-inputs]");
+    const ingredientCostOutput = document.querySelector("[data-ingredient-cost]");
+    const totalCostOutput = document.querySelector("[data-total-cost]");
+    const unitCostOutput = document.querySelector("[data-unit-cost]");
+    const wasteRateInput = document.querySelector("[data-waste-rate]");
+    const yieldInput = document.querySelector("[data-yield-count]");
+    const packagingInput = document.querySelector("[data-packaging-cost]");
+    const overheadInput = document.querySelector("[data-overhead-cost]");
+    if (!inputRoot || !ingredientCostOutput || !totalCostOutput || !unitCostOutput) return;
+
+    const saved = readStorage(storageKeys.costs, {});
+    const savedIngredients = saved.ingredients || {};
+
+    inputRoot.innerHTML = `
+      <div class="lab-cost-header" aria-hidden="true">
+        <span>Nguyên liệu</span>
+        <span>Lượng dùng</span>
+        <span>Quy cách mua</span>
+        <span>Giá mua</span>
+        <span>Thành tiền</span>
+      </div>
+      ${ingredients.map((ingredient) => {
+        const stored = savedIngredients[ingredient.id] || {};
+        return `
+          <div class="lab-cost-row" data-cost-row="${ingredient.id}">
+            <strong>${ingredient.name}</strong>
+            <span class="lab-cost-used" data-cost-used="${ingredient.id}">0 ${ingredient.unit}</span>
+            <label>
+              <span>Quy cách mua</span>
+              <span class="lab-cost-field">
+              <input type="number" min="0.1" step="1" value="${stored.packSize ?? ingredient.packSize}" data-pack-size="${ingredient.id}">
+                <small>${ingredient.unit}</small>
+              </span>
+            </label>
+            <label>
+              <span>Giá mua</span>
+              <span class="lab-cost-field">
+              <input type="number" min="0" step="1000" value="${stored.packPrice ?? ingredient.packPrice}" data-pack-price="${ingredient.id}">
+                <small>đ</small>
+              </span>
+            </label>
+            <span class="lab-cost-line" data-line-cost="${ingredient.id}">0đ</span>
+          </div>
+        `;
+      }).join("")}
+    `;
+
+    if (saved.wasteRate !== undefined) wasteRateInput.value = saved.wasteRate;
+    if (saved.yieldCount !== undefined) yieldInput.value = saved.yieldCount;
+    if (saved.packagingCost !== undefined) packagingInput.value = saved.packagingCost;
+    if (saved.overheadCost !== undefined) overheadInput.value = saved.overheadCost;
+
+    function calculate() {
+      let ingredientCost = 0;
+      const ingredientSettings = {};
+
+      ingredients.forEach((ingredient) => {
+        const used = labState.scaledAmounts[ingredient.id] || 0;
+        const packSizeInput = inputRoot.querySelector(`[data-pack-size="${ingredient.id}"]`);
+        const packPriceInput = inputRoot.querySelector(`[data-pack-price="${ingredient.id}"]`);
+        const packSize = Math.max(0.1, Number(packSizeInput.value) || ingredient.packSize);
+        const packPrice = Math.max(0, Number(packPriceInput.value) || 0);
+        const lineCost = (used / packSize) * packPrice;
+
+        ingredientSettings[ingredient.id] = { packSize, packPrice };
+        ingredientCost += lineCost;
+        inputRoot.querySelector(`[data-cost-used="${ingredient.id}"]`).textContent = `${formatAmount(used)} ${ingredient.unit}`;
+        inputRoot.querySelector(`[data-line-cost="${ingredient.id}"]`).textContent = formatCurrency(lineCost);
+      });
+
+      const wasteRate = Math.min(50, Math.max(0, Number(wasteRateInput.value) || 0));
+      const yieldCount = Math.max(1, Math.round(Number(yieldInput.value) || 1));
+      const packagingCost = Math.max(0, Number(packagingInput.value) || 0);
+      const overheadCost = Math.max(0, Number(overheadInput.value) || 0);
+      const costAfterWaste = ingredientCost * (1 + wasteRate / 100);
+      const totalCost = costAfterWaste + packagingCost * yieldCount + overheadCost;
+
+      ingredientCostOutput.textContent = formatCurrency(ingredientCost);
+      totalCostOutput.textContent = formatCurrency(totalCost);
+      unitCostOutput.textContent = formatCurrency(totalCost / yieldCount);
+
+      writeStorage(storageKeys.costs, {
+        ingredients: ingredientSettings,
+        wasteRate,
+        yieldCount,
+        packagingCost,
+        overheadCost
+      });
+    }
+
+    inputRoot.addEventListener("input", calculate);
+    [wasteRateInput, yieldInput, packagingInput, overheadInput].forEach((input) => {
+      input.addEventListener("input", calculate);
+    });
+    document.addEventListener("charmie:scale-change", calculate);
+    calculate();
   }
 
   function initDiagnosis() {
@@ -160,6 +304,138 @@
     render();
   }
 
+  function initBatchLog() {
+    const form = document.querySelector("[data-log-form]");
+    const list = document.querySelector("[data-log-list]");
+    const empty = document.querySelector("[data-log-empty]");
+    const count = document.querySelector("[data-log-count]");
+    const clearButton = document.querySelector("[data-clear-logs]");
+    const status = document.querySelector("[data-log-status]");
+    const dateInput = document.querySelector("[data-log-date]");
+    const scaleInput = document.querySelector("[data-log-scale]");
+    if (!form || !list || !empty || !count || !clearButton || !dateInput) return;
+
+    let logs = readStorage(storageKeys.logs, []);
+    if (!Array.isArray(logs)) logs = [];
+
+    function makeId() {
+      if (window.crypto && typeof window.crypto.randomUUID === "function") {
+        return window.crypto.randomUUID();
+      }
+      return `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+    }
+
+    function formatDate(value) {
+      if (!value) return "";
+      const parts = value.split("-");
+      return parts.length === 3 ? `${parts[2]}/${parts[1]}/${parts[0]}` : value;
+    }
+
+    function render() {
+      count.textContent = `${logs.length} mẻ`;
+      empty.hidden = logs.length > 0;
+      clearButton.hidden = logs.length === 0;
+
+      list.innerHTML = logs.map((log) => `
+        <article class="lab-log-card">
+          <div class="lab-log-card-head">
+            <div>
+              <span>${escapeHtml(formatDate(log.date))} · ${escapeHtml(log.product)}</span>
+              <h3>${escapeHtml(log.code)}</h3>
+            </div>
+            <span class="lab-log-rating" aria-label="${escapeHtml(log.score)} trên 5 điểm">${escapeHtml(log.score)}/5</span>
+          </div>
+          <dl>
+            ${log.scale ? `<div><dt>Quy mô</dt><dd>${escapeHtml(log.scale)}</dd></div>` : ""}
+            ${log.temperature ? `<div><dt>Nhiệt độ</dt><dd>${escapeHtml(log.temperature)}</dd></div>` : ""}
+            ${log.rest ? `<div><dt>Thời gian nghỉ</dt><dd>${escapeHtml(log.rest)}</dd></div>` : ""}
+          </dl>
+          ${log.observation ? `<div class="lab-log-copy"><strong>Quan sát</strong><p>${escapeHtml(log.observation)}</p></div>` : ""}
+          ${log.next ? `<div class="lab-log-copy"><strong>Mẻ tiếp theo</strong><p>${escapeHtml(log.next)}</p></div>` : ""}
+          <button type="button" class="lab-delete-log" data-delete-log="${escapeHtml(log.id)}">Xóa bản ghi</button>
+        </article>
+      `).join("");
+    }
+
+    function resetDefaults() {
+      const now = new Date();
+      const localDate = new Date(now.getTime() - now.getTimezoneOffset() * 60000);
+      dateInput.value = localDate.toISOString().slice(0, 10);
+      if (scaleInput) {
+        scaleInput.value = `${formatAmount(labState.multiplier)} mẻ`;
+        scaleInput.dataset.autoScale = "true";
+      }
+    }
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const log = {
+        id: makeId(),
+        createdAt: Date.now(),
+        date: dateInput.value,
+        code: form.querySelector("[data-log-code]").value.trim(),
+        product: form.querySelector("[data-log-product]").value,
+        scale: form.querySelector("[data-log-scale]").value.trim(),
+        temperature: form.querySelector("[data-log-temperature]").value.trim(),
+        rest: form.querySelector("[data-log-rest]").value.trim(),
+        observation: form.querySelector("[data-log-observation]").value.trim(),
+        next: form.querySelector("[data-log-next]").value.trim(),
+        score: form.querySelector("[data-log-score]").value
+      };
+
+      logs.unshift(log);
+      const saved = writeStorage(storageKeys.logs, logs);
+      if (!saved) {
+        logs.shift();
+        status.textContent = "Không thể lưu trên trình duyệt này. Hãy kiểm tra chế độ riêng tư hoặc dung lượng lưu trữ.";
+        status.classList.add("is-error");
+        return;
+      }
+
+      form.reset();
+      resetDefaults();
+      status.textContent = `Đã lưu mẻ ${log.code}.`;
+      status.classList.remove("is-error");
+      render();
+    });
+
+    list.addEventListener("click", (event) => {
+      const button = event.target.closest("[data-delete-log]");
+      if (!button) return;
+      const log = logs.find((item) => item.id === button.dataset.deleteLog);
+      if (!log || !window.confirm(`Xóa nhật ký mẻ ${log.code}?`)) return;
+      logs = logs.filter((item) => item.id !== log.id);
+      writeStorage(storageKeys.logs, logs);
+      render();
+    });
+
+    clearButton.addEventListener("click", () => {
+      if (!logs.length || !window.confirm("Xóa toàn bộ nhật ký mẻ trên thiết bị này?")) return;
+      logs = [];
+      writeStorage(storageKeys.logs, logs);
+      status.textContent = "Đã xóa toàn bộ nhật ký.";
+      status.classList.remove("is-error");
+      render();
+    });
+
+    if (scaleInput) {
+      scaleInput.addEventListener("input", () => {
+        scaleInput.dataset.autoScale = "false";
+      });
+    }
+
+    document.addEventListener("charmie:scale-change", () => {
+      if (scaleInput && scaleInput.dataset.autoScale !== "false") {
+        scaleInput.value = `${formatAmount(labState.multiplier)} mẻ`;
+      }
+    });
+
+    resetDefaults();
+    render();
+  }
+
   initScaler();
+  initCosting();
   initDiagnosis();
+  initBatchLog();
 })();

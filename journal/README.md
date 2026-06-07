@@ -4,11 +4,11 @@
 
 - `index.html`: knowledge library, text search, and level filters.
 - `article.html`: shared article reader.
-- `lab.html`: batch scaling and troubleshooting tools.
+- `lab.html`: batch scaling, troubleshooting, costing, and local batch logs.
 - `data/articles.js`: article content and metadata.
 - `assets/journal.css`: Journal visual system and responsive layout.
 - `assets/journal.js`: card rendering, filtering, and article routing.
-- `assets/lab.js`: interactive Lab calculations and diagnosis.
+- `assets/lab.js`: interactive calculations, diagnosis, costing, and local storage.
 
 ## Add an article
 

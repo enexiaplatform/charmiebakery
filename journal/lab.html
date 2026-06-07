@@ -17,6 +17,8 @@
         <a href="index.html">Journal</a>
         <a href="#batch-scaler">Scale mẻ</a>
         <a href="#troubleshooting">Tra lỗi</a>
+        <a href="#costing">Giá vốn</a>
+        <a href="#batch-log">Nhật ký</a>
         <a class="j-nav-home" href="../index.html">Về cửa hàng</a>
       </div>
     </div>
@@ -94,22 +96,137 @@
       </div>
     </section>
 
-    <section class="j-shell lab-section lab-log">
+    <section class="j-shell lab-section" id="costing">
       <div class="lab-section-head">
         <div>
-          <span class="j-eyebrow">03 · Nhật ký mẻ</span>
-          <h2>Sáu dòng đáng ghi lại.</h2>
+          <span class="j-eyebrow">03 · Costing</span>
+          <h2>Biết một mẻ thực sự tốn bao nhiêu.</h2>
         </div>
-        <p>Một nhật ký ngắn nhưng đều đặn hữu ích hơn một biểu mẫu dài mà không ai muốn mở.</p>
+        <p>Lượng sử dụng được lấy từ bộ scale phía trên. Bạn chỉ cần nhập quy cách mua và giá gần nhất của từng nguyên liệu.</p>
       </div>
-      <ol class="lab-log-grid">
-        <li><span>01</span><strong>Ngày và mã mẻ</strong><p>Đủ để truy lại nguyên liệu và người thực hiện.</p></li>
-        <li><span>02</span><strong>Nhiệt độ nguyên liệu</strong><p>Ghi ít nhất mascarpone, kem và espresso.</p></li>
-        <li><span>03</span><strong>Khối lượng thực tế</strong><p>Đặc biệt là phần dịch thấm và kem sau trộn.</p></li>
-        <li><span>04</span><strong>Thời gian thao tác</strong><p>Đánh kem, ráp lớp và thời gian nghỉ.</p></li>
-        <li><span>05</span><strong>Dấu hiệu quan sát</strong><p>Độ bóng, độ đứng, bọt khí và độ ẩm.</p></li>
-        <li><span>06</span><strong>Một thay đổi tiếp theo</strong><p>Chỉ chọn một biến chính cho mẻ thử kế tiếp.</p></li>
-      </ol>
+
+      <div class="lab-costing">
+        <div class="lab-cost-table-wrap">
+          <div class="lab-cost-table" data-cost-inputs></div>
+          <p class="lab-note">Giá được lưu trên thiết bị này. Hãy cập nhật khi nhà cung cấp thay đổi bảng giá.</p>
+        </div>
+
+        <aside class="lab-cost-summary" aria-live="polite">
+          <span class="lab-result-kicker">Tổng quan mẻ hiện tại</span>
+          <div class="lab-summary-row"><span>Nguyên liệu</span><strong data-ingredient-cost>0đ</strong></div>
+          <label class="lab-summary-input">
+            <span>Hao hụt</span>
+            <span><input type="number" min="0" max="50" step="0.5" value="5" data-waste-rate> %</span>
+          </label>
+          <label class="lab-summary-input">
+            <span>Số hộp thành phẩm</span>
+            <span><input type="number" min="1" step="1" value="1" data-yield-count> hộp</span>
+          </label>
+          <label class="lab-summary-input">
+            <span>Bao bì mỗi hộp</span>
+            <span><input type="number" min="0" step="1000" value="25000" data-packaging-cost> đ</span>
+          </label>
+          <label class="lab-summary-input">
+            <span>Chi phí khác / mẻ</span>
+            <span><input type="number" min="0" step="1000" value="30000" data-overhead-cost> đ</span>
+          </label>
+          <div class="lab-cost-total">
+            <span>Tổng giá vốn mẻ</span>
+            <strong data-total-cost>0đ</strong>
+          </div>
+          <div class="lab-unit-cost">
+            <span>Giá vốn mỗi hộp</span>
+            <strong data-unit-cost>0đ</strong>
+          </div>
+          <p>Chưa gồm phí giao hàng, marketing, thuế và lợi nhuận mong muốn.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="lab-log-band" id="batch-log">
+      <div class="j-shell lab-section">
+        <div class="lab-section-head">
+          <div>
+            <span class="j-eyebrow">04 · Nhật ký mẻ</span>
+            <h2>Ghi đủ để lần sau làm tốt hơn.</h2>
+          </div>
+          <p>Nhật ký được lưu riêng trên trình duyệt hiện tại. Không có dữ liệu nào được gửi ra ngoài.</p>
+        </div>
+
+        <div class="lab-log-workspace">
+          <form class="lab-log-form" data-log-form>
+            <div class="lab-form-grid">
+              <label>
+                <span>Ngày làm</span>
+                <input type="date" required data-log-date>
+              </label>
+              <label>
+                <span>Mã mẻ</span>
+                <input type="text" maxlength="30" placeholder="VD: CL-0607-A" required data-log-code>
+              </label>
+              <label>
+                <span>Sản phẩm</span>
+                <select data-log-product>
+                  <option>Le Classique</option>
+                  <option>Jardin Vert</option>
+                  <option>Charmie Box</option>
+                  <option>Soft Letters</option>
+                  <option>Mẻ thử nghiệm</option>
+                </select>
+              </label>
+              <label>
+                <span>Quy mô</span>
+                <input type="text" maxlength="30" placeholder="VD: 2 mẻ / 8 hộp" data-log-scale>
+              </label>
+              <label>
+                <span>Nhiệt độ nguyên liệu</span>
+                <input type="text" maxlength="80" placeholder="Mascarpone 8°C, kem 5°C..." data-log-temperature>
+              </label>
+              <label>
+                <span>Thời gian nghỉ</span>
+                <input type="text" maxlength="30" placeholder="VD: 12 giờ" data-log-rest>
+              </label>
+            </div>
+            <label class="lab-form-wide">
+              <span>Dấu hiệu quan sát</span>
+              <textarea rows="3" maxlength="500" placeholder="Độ đứng của kem, độ ẩm bánh, bề mặt, vị cà phê..." data-log-observation></textarea>
+            </label>
+            <label class="lab-form-wide">
+              <span>Một thay đổi cho mẻ tiếp theo</span>
+              <textarea rows="2" maxlength="300" placeholder="Chỉ chọn một biến chính để dễ so sánh." data-log-next></textarea>
+            </label>
+            <div class="lab-log-actions">
+              <label class="lab-score">
+                <span>Đánh giá mẻ</span>
+                <select data-log-score>
+                  <option value="5">5 · Rất ổn định</option>
+                  <option value="4">4 · Tốt</option>
+                  <option value="3" selected>3 · Cần chỉnh nhẹ</option>
+                  <option value="2">2 · Cần thử lại</option>
+                  <option value="1">1 · Không đạt</option>
+                </select>
+              </label>
+              <button class="lab-save-button" type="submit">Lưu nhật ký</button>
+            </div>
+            <p class="lab-form-status" data-log-status aria-live="polite"></p>
+          </form>
+
+          <div class="lab-log-history">
+            <div class="lab-history-head">
+              <div>
+                <span class="lab-result-kicker">Đã lưu trên thiết bị</span>
+                <strong data-log-count>0 mẻ</strong>
+              </div>
+              <button type="button" class="lab-text-button" data-clear-logs hidden>Xóa tất cả</button>
+            </div>
+            <div class="lab-log-list" data-log-list></div>
+            <div class="lab-log-empty" data-log-empty>
+              <strong>Chưa có mẻ nào được lưu.</strong>
+              <p>Bản ghi đầu tiên sẽ xuất hiện ở đây để bạn đối chiếu vào lần làm sau.</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
   </main>
 
