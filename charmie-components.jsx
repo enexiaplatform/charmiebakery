@@ -40,6 +40,7 @@ const Nav = ({ scrolled }) => {
     <nav className={`c-nav${scrolled ? ' c-nav--up' : ''}`}>
       <span className="c-nav-logo">Charmie</span>
       <div className="c-nav-links">
+        <a className="c-nav-link c-nav-journal" href="journal/index.html">Journal</a>
         <button className="c-nav-link" onClick={() => go('products')}>Sản phẩm</button>
         <span className="c-nav-sep" aria-hidden="true"></span>
         <button className="c-nav-link c-nav-link--pill" onClick={() => go('order')}>Đặt hàng</button>
@@ -158,6 +159,66 @@ const BrandStory = () => (
 );
 
 /* ── Products ───────────────────────────────────────────────── */
+const JOURNAL_FEATURES = [
+  {
+    level: 'Nền tảng',
+    title: 'Đọc một chiếc tiramisu qua từng lớp',
+    desc: 'Hiểu vai trò của bánh, espresso, mascarpone và cacao trước khi bắt đầu.',
+    img: 'uploads/pasted-1779543950628-0.png',
+    href: 'journal/article.html?slug=tiramisu-la-gi',
+  },
+  {
+    level: 'Khoa học',
+    title: 'Tiramisu dưới góc nhìn khoa học',
+    desc: 'Nhũ tương, bọt khí, mao dẫn và sự di chuyển của độ ẩm trong thời gian nghỉ.',
+    img: 'uploads/pasted-1779544083977-0.png',
+    href: 'journal/article.html?slug=khoa-hoc-cua-tiramisu',
+  },
+  {
+    level: 'Nâng cao',
+    title: 'An toàn và chuỗi lạnh',
+    desc: 'Trứng thanh trùng, bảo quản lạnh và những nguyên tắc cần có khi làm để bán.',
+    img: 'uploads/pasted-1779544702147-0.png',
+    href: 'journal/article.html?slug=an-toan-va-chuoi-lanh',
+  },
+];
+
+const JournalPreview = () => (
+  <section id="journal" className="c-journal">
+    <div className="c-wrap">
+      <FadeIn className="c-journal-head">
+        <div>
+          <span className="c-eyebrow">◆ Charmie Journal</span>
+          <h2 className="c-journal-title">Hiểu tiramisu từ bên trong.</h2>
+          <p className="c-journal-copy">
+            Từ nền tảng đến khoa học thực phẩm — những ghi chép giúp bạn làm bánh
+            bằng quan sát, lý giải và một quy trình có thể lặp lại.
+          </p>
+        </div>
+        <a className="c-btn c-btn-ring c-journal-all" href="journal/index.html">Xem thư viện</a>
+      </FadeIn>
+
+      <div className="c-journal-grid">
+        {JOURNAL_FEATURES.map((article, index) => (
+          <FadeIn key={article.href} delay={index * 100}>
+            <a className="c-journal-card" href={article.href}>
+              <div className="c-journal-img">
+                <img src={article.img} alt={article.title} />
+              </div>
+              <div className="c-journal-body">
+                <span>{article.level}</span>
+                <h3>{article.title}</h3>
+                <p>{article.desc}</p>
+                <strong>Đọc bài →</strong>
+              </div>
+            </a>
+          </FadeIn>
+        ))}
+      </div>
+    </div>
+  </section>
+);
+
 const PRODS = [
   { id:1, name:'Le Classique', desc:'Tiramisu cổ điển. Đậm espresso, kem mascarpone mịn màng.',                     price:'320,000đ', wt:'~250g', badge:'Best Seller', bk:'bs', img:'uploads/pasted-1779543992358-0.png' },
   { id:2, name:'Jardin Vert',  desc:'Matcha Uji hòa quyện cùng mascarpone — thanh mát, tinh tế.',                   price:'360,000đ', wt:'~250g', img:'uploads/pasted-1779544083977-0.png' },
@@ -306,4 +367,4 @@ const Footer = () => (
 );
 
 /* ── exports ────────────────────────────────────────────────── */
-Object.assign(window, { FadeIn, Nav, Hero, Statement, BrandStory, Products, Occasions, OrderCTA, Footer });
+Object.assign(window, { FadeIn, Nav, Hero, Statement, BrandStory, JournalPreview, Products, Occasions, OrderCTA, Footer });
