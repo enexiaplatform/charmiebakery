@@ -10,10 +10,12 @@
       <a class="j-card" href="${articleUrl(article.slug)}" data-level="${article.level}" data-search-text="${[
         article.title,
         article.summary,
-        article.level
+        article.level,
+        ...article.sections.map((section) => section.title),
+        ...article.takeaways
       ].join(" ")}">
         <div class="j-card-image">
-          <img src="${article.image}" alt="${article.title}">
+          <img src="${article.image}" alt="${article.title}" loading="lazy" decoding="async">
           <span class="j-level">${article.level}</span>
         </div>
         <div class="j-card-body">
@@ -70,7 +72,11 @@
     filters.forEach((button) => {
       button.addEventListener("click", () => {
         activeLevel = button.dataset.filter;
-        filters.forEach((item) => item.classList.toggle("is-active", item === button));
+        filters.forEach((item) => {
+          const active = item === button;
+          item.classList.toggle("is-active", active);
+          item.setAttribute("aria-pressed", String(active));
+        });
         applyFilters();
       });
     });
@@ -109,6 +115,23 @@
     if (description) description.setAttribute("content", article.summary);
     const index = articles.findIndex((item) => item.slug === article.slug);
     const next = articles[(index + 1) % articles.length];
+    const related = articles
+      .filter((item) => item.slug !== article.slug && item.level === article.level)
+      .slice(0, 2);
+
+    const structuredData = document.createElement("script");
+    structuredData.type = "application/ld+json";
+    structuredData.textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Article",
+      headline: article.title,
+      description: article.summary,
+      image: new URL(article.image, window.location.href).href,
+      author: { "@type": "Organization", name: "Charmie" },
+      publisher: { "@type": "Organization", name: "Charmie" },
+      inLanguage: "vi"
+    });
+    document.head.appendChild(structuredData);
 
     const sectionLinks = article.sections.map((section, sectionIndex) => (
       `<a href="#section-${sectionIndex + 1}">${section.title}</a>`
@@ -158,13 +181,13 @@
               </div>
             </div>
             <div class="j-article-image">
-              <img src="${article.image}" alt="${article.title}">
+              <img src="${article.image}" alt="${article.title}" width="1122" height="1402" decoding="async">
             </div>
           </div>
         </div>
       </header>
 
-      <main class="j-shell j-article-layout">
+      <main class="j-shell j-article-layout" id="article-content" tabindex="-1">
         <article class="j-prose">
           <p class="j-intro">${article.intro}</p>
           ${sections}
@@ -174,6 +197,20 @@
           </section>
           ${safety}
           ${sources}
+          <section class="j-related">
+            <div class="j-related-head">
+              <h2>Đọc tiếp cùng chủ đề</h2>
+              <a href="index.html">Xem toàn bộ thư viện →</a>
+            </div>
+            <div class="j-related-grid">
+              ${related.map((item) => `
+                <a class="j-related-card" href="${articleUrl(item.slug)}">
+                  <span>${item.level} · ${item.readTime}</span>
+                  <strong>${item.title}</strong>
+                </a>
+              `).join("")}
+            </div>
+          </section>
         </article>
 
         <aside class="j-aside">

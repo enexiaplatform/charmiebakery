@@ -6,7 +6,7 @@ window.CHARMIE_ARTICLES = [
     title: "Tiramisu là gì? Đọc một chiếc bánh qua từng lớp",
     summary: "Từ ladyfinger, espresso đến mascarpone: hiểu vai trò của từng lớp trước khi bắt đầu làm.",
     readTime: "6 phút",
-    image: "../uploads/pasted-1779543950628-0.png",
+    image: "../uploads/pasted-1779543950628-0.jpg",
     intro: "Một chiếc tiramisu ngon không chỉ là kem và cà phê xếp chồng. Nó là sự cân bằng giữa cấu trúc, độ ẩm, vị đắng, độ béo và thời gian nghỉ.",
     sections: [
       {
@@ -44,7 +44,7 @@ window.CHARMIE_ARTICLES = [
     title: "Bản đồ nguyên liệu: chọn đúng trước khi làm đúng",
     summary: "Mascarpone, trứng, kem, cà phê và cacao khác nhau thế nào, và thay đổi nào thật sự quan trọng?",
     readTime: "7 phút",
-    image: "../uploads/pasted-1779543992358-0.png",
+    image: "../uploads/pasted-1779543992358-0.jpg",
     intro: "Kỹ thuật tốt không thể cứu hoàn toàn một nguyên liệu sai mục đích. Hiểu nhãn, hàm lượng béo và trạng thái bảo quản giúp bạn tránh phần lớn lỗi ngay từ đầu.",
     sections: [
       {
@@ -88,7 +88,7 @@ window.CHARMIE_ARTICLES = [
     title: "Kiểm soát độ ẩm: bánh mềm nhưng không nhão",
     summary: "Cách pha, làm nguội và thấm cà phê để lớp bánh giữ được hình sau nhiều giờ.",
     readTime: "8 phút",
-    image: "../uploads/pasted-1779544236945-0.png",
+    image: "../uploads/pasted-1779544236945-0.jpg",
     intro: "Lỗi phổ biến nhất của tiramisu là cho rằng càng nhiều cà phê càng ngon. Thực tế, độ ngon đến từ cà phê cô đặc được phân bố đều, không phải từ một chiếc bánh ngập nước.",
     sections: [
       {
@@ -126,7 +126,7 @@ window.CHARMIE_ARTICLES = [
     title: "Kem mascarpone mịn và ổn định: đọc đúng từng trạng thái",
     summary: "Nhiệt độ, tốc độ đánh và thứ tự trộn quyết định kem mượt hay tách nước.",
     readTime: "9 phút",
-    image: "../uploads/pasted-1779544083977-0.png",
+    image: "../uploads/pasted-1779544083977-0.jpg",
     intro: "Kem tiramisu hiếm khi hỏng vì thiếu lực. Nó thường hỏng vì quá nhiều lực, sai nhiệt độ hoặc trộn hai hỗn hợp có độ đặc quá khác nhau.",
     sections: [
       {
@@ -164,7 +164,7 @@ window.CHARMIE_ARTICLES = [
     title: "Tiramisu dưới góc nhìn khoa học",
     summary: "Nhũ tương, bọt khí, mao dẫn và sự di chuyển của nước cùng tạo nên một miếng bánh mềm đứng.",
     readTime: "11 phút",
-    image: "../uploads/pasted-1779543950628-0.png",
+    image: "../uploads/pasted-1779543950628-0.jpg",
     intro: "Tiramisu là một hệ vật liệu thực phẩm thú vị: chất béo phân tán trong nước, khí được giữ trong mạng protein và dịch cà phê đi qua lỗ rỗng của bánh theo lực mao dẫn.",
     sections: [
       {
@@ -212,7 +212,7 @@ window.CHARMIE_ARTICLES = [
     title: "Vì sao tiramisu ngon hơn sau một đêm?",
     summary: "Thời gian nghỉ không chỉ làm bánh lạnh: nó cân bằng độ ẩm, cấu trúc và cách hương vị xuất hiện.",
     readTime: "7 phút",
-    image: "../uploads/pasted-1779544573098-0.png",
+    image: "../uploads/pasted-1779544573098-0.jpg",
     intro: "Ngay khi lắp xong, các lớp vẫn đang ở trạng thái riêng rẽ. Thời gian nghỉ cho phép chúng tiến gần đến một trạng thái cân bằng.",
     sections: [
       {
@@ -250,7 +250,7 @@ window.CHARMIE_ARTICLES = [
     title: "Scale công thức và kiểm soát mẻ như một bếp nhỏ",
     summary: "Từ một hộp đến nhiều hộp: dùng phần trăm, định mức và nhật ký mẻ để giữ chất lượng ổn định.",
     readTime: "10 phút",
-    image: "../uploads/pasted-1779544236945-0.png",
+    image: "../uploads/pasted-1779544236945-0.jpg",
     intro: "Nhân đôi mọi con số không phải lúc nào cũng cho ra cùng một kết quả. Kích thước tô, công suất máy, thời gian thao tác và nhiệt độ mẻ đều thay đổi khi sản lượng tăng.",
     sections: [
       {
@@ -288,7 +288,7 @@ window.CHARMIE_ARTICLES = [
     title: "An toàn thực phẩm và chuỗi lạnh cho tiramisu",
     summary: "Một món tráng miệng lạnh chứa sữa và có thể có trứng cần quy trình bảo quản nghiêm túc.",
     readTime: "9 phút",
-    image: "../uploads/pasted-1779544702147-0.png",
+    image: "../uploads/pasted-1779544702147-0.jpg",
     intro: "An toàn không phải phần phụ của công thức. Với tiramisu, lựa chọn trứng, vệ sinh bề mặt, tốc độ làm lạnh và thời gian ngoài tủ đều cần được kiểm soát.",
     sections: [
       {
@@ -342,7 +342,7 @@ window.CHARMIE_ARTICLES = [
     title: "Espresso cho tiramisu: đậm nhưng không gắt",
     summary: "Cách cân bằng độ cô đặc, vị đắng và lượng dịch để cà phê còn hiện diện sau lớp kem béo.",
     readTime: "8 phút",
-    image: "../uploads/pasted-1779543950628-0.png",
+    image: "../uploads/pasted-1779543950628-0.jpg",
     intro: "Cà phê dùng cho tiramisu không cần giống hoàn toàn một shot để uống riêng. Nó phải đủ cô đặc để đi qua chất béo và đường, nhưng không mang theo vị cháy hoặc chát kéo dài.",
     sections: [
       {
@@ -386,7 +386,7 @@ window.CHARMIE_ARTICLES = [
     title: "Cacao và lớp kết thúc: ít nhưng quyết định miếng đầu tiên",
     summary: "Chọn cacao, rây đúng thời điểm và kiểm soát độ dày để bề mặt thơm mà không khô.",
     readTime: "6 phút",
-    image: "../uploads/pasted-1779543992358-0.png",
+    image: "../uploads/pasted-1779543992358-0.jpg",
     intro: "Cacao là thành phần đầu tiên chạm mũi và lưỡi, dù khối lượng rất nhỏ. Một lớp phủ đúng giúp món bánh bớt ngọt và tạo cảm giác hoàn chỉnh.",
     sections: [
       {
@@ -424,7 +424,7 @@ window.CHARMIE_ARTICLES = [
     title: "Đánh giá cảm quan: nếm bánh bằng một ngôn ngữ chung",
     summary: "Xây scorecard đơn giản để đội bếp mô tả độ ẩm, cấu trúc, vị và hậu vị nhất quán.",
     readTime: "9 phút",
-    image: "../uploads/pasted-1779544236945-0.png",
+    image: "../uploads/pasted-1779544236945-0.jpg",
     intro: "“Ngon” là kết luận, chưa phải dữ liệu. Một scorecard ngắn giúp bạn biết mẻ này tốt ở đâu, lệch ở đâu và cần thay đổi điều gì.",
     sections: [
       {
@@ -462,7 +462,7 @@ window.CHARMIE_ARTICLES = [
     title: "Bao bì và trải nghiệm quà tặng",
     summary: "Thiết kế hộp không chỉ để đẹp: nó phải giữ lạnh, bảo vệ cấu trúc và dẫn dắt khoảnh khắc mở quà.",
     readTime: "8 phút",
-    image: "../uploads/pasted-1779544702147-0.png",
+    image: "../uploads/pasted-1779544702147-0.jpg",
     intro: "Một hộp tiramisu quà tặng bắt đầu được trải nghiệm trước khi mở nắp. Bao bì tốt kết hợp ba nhiệm vụ: bảo vệ sản phẩm, truyền đạt cách dùng và tạo cảm xúc.",
     sections: [
       {
@@ -491,6 +491,158 @@ window.CHARMIE_ARTICLES = [
       "Bảo vệ sản phẩm là nhiệm vụ đầu tiên của bao bì.",
       "Hướng dẫn bảo quản phải dễ thấy và dễ hiểu.",
       "Chuẩn hóa thứ tự đóng gói bằng hình ảnh."
+    ]
+  },
+  {
+    slug: "duong-va-can-bang-vi",
+    level: "Khoa học",
+    order: 13,
+    title: "Đường không chỉ tạo vị ngọt",
+    summary: "Hiểu cách đường ảnh hưởng đến cảm giác béo, vị đắng, độ mềm và cấu trúc tổng thể của tiramisu.",
+    readTime: "8 phút",
+    image: "../uploads/pasted-1779543992358-0.jpg",
+    intro: "Giảm đường thường được xem như một thay đổi đơn giản. Trong tiramisu, nó có thể làm vị cà phê sắc hơn, kem kém tròn và toàn bộ miếng bánh mất cân bằng.",
+    sections: [
+      {
+        title: "Vị ngọt điều chỉnh cách ta cảm nhận vị đắng",
+        body: [
+          "Đường không xóa vị đắng của espresso và cacao, nhưng làm thay đổi tương quan giữa các vị. Khi giảm quá nhanh, phần cà phê có thể trở nên gắt dù công thức pha không đổi.",
+          "Nếm riêng kem, espresso và sau đó nếm cùng nhau giúp xác định phần nào thật sự cần chỉnh."
+        ]
+      },
+      {
+        title: "Đường tham gia vào cảm giác cấu trúc",
+        body: [
+          "Đường hòa tan góp phần tạo cảm giác mềm và đầy trong miệng. Công thức ít đường có thể cho cảm giác khô hoặc mỏng hơn dù lượng chất béo giữ nguyên.",
+          "Vì vậy, không nên đánh giá thay đổi chỉ bằng độ ngọt. Hãy ghi thêm độ mịn, hậu vị và cảm giác sau khi nuốt."
+        ]
+      },
+      {
+        title: "Giảm theo bước nhỏ",
+        body: [
+          "Thử giảm 5 đến 10 phần trăm mỗi lần và giữ nguyên các biến khác. Sau thời gian nghỉ chuẩn, nếm ở cùng nhiệt độ phục vụ.",
+          "Khi đã tìm được điểm cân bằng mới, ghi khối lượng đường theo từng thành phần thay vì chỉ ghi tổng."
+        ]
+      }
+    ],
+    takeaways: [
+      "Đường ảnh hưởng cả vị lẫn cảm giác cấu trúc.",
+      "Nếm các thành phần riêng trước khi kết luận.",
+      "Giảm theo bước nhỏ và đánh giá sau cùng thời gian nghỉ."
+    ]
+  },
+  {
+    slug: "matcha-trong-tiramisu",
+    level: "Kỹ thuật",
+    order: 14,
+    title: "Matcha trong tiramisu: giữ màu, giữ hương, tránh chát",
+    summary: "Cách phân tán matcha, kiểm soát nhiệt và cân bằng vị để Jardin Vert rõ trà mà vẫn mềm mại.",
+    readTime: "9 phút",
+    image: "../uploads/pasted-1779544083977-0.jpg",
+    intro: "Matcha nhạy với ánh sáng, nhiệt và độ ẩm. Một công thức ngon không chỉ cần đủ bột trà, mà cần đưa matcha vào đúng pha và đúng thời điểm.",
+    sections: [
+      {
+        title: "Rây và tạo hỗn hợp mịn trước",
+        body: [
+          "Matcha dễ tạo cụm nhỏ khi gặp chất lỏng. Rây kỹ rồi hòa với một lượng nhỏ chất lỏng hoặc phần kem phù hợp giúp bột phân tán trước khi đi vào toàn bộ mẻ.",
+          "Khuấy mạnh một hỗn hợp lớn để phá vón có thể làm mất bọt khí và khiến kem nặng."
+        ]
+      },
+      {
+        title: "Tránh nhiệt cao và thời gian mở quá lâu",
+        body: [
+          "Nhiệt cao làm hương trà tươi giảm nhanh, trong khi ánh sáng và không khí khiến màu chuyển xỉn. Chuẩn bị lượng vừa đủ và đóng kín ngay sau khi cân.",
+          "Nếu dùng dịch trà để thấm bánh, hãy làm nguội hoàn toàn trước khi ráp lớp."
+        ]
+      },
+      {
+        title: "Cân bằng chát với béo và ngọt",
+        body: [
+          "Chất béo làm vị matcha mềm hơn nhưng cũng có thể che mất hương. Tăng bột trà không phải lúc nào cũng tạo vị rõ hơn; đôi khi cần giảm độ dày lớp kem hoặc chỉnh độ ngọt.",
+          "Nếm sau thời gian nghỉ vì matcha có thể hiện ra khác so với lúc kem vừa trộn."
+        ]
+      }
+    ],
+    takeaways: [
+      "Phân tán matcha trong một phần nhỏ trước khi trộn cả mẻ.",
+      "Giữ bột trà tránh nhiệt, ánh sáng và không khí.",
+      "Đánh giá vị trà sau thời gian nghỉ chuẩn."
+    ]
+  },
+  {
+    slug: "ruou-va-huong-thom",
+    level: "Nền tảng",
+    order: 15,
+    title: "Rượu trong tiramisu: thêm chiều sâu mà không lấn át",
+    summary: "Hiểu vai trò của Marsala, rum hoặc coffee liqueur và cách thử tỷ lệ bằng mẻ nhỏ.",
+    readTime: "7 phút",
+    image: "../uploads/pasted-1779543950628-0.jpg",
+    intro: "Rượu là một lựa chọn phong cách, không phải điều kiện bắt buộc để gọi tên tiramisu. Khi dùng, mục tiêu là kéo dài hương thơm chứ không tạo cảm giác cay nóng.",
+    sections: [
+      {
+        title: "Mỗi loại rượu tạo một hướng hương",
+        body: [
+          "Marsala thường gợi trái cây khô và caramel; rum nghiêng về mật mía, gia vị; coffee liqueur củng cố nhóm hương rang. Chọn theo hồ sơ vị mong muốn thay vì theo độ mạnh.",
+          "Một sản phẩm quà tặng cũng cần ghi rõ có chứa cồn để người nhận chủ động lựa chọn."
+        ]
+      },
+      {
+        title: "Thêm vào dịch thấm hay phần kem",
+        body: [
+          "Cho vào dịch thấm tạo hương gần lớp bánh và cà phê. Một lượng rất nhỏ trong kem cho cảm giác lan rộng hơn nhưng dễ ảnh hưởng cấu trúc nếu dùng quá tay.",
+          "Cách an toàn để phát triển công thức là chia một mẻ nền thành nhiều mẫu nhỏ rồi thử các tỷ lệ khác nhau."
+        ]
+      },
+      {
+        title: "Luôn giữ phiên bản không cồn",
+        body: [
+          "Phiên bản không cồn có thể dùng vanilla, cà phê được pha tốt và cacao thơm để tạo chiều sâu. Không cần cố mô phỏng cảm giác của rượu bằng quá nhiều hương liệu.",
+          "Trong vận hành, dụng cụ và nhãn của hai phiên bản nên được phân biệt rõ."
+        ]
+      }
+    ],
+    takeaways: [
+      "Rượu là lựa chọn phong cách, không phải thành phần bắt buộc.",
+      "Thử tỷ lệ trên mẫu nhỏ trước khi áp dụng cả mẻ.",
+      "Ghi rõ sản phẩm có cồn và duy trì lựa chọn không cồn."
+    ]
+  },
+  {
+    slug: "lap-ke-hoach-san-xuat",
+    level: "Nâng cao",
+    order: 16,
+    title: "Lập kế hoạch sản xuất từ giờ giao ngược về bếp",
+    summary: "Biến thời gian nghỉ, đóng gói và giao hàng thành một lịch làm việc có khoảng đệm.",
+    readTime: "10 phút",
+    image: "../uploads/pasted-1779544573098-0.jpg",
+    intro: "Một đơn giao đúng giờ bắt đầu bằng việc đi ngược từ thời điểm khách nhận bánh. Cách này giúp thời gian nghỉ trở thành một phần của quy trình, không phải phần còn lại sau khi làm xong.",
+    sections: [
+      {
+        title: "Chốt những mốc không thể dịch chuyển",
+        body: [
+          "Bắt đầu từ giờ giao, trừ thời gian di chuyển, thời gian đóng gói và khoảng kiểm tra cuối. Mốc còn lại là lúc sản phẩm phải sẵn sàng rời tủ lạnh.",
+          "Sau đó trừ tiếp thời gian nghỉ tối thiểu để tìm ra hạn chót hoàn tất ráp lớp."
+        ]
+      },
+      {
+        title: "Gộp việc theo công đoạn",
+        body: [
+          "Cân nguyên liệu, pha espresso, chuẩn bị hộp và in nhãn theo nhóm giúp giảm chuyển đổi thao tác. Tuy vậy, chỉ gộp trong giới hạn mà thiết bị và chuỗi lạnh cho phép.",
+          "Mỗi khay hoặc nhóm hộp cần có mã mẻ để không mất dấu khi nhiều vị được làm cùng lúc."
+        ]
+      },
+      {
+        title: "Đặt khoảng đệm có chủ ý",
+        body: [
+          "Khoảng đệm dùng cho nguyên liệu chậm rã lạnh, máy quá tải, giao thông hoặc một mẻ phải kiểm tra lại. Không nên dùng toàn bộ thời gian đệm để nhận thêm đơn.",
+          "Sau mỗi ngày cao điểm, ghi lại thời gian thực tế để lịch sản xuất lần sau dựa trên dữ liệu thay vì ước lượng."
+        ]
+      }
+    ],
+    takeaways: [
+      "Lập lịch ngược từ giờ khách nhận bánh.",
+      "Thời gian nghỉ là một công đoạn bắt buộc.",
+      "Giữ khoảng đệm và cập nhật lịch bằng dữ liệu thực tế."
     ]
   }
 ];

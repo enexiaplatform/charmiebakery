@@ -10,6 +10,9 @@
 - `assets/journal.js`: card rendering, filtering, and article routing.
 - `assets/lab.js`: interactive calculations, diagnosis, costing, and local storage.
 
+The library currently contains 16 articles across four learning levels. Article
+pages include structured data, same-level recommendations, and lazy-loaded images.
+
 ## Add an article
 
 Add one object to `window.CHARMIE_ARTICLES` in `data/articles.js`.

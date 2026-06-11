@@ -37,8 +37,8 @@ const Nav = ({ scrolled }) => {
     if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset - 72, behavior: 'smooth' });
   };
   return (
-    <nav className={`c-nav${scrolled ? ' c-nav--up' : ''}`}>
-      <span className="c-nav-logo">Charmie</span>
+    <nav className={`c-nav${scrolled ? ' c-nav--up' : ''}`} aria-label="Điều hướng chính">
+      <a className="c-nav-logo" href="index.html" aria-label="Charmie — trang chủ">Charmie</a>
       <div className="c-nav-links">
         <a className="c-nav-link c-nav-journal" href="journal/index.html">Journal</a>
         <button className="c-nav-link" onClick={() => go('products')}>Sản phẩm</button>
@@ -58,7 +58,6 @@ const Hero = ({ layout }) => {
   return (
     <section className={`c-hero c-hero--${layout}`}>
       <div className="c-hero-grain" aria-hidden="true"></div>
-      <div className="c-hero-orb" aria-hidden="true"></div>
       <div className="c-hero-left">
         <FadeIn delay={60}>
           <span className="c-eyebrow">◆ Tiramisu Artisanal · HCMC</span>
@@ -82,11 +81,11 @@ const Hero = ({ layout }) => {
           </div>
         </FadeIn>
       </div>
-      <div className="c-hero-right" aria-hidden="true">
+      <div className="c-hero-right">
         <div className="c-hero-img-wrap">
           <div className="c-hero-img-ring"></div>
           <div className="c-hero-img">
-            <img src="uploads/pasted-1779543950628-0.png" alt="Charmie tiramisu artisanal" style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'center'}} />
+            <img src="uploads/pasted-1779543950628-0.jpg" alt="Tiramisu Charmie bên tách espresso và hoa hồng khô" width="1254" height="1254" fetchPriority="high" decoding="async" style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'center'}} />
           </div>
         </div>
         <div className="c-hero-dot c-hero-dot--a"></div>
@@ -164,21 +163,21 @@ const JOURNAL_FEATURES = [
     level: 'Nền tảng',
     title: 'Đọc một chiếc tiramisu qua từng lớp',
     desc: 'Hiểu vai trò của bánh, espresso, mascarpone và cacao trước khi bắt đầu.',
-    img: 'uploads/pasted-1779543950628-0.png',
+    img: 'uploads/pasted-1779543950628-0.jpg',
     href: 'journal/article.html?slug=tiramisu-la-gi',
   },
   {
     level: 'Khoa học',
     title: 'Tiramisu dưới góc nhìn khoa học',
     desc: 'Nhũ tương, bọt khí, mao dẫn và sự di chuyển của độ ẩm trong thời gian nghỉ.',
-    img: 'uploads/pasted-1779544083977-0.png',
+    img: 'uploads/pasted-1779544083977-0.jpg',
     href: 'journal/article.html?slug=khoa-hoc-cua-tiramisu',
   },
   {
     level: 'Nâng cao',
     title: 'An toàn và chuỗi lạnh',
     desc: 'Trứng thanh trùng, bảo quản lạnh và những nguyên tắc cần có khi làm để bán.',
-    img: 'uploads/pasted-1779544702147-0.png',
+    img: 'uploads/pasted-1779544702147-0.jpg',
     href: 'journal/article.html?slug=an-toan-va-chuoi-lanh',
   },
 ];
@@ -203,7 +202,7 @@ const JournalPreview = () => (
           <FadeIn key={article.href} delay={index * 100}>
             <a className="c-journal-card" href={article.href}>
               <div className="c-journal-img">
-                <img src={article.img} alt={article.title} />
+                <img src={article.img} alt={article.title} loading="lazy" decoding="async" />
               </div>
               <div className="c-journal-body">
                 <span>{article.level}</span>
@@ -220,17 +219,17 @@ const JournalPreview = () => (
 );
 
 const PRODS = [
-  { id:1, name:'Le Classique', desc:'Tiramisu cổ điển. Đậm espresso, kem mascarpone mịn màng.',                     price:'320,000đ', wt:'~250g', badge:'Best Seller', bk:'bs', img:'uploads/pasted-1779543992358-0.png' },
-  { id:2, name:'Jardin Vert',  desc:'Matcha Uji hòa quyện cùng mascarpone — thanh mát, tinh tế.',                   price:'360,000đ', wt:'~250g', img:'uploads/pasted-1779544083977-0.png' },
-  { id:3, name:'Charmie Box',  desc:'Hộp quà hero. Bao bì premium, ribbon tùy chọn. Dành cho những dịp đặc biệt.',  price:'480,000đ', wt:'~400g', badge:'Best Seller', bk:'bs', img:'uploads/pasted-1779544236945-0.png' },
-  { id:4, name:'Soft Letters', desc:'Phiên bản giới hạn. Mở đặt hàng 15/1/2027.',                                    price:'520,000đ', wt:'~400g', badge:'Limited', bk:'ltd', sub:'Valentine Limited 2027', star:true, img:'uploads/pasted-1779544702147-0.png' },
+  { id:1, name:'Le Classique', desc:'Tiramisu cổ điển. Đậm espresso, kem mascarpone mịn màng.',                     price:'320,000đ', wt:'~250g', badge:'Best Seller', bk:'bs', img:'uploads/pasted-1779543992358-0.jpg' },
+  { id:2, name:'Jardin Vert',  desc:'Matcha Uji hòa quyện cùng mascarpone — thanh mát, tinh tế.',                   price:'360,000đ', wt:'~250g', img:'uploads/pasted-1779544083977-0.jpg' },
+  { id:3, name:'Charmie Box',  desc:'Hộp quà hero. Bao bì premium, ribbon tùy chọn. Dành cho những dịp đặc biệt.',  price:'480,000đ', wt:'~400g', badge:'Best Seller', bk:'bs', img:'uploads/pasted-1779544236945-0.jpg' },
+  { id:4, name:'Soft Letters', desc:'Phiên bản giới hạn. Mở đặt hàng 15/1/2027.',                                    price:'520,000đ', wt:'~400g', badge:'Limited', bk:'ltd', sub:'Valentine Limited 2027', star:true, img:'uploads/pasted-1779544702147-0.jpg' },
 ];
 
 const PCard = ({ p, cs, di }) => (
   <FadeIn delay={di * 80} className={`c-card${p.star ? ' c-card--star' : ''} c-card--${cs}`}>
     <div className="c-card-img">
       {p.img
-        ? <img src={p.img} alt={p.name} style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'center center'}} />
+        ? <img src={p.img} alt={`Hộp tiramisu ${p.name}`} loading="lazy" decoding="async" style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'center center'}} />
         : <span>[Product Photo]</span>
       }
     </div>
@@ -244,7 +243,7 @@ const PCard = ({ p, cs, di }) => (
           <div className="c-card-price">{p.price}</div>
           <div className="c-card-wt">{p.wt}</div>
         </div>
-        <button className="c-btn c-btn-ghost">Đặt hàng</button>
+        <button className="c-btn c-btn-ghost" onClick={() => document.getElementById('order')?.scrollIntoView({ behavior: 'smooth' })} aria-label={`Đặt hàng ${p.name}`}>Đặt hàng</button>
       </div>
     </div>
   </FadeIn>
@@ -310,10 +309,10 @@ const Occasions = () => (
       </FadeIn>
       <FadeIn delay={130} className="c-occ-chips">
         {OCC.map((o, i) => (
-          <div key={i} className="c-chip" role="button" tabIndex={0}>
+          <button key={i} className="c-chip" type="button" onClick={() => document.getElementById('order')?.scrollIntoView({ behavior: 'smooth' })} aria-label={`Đặt quà cho dịp ${o.label}`}>
             <span aria-hidden="true">{o.icon}</span>
             <span>{o.label}</span>
-          </div>
+          </button>
         ))}
       </FadeIn>
     </div>

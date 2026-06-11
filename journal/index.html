@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="assets/journal.css">
 </head>
 <body>
+  <a class="j-skip-link" href="#library">Bỏ qua điều hướng</a>
   <nav class="j-nav">
     <div class="j-shell j-nav-inner">
       <a class="j-brand" href="../index.html">Charmie</a>
@@ -74,7 +75,7 @@
     </div>
   </section>
 
-  <main class="j-library" id="library">
+  <main class="j-library" id="library" tabindex="-1">
     <div class="j-shell">
       <div class="j-library-head">
         <div>
@@ -90,11 +91,11 @@
           <input type="search" placeholder="Ví dụ: mascarpone, espresso, kem lỏng..." autocomplete="off" data-search>
         </label>
         <div class="j-tools" aria-label="Lọc bài viết">
-          <button class="j-filter is-active" type="button" data-filter="Tất cả">Tất cả</button>
-          <button class="j-filter" type="button" data-filter="Nền tảng">Nền tảng</button>
-          <button class="j-filter" type="button" data-filter="Kỹ thuật">Kỹ thuật</button>
-          <button class="j-filter" type="button" data-filter="Khoa học">Khoa học</button>
-          <button class="j-filter" type="button" data-filter="Nâng cao">Nâng cao</button>
+          <button class="j-filter is-active" type="button" data-filter="Tất cả" aria-pressed="true">Tất cả</button>
+          <button class="j-filter" type="button" data-filter="Nền tảng" aria-pressed="false">Nền tảng</button>
+          <button class="j-filter" type="button" data-filter="Kỹ thuật" aria-pressed="false">Kỹ thuật</button>
+          <button class="j-filter" type="button" data-filter="Khoa học" aria-pressed="false">Khoa học</button>
+          <button class="j-filter" type="button" data-filter="Nâng cao" aria-pressed="false">Nâng cao</button>
         </div>
         <p class="j-result-count" data-result-count aria-live="polite"></p>
       </div>

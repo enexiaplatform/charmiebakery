@@ -5,8 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Charmie — Tiramisu Artisanal</title>
   <meta name="description" content="Tiramisu thủ công tại TP.HCM. Dành để tặng, dành để nhớ.">
+  <meta property="og:title" content="Charmie — Tiramisu Artisanal">
+  <meta property="og:description" content="Tiramisu thủ công tại TP.HCM. Dành để tặng, dành để nhớ.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="uploads/pasted-1779543950628-0.jpg">
   <link rel="icon" type="image/png" href="uploads/charmie-favicon.png">
   <link rel="apple-touch-icon" href="uploads/charmie-favicon.png">
+  <link rel="preload" as="image" href="uploads/pasted-1779543950628-0.jpg" fetchpriority="high">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
@@ -36,6 +41,19 @@
     p { text-wrap: pretty; }
     button { cursor: pointer; font-family: inherit; }
     a { text-decoration: none; color: inherit; }
+    section[id] { scroll-margin-top: 76px; }
+
+    .skip-link {
+      position: fixed; top: 10px; left: 12px; z-index: 1000;
+      padding: 9px 14px; border-radius: 4px;
+      color: var(--ivory); background: var(--espresso);
+      transform: translateY(-160%); transition: transform 180ms ease;
+    }
+    .skip-link:focus { transform: translateY(0); }
+    :focus-visible {
+      outline: 2px solid var(--mocha);
+      outline-offset: 4px;
+    }
 
     /* ── Fade-in ─────────────────────────────────────────────── */
     .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
@@ -93,15 +111,6 @@
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.78' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
       background-size: 256px 256px;
     }
-    /* Soft background orb — visible in centered mode, faint in split */
-    .c-hero-orb {
-      position: absolute; border-radius: 50%; pointer-events: none; z-index: 0;
-      top: -140px; right: -140px; width: 640px; height: 640px;
-      background: radial-gradient(circle, var(--champagne) 0%, transparent 68%);
-      opacity: 0.55;
-    }
-    .c-hero--split .c-hero-orb { opacity: 0.18; }
-
     /* Left panel */
     .c-hero-left {
       position: relative; z-index: 1;
@@ -214,7 +223,7 @@
     }
     .c-stmt::before {
       content: ''; position: absolute; inset: 0;
-      background: url('uploads/pasted-1779544573098-0.png') center/cover no-repeat;
+      background: url('uploads/pasted-1779544573098-0.jpg') center/cover no-repeat;
       opacity: 0.12; mix-blend-mode: overlay; pointer-events: none;
     }
     .c-stmt-inner { text-align: center; position: relative; z-index: 1; }
@@ -419,7 +428,7 @@
     }
     .c-cta::before {
       content: ''; position: absolute; inset: 0;
-      background: url('uploads/pasted-1779544573098-0.png') center/cover no-repeat;
+      background: url('uploads/pasted-1779544573098-0.jpg') center/cover no-repeat;
       opacity: 0.1; mix-blend-mode: overlay; pointer-events: none;
     }
     .c-cta-inner { text-align: center; position: relative; z-index: 1; }
@@ -537,6 +546,9 @@
       .c-hero--split .c-hero-left {
         padding-top: 24px;
       }
+      .c-hero-left .fade-in {
+        transition-delay: 0ms !important;
+      }
     }
 
     @media (max-width: 420px) {
@@ -554,68 +566,26 @@
         padding-inline: 20px;
       }
     }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      .fade-in { opacity: 1; transform: none; }
+    }
   </style>
 </head>
 <body>
   <div id="root"></div>
 
-  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
-  <script type="text/babel" src="tweaks-panel.jsx"></script>
-  <script type="text/babel" src="charmie-components.jsx"></script>
-
-  <script type="text/babel">
-    const { useState, useEffect } = React;
-
-    const App = () => {
-      const [t, setTweak] = useTweaks(
-        /*EDITMODE-BEGIN*/{"palette":"warm","heroLayout":"split","cardStyle":"clean"}/*EDITMODE-END*/
-      );
-
-      const [scrolled, setScrolled] = useState(false);
-
-      useEffect(() => {
-        const fn = () => setScrolled(window.pageYOffset > 50);
-        window.addEventListener('scroll', fn, { passive: true });
-        return () => window.removeEventListener('scroll', fn);
-      }, []);
-
-      useEffect(() => {
-        const el = document.documentElement;
-        el.classList.remove('palette-warm', 'palette-blush', 'palette-forest');
-        if (t.palette !== 'warm') el.classList.add(`palette-${t.palette}`);
-      }, [t.palette]);
-
-      return (
-        <>
-          <Nav scrolled={scrolled} />
-          <Hero layout={t.heroLayout} />
-          <Statement />
-          <BrandStory />
-          <JournalPreview />
-          <Products cs={t.cardStyle} />
-          <Occasions />
-          <OrderCTA />
-          <Footer />
-          <TweaksPanel>
-            <TweakSection label="Màu sắc" />
-            <TweakRadio label="Palette" value={t.palette}
-              options={['warm','blush','forest']}
-              onChange={v => setTweak('palette', v)} />
-            <TweakSection label="Layout" />
-            <TweakRadio label="Hero" value={t.heroLayout}
-              options={['split','centered']}
-              onChange={v => setTweak('heroLayout', v)} />
-            <TweakRadio label="Cards" value={t.cardStyle}
-              options={['clean','warm']}
-              onChange={v => setTweak('cardStyle', v)} />
-          </TweaksPanel>
-        </>
-      );
-    };
-
-    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
-  </script>
+  <script src="vendor/react.production.min.js"></script>
+  <script src="vendor/react-dom.production.min.js"></script>
+  <script src="tweaks-panel.js"></script>
+  <script src="charmie-components.js"></script>
+  <script src="charmie-app.js"></script>
 </body>
 </html>
