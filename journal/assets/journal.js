@@ -5,6 +5,10 @@
     return `article.html?slug=${encodeURIComponent(slug)}`;
   }
 
+  function cardImage(image) {
+    return image.replace(/\.jpg$/i, "-640.jpg");
+  }
+
   function renderCard(article) {
     return `
       <a class="j-card" href="${articleUrl(article.slug)}" data-level="${article.level}" data-search-text="${[
@@ -15,7 +19,7 @@
         ...article.takeaways
       ].join(" ")}">
         <div class="j-card-image">
-          <img src="${article.image}" alt="${article.title}" loading="lazy" decoding="async">
+          <img src="${cardImage(article.image)}" alt="${article.title}" loading="lazy" decoding="async">
           <span class="j-level">${article.level}</span>
         </div>
         <div class="j-card-body">
@@ -113,6 +117,10 @@
     document.title = `${article.title} — Charmie Journal`;
     const description = document.querySelector('meta[name="description"]');
     if (description) description.setAttribute("content", article.summary);
+    const canonical = document.querySelector('link[rel="canonical"]') || document.createElement("link");
+    canonical.rel = "canonical";
+    canonical.href = `${window.location.origin}${window.location.pathname}?slug=${encodeURIComponent(article.slug)}`;
+    if (!canonical.parentNode) document.head.appendChild(canonical);
     const index = articles.findIndex((item) => item.slug === article.slug);
     const next = articles[(index + 1) % articles.length];
     const related = articles

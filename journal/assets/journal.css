@@ -294,6 +294,20 @@ select {
   transform: translateY(-2px);
 }
 
+.j-resource-actions {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 14px;
+}
+
+.j-secondary-link {
+  padding-bottom: 3px;
+  border-bottom: 1px solid var(--dusty-rose);
+  color: var(--mocha);
+  font-size: 13px;
+}
+
 .j-library-head {
   display: flex;
   align-items: end;
@@ -756,6 +770,113 @@ select {
   font-size: 20px;
   font-weight: 500;
   line-height: 1.2;
+}
+
+/* Glossary */
+.glossary-hero {
+  padding: 94px 0 82px;
+  border-bottom: 1px solid var(--champagne);
+  background:
+    linear-gradient(90deg, rgba(246,241,231,0.98), rgba(246,241,231,0.76)),
+    url("../../uploads/pasted-1779543992358-0.jpg") center 48% / cover no-repeat;
+}
+
+.glossary-hero h1 {
+  max-width: 760px;
+  margin: 0;
+  font-family: "Playfair Display", serif;
+  font-size: clamp(52px, 7vw, 80px);
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.05;
+}
+
+.glossary-hero p {
+  max-width: 650px;
+  margin: 24px 0 0;
+  color: var(--mocha);
+  font-size: 18px;
+}
+
+.glossary-main {
+  padding: 82px 0 104px;
+}
+
+.glossary-discovery {
+  position: relative;
+  margin-bottom: 38px;
+}
+
+.glossary-search {
+  max-width: 760px;
+}
+
+.glossary-count {
+  bottom: 8px;
+}
+
+.glossary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.glossary-card {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  padding: 24px;
+  border: 1px solid var(--champagne);
+  border-radius: 6px;
+  background: var(--white);
+  transition: border-color 220ms ease, transform 220ms ease, box-shadow 220ms ease;
+}
+
+.glossary-card:hover {
+  border-color: var(--dusty-rose);
+  box-shadow: 0 14px 36px rgba(58, 42, 34, 0.07);
+  transform: translateY(-3px);
+}
+
+.glossary-card-head {
+  display: grid;
+}
+
+.glossary-card-head span {
+  color: var(--dusty-rose);
+  font-size: 10px;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+}
+
+.glossary-card-head strong {
+  margin-top: 9px;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 27px;
+  font-weight: 500;
+  line-height: 1.05;
+}
+
+.glossary-card-head small {
+  margin-top: 3px;
+  color: var(--dusty-rose);
+  font-style: italic;
+}
+
+.glossary-card p {
+  margin: 17px 0 24px;
+  color: var(--mocha);
+  font-size: 13px;
+}
+
+.glossary-card a {
+  margin-top: auto;
+  color: var(--mocha);
+  font-size: 12px;
+}
+
+.glossary-empty {
+  display: none;
 }
 
 /* Lab */
@@ -1572,6 +1693,10 @@ select {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .glossary-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .j-article-head {
     grid-template-columns: 1fr;
   }
@@ -1681,13 +1806,20 @@ select {
     gap: 24px;
   }
 
+  .j-resource-actions {
+    width: 100%;
+    align-items: stretch;
+    flex-direction: column;
+  }
+
   .j-primary-link {
     width: 100%;
     justify-content: space-between;
   }
 
   .j-steps,
-  .j-grid {
+  .j-grid,
+  .glossary-grid {
     grid-template-columns: 1fr;
   }
 
@@ -1706,6 +1838,25 @@ select {
   .j-result-count {
     position: static;
     margin-top: 12px;
+  }
+
+  .glossary-hero {
+    padding: 72px 0 64px;
+    background:
+      linear-gradient(180deg, rgba(246,241,231,0.88), rgba(246,241,231,0.96)),
+      url("../../uploads/pasted-1779543992358-0.jpg") center / cover no-repeat;
+  }
+
+  .glossary-hero h1 {
+    font-size: 48px;
+  }
+
+  .glossary-hero p {
+    font-size: 16px;
+  }
+
+  .glossary-main {
+    padding: 66px 0 78px;
   }
 
   .j-tools {

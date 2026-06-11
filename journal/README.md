@@ -4,10 +4,12 @@
 
 - `index.html`: knowledge library, text search, and level filters.
 - `article.html`: shared article reader.
+- `glossary.html`: searchable terminology reference.
 - `lab.html`: batch scaling, troubleshooting, costing, and local batch logs.
 - `data/articles.js`: article content and metadata.
 - `assets/journal.css`: Journal visual system and responsive layout.
 - `assets/journal.js`: card rendering, filtering, and article routing.
+- `assets/glossary.js`: glossary search, filtering, and article links.
 - `assets/lab.js`: interactive calculations, diagnosis, costing, and local storage.
 
 The library currently contains 16 articles across four learning levels. Article

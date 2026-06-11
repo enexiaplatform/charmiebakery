@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://charmiebakery.vercel.app/sitemap.xml
