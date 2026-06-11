@@ -147,6 +147,7 @@ function renderArticle(article, index) {
     <div class="j-shell j-nav-inner">
       <a class="j-brand" href="../../index.html">Charmie</a>
       <div class="j-nav-links">
+        <a class="j-nav-start" href="../start.html">Bắt đầu</a>
         <a href="../">Tất cả bài viết</a>
         <a href="../glossary.html">Từ điển</a>
         <a href="../lab.html">Charmie Lab</a>
@@ -195,6 +196,12 @@ function renderArticle(article, index) {
       ${sources}
       <section class="j-related">
         <div class="j-related-head">
+          <h2>Chưa biết nên đọc gì tiếp?</h2>
+          <a href="../start.html">Chọn lộ trình phù hợp →</a>
+        </div>
+      </section>
+      <section class="j-related">
+        <div class="j-related-head">
           <h2>Đọc tiếp cùng chủ đề</h2>
           <a href="../">Xem toàn bộ thư viện →</a>
         </div>
@@ -223,7 +230,12 @@ function renderArticle(article, index) {
   <footer class="j-footer">
     <div class="j-shell j-footer-inner">
       <span>© 2026 Charmie Journal · Tiramisu Artisanal · Ho Chi Minh City</span>
-      <a href="../">Về thư viện</a>
+      <div class="j-footer-links">
+        <a href="../about.html">Về Charmie</a>
+        <a href="../editorial.html">Biên tập</a>
+        <a href="../privacy.html">Riêng tư</a>
+        <a href="../affiliate-disclosure.html">Affiliate</a>
+      </div>
     </div>
   </footer>
 </body>
@@ -242,6 +254,11 @@ const staticUrls = [
   `${siteUrl}/journal/`,
   `${siteUrl}/journal/glossary.html`,
   `${siteUrl}/journal/lab.html`,
+  `${siteUrl}/journal/start.html`,
+  `${siteUrl}/journal/about.html`,
+  `${siteUrl}/journal/editorial.html`,
+  `${siteUrl}/journal/privacy.html`,
+  `${siteUrl}/journal/affiliate-disclosure.html`,
   ...articles.map((article) => articleUrl(article.slug))
 ];
 

@@ -352,6 +352,9 @@ const Footer = () => (
     <div className="c-wrap c-foot-inner">
       <span>© 2026 Charmie · Tiramisu Artisanal · Ho Chi Minh City</span>
       <div className="c-foot-links">
+        <a href="journal/about.html">Về Charmie</a>
+        <a href="journal/privacy.html">Riêng tư</a>
+        <a href="journal/affiliate-disclosure.html">Affiliate</a>
         <a href="https://instagram.com/charmie.tiramisu" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
             <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
