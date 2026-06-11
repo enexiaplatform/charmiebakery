@@ -69,7 +69,7 @@
           ${item.alias ? `<small>${item.alias}</small>` : ""}
         </div>
         <p>${item.definition}</p>
-        <a href="article.html?slug=${encodeURIComponent(item.article)}">Đọc giải thích sâu hơn →</a>
+        <a href="${encodeURIComponent(item.article)}/">Đọc giải thích sâu hơn →</a>
       </article>
     `).join("");
 

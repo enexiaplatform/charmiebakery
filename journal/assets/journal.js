@@ -2,7 +2,7 @@
   const articles = (window.CHARMIE_ARTICLES || []).slice().sort((a, b) => a.order - b.order);
 
   function articleUrl(slug) {
-    return `article.html?slug=${encodeURIComponent(slug)}`;
+    return `${encodeURIComponent(slug)}/`;
   }
 
   function cardImage(image) {
@@ -113,6 +113,9 @@
       `;
       return;
     }
+
+    window.location.replace(articleUrl(article.slug));
+    return;
 
     document.title = `${article.title} — Charmie Journal`;
     const description = document.querySelector('meta[name="description"]');

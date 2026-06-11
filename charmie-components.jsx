@@ -164,21 +164,21 @@ const JOURNAL_FEATURES = [
     title: 'Đọc một chiếc tiramisu qua từng lớp',
     desc: 'Hiểu vai trò của bánh, espresso, mascarpone và cacao trước khi bắt đầu.',
     img: 'uploads/pasted-1779543950628-0.jpg',
-    href: 'journal/article.html?slug=tiramisu-la-gi',
+    href: 'journal/tiramisu-la-gi/',
   },
   {
     level: 'Khoa học',
     title: 'Tiramisu dưới góc nhìn khoa học',
     desc: 'Nhũ tương, bọt khí, mao dẫn và sự di chuyển của độ ẩm trong thời gian nghỉ.',
     img: 'uploads/pasted-1779544083977-0.jpg',
-    href: 'journal/article.html?slug=khoa-hoc-cua-tiramisu',
+    href: 'journal/khoa-hoc-cua-tiramisu/',
   },
   {
     level: 'Nâng cao',
     title: 'An toàn và chuỗi lạnh',
     desc: 'Trứng thanh trùng, bảo quản lạnh và những nguyên tắc cần có khi làm để bán.',
     img: 'uploads/pasted-1779544702147-0.jpg',
-    href: 'journal/article.html?slug=an-toan-va-chuoi-lanh',
+    href: 'journal/an-toan-va-chuoi-lanh/',
   },
 ];
 
