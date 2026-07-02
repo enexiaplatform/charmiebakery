@@ -12,7 +12,7 @@
 - `assets/glossary.js`: glossary search, filtering, and article links.
 - `assets/lab.js`: interactive calculations, diagnosis, costing, and local storage.
 
-The library currently contains 16 articles across four learning levels. Article
+The library currently contains 18 articles across four learning levels. Article
 pages include structured data, same-level recommendations, and lazy-loaded images.
 
 ## Add an article

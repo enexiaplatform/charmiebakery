@@ -1,17 +1,53 @@
 (function () {
-  const ingredients = [
-    { id: "mascarpone", name: "Mascarpone", amount: 250, unit: "g", packSize: 250, packPrice: 115000 },
-    { id: "cream", name: "Whipping cream", amount: 150, unit: "g", packSize: 1000, packPrice: 180000 },
-    { id: "ladyfinger", name: "Ladyfinger", amount: 120, unit: "g", packSize: 200, packPrice: 85000 },
-    { id: "espresso", name: "Espresso", amount: 110, unit: "ml", packSize: 1000, packPrice: 120000 },
-    { id: "sugar", name: "Đường", amount: 55, unit: "g", packSize: 1000, packPrice: 32000 },
-    { id: "cacao", name: "Cacao", amount: 8, unit: "g", packSize: 100, packPrice: 65000 }
-  ];
+  let currentRecipe = "classique";
+
+  const recipes = {
+    classique: [
+      { id: "mascarpone", name: "Mascarpone", amount: 250, unit: "g", packSize: 250, packPrice: 115000 },
+      { id: "cream", name: "Whipping cream", amount: 150, unit: "g", packSize: 1000, packPrice: 180000 },
+      { id: "ladyfinger", name: "Ladyfinger", amount: 120, unit: "g", packSize: 200, packPrice: 85000 },
+      { id: "espresso", name: "Espresso", amount: 110, unit: "ml", packSize: 1000, packPrice: 120000 },
+      { id: "sugar", name: "Đường", amount: 55, unit: "g", packSize: 1000, packPrice: 32000 },
+      { id: "cacao", name: "Cacao", amount: 8, unit: "g", packSize: 100, packPrice: 65000 }
+    ],
+    "jardin-vert": [
+      { id: "mascarpone", name: "Mascarpone", amount: 250, unit: "g", packSize: 250, packPrice: 115000 },
+      { id: "cream", name: "Whipping cream", amount: 150, unit: "g", packSize: 1000, packPrice: 180000 },
+      { id: "ladyfinger", name: "Ladyfinger", amount: 120, unit: "g", packSize: 200, packPrice: 85000 },
+      { id: "espresso", name: "Matcha Liquid (Dip)", amount: 110, unit: "ml", packSize: 1000, packPrice: 90000 },
+      { id: "sugar", name: "Đường", amount: 55, unit: "g", packSize: 1000, packPrice: 32000 },
+      { id: "cacao", name: "Matcha Uji Powder", amount: 8, unit: "g", packSize: 100, packPrice: 280000 }
+    ]
+  };
+
+  function getIngredients() {
+    return recipes[currentRecipe];
+  }
 
   const storageKeys = {
-    costs: "charmie-lab-costs-v1",
+    costs: "charmie-lab-costs-v2",
     logs: "charmie-lab-logs-v2"
   };
+
+  function readCosts() {
+    const saved = readStorage(storageKeys.costs, null);
+    if (saved) return saved;
+
+    const v1 = readStorage("charmie-lab-costs-v1", null);
+    if (v1) {
+      const migrated = {
+        classique: v1,
+        "jardin-vert": {}
+      };
+      writeStorage(storageKeys.costs, migrated);
+      return migrated;
+    }
+
+    return {
+      classique: {},
+      "jardin-vert": {}
+    };
+  }
 
   const labState = {
     multiplier: 1,
@@ -133,15 +169,18 @@
     const batchLabel = document.querySelector("[data-batch-label]");
     if (!inputRoot || !resultRoot || !multiplierInput) return;
 
-    inputRoot.innerHTML = ingredients.map((ingredient) => `
-      <label class="lab-ingredient-input">
-        <span>${ingredient.name}</span>
-        <span class="lab-number-field">
-          <input type="number" min="0" step="1" value="${ingredient.amount}" data-ingredient="${ingredient.id}">
-          <small>${ingredient.unit}</small>
-        </span>
-      </label>
-    `).join("");
+    function renderInputs() {
+      const currentIngredients = getIngredients();
+      inputRoot.innerHTML = currentIngredients.map((ingredient) => `
+        <label class="lab-ingredient-input">
+          <span>${ingredient.name}</span>
+          <span class="lab-number-field">
+            <input type="number" min="0" step="1" value="${ingredient.amount}" data-ingredient="${ingredient.id}">
+            <small>${ingredient.unit}</small>
+          </span>
+        </label>
+      `).join("");
+    }
 
     function render() {
       const multiplier = Math.min(20, Math.max(0.5, Number(multiplierInput.value) || 1));
@@ -149,9 +188,10 @@
       labState.multiplier = multiplier;
       if (batchLabel) batchLabel.textContent = `${formatAmount(multiplier)} mẻ`;
 
-      resultRoot.innerHTML = ingredients.map((ingredient) => {
+      const currentIngredients = getIngredients();
+      resultRoot.innerHTML = currentIngredients.map((ingredient) => {
         const amountInput = inputRoot.querySelector(`[data-ingredient="${ingredient.id}"]`);
-        const baseAmount = Math.max(0, Number(amountInput.value) || 0);
+        const baseAmount = amountInput ? Math.max(0, Number(amountInput.value) || 0) : ingredient.amount;
         labState.scaledAmounts[ingredient.id] = baseAmount * multiplier;
         return `
           <div class="lab-result-row">
@@ -173,6 +213,13 @@
 
     multiplierInput.addEventListener("change", render);
     inputRoot.addEventListener("input", render);
+
+    document.addEventListener("charmie:recipe-change", () => {
+      renderInputs();
+      render();
+    });
+
+    renderInputs();
     render();
   }
 
@@ -187,64 +234,74 @@
     const overheadInput = document.querySelector("[data-overhead-cost]");
     if (!inputRoot || !ingredientCostOutput || !totalCostOutput || !unitCostOutput) return;
 
-    const saved = readStorage(storageKeys.costs, {});
-    const savedIngredients = saved.ingredients || {};
+    function renderInputs() {
+      const currentIngredients = getIngredients();
+      const saved = readCosts();
+      const savedIngredients = saved[currentRecipe]?.ingredients || {};
 
-    inputRoot.innerHTML = `
-      <div class="lab-cost-header" aria-hidden="true">
-        <span>Nguyên liệu</span>
-        <span>Lượng dùng</span>
-        <span>Quy cách mua</span>
-        <span>Giá mua</span>
-        <span>Thành tiền</span>
-      </div>
-      ${ingredients.map((ingredient) => {
-        const stored = savedIngredients[ingredient.id] || {};
-        return `
-          <div class="lab-cost-row" data-cost-row="${ingredient.id}">
-            <strong>${ingredient.name}</strong>
-            <span class="lab-cost-used" data-cost-used="${ingredient.id}">0 ${ingredient.unit}</span>
-            <label>
-              <span>Quy cách mua</span>
-              <span class="lab-cost-field">
-              <input type="number" min="0.1" step="1" value="${stored.packSize ?? ingredient.packSize}" data-pack-size="${ingredient.id}">
-                <small>${ingredient.unit}</small>
-              </span>
-            </label>
-            <label>
-              <span>Giá mua</span>
-              <span class="lab-cost-field">
-              <input type="number" min="0" step="1000" value="${stored.packPrice ?? ingredient.packPrice}" data-pack-price="${ingredient.id}">
-                <small>đ</small>
-              </span>
-            </label>
-            <span class="lab-cost-line" data-line-cost="${ingredient.id}">0đ</span>
-          </div>
-        `;
-      }).join("")}
-    `;
+      inputRoot.innerHTML = `
+        <div class="lab-cost-header" aria-hidden="true">
+          <span>Nguyên liệu</span>
+          <span>Lượng dùng</span>
+          <span>Quy cách mua</span>
+          <span>Giá mua</span>
+          <span>Thành tiền</span>
+        </div>
+        ${currentIngredients.map((ingredient) => {
+          const stored = savedIngredients[ingredient.id] || {};
+          return `
+            <div class="lab-cost-row" data-cost-row="${ingredient.id}">
+              <strong>${ingredient.name}</strong>
+              <span class="lab-cost-used" data-cost-used="${ingredient.id}">0 ${ingredient.unit}</span>
+              <label>
+                <span>Quy cách mua</span>
+                <span class="lab-cost-field">
+                  <input type="number" min="0.1" step="1" value="${stored.packSize ?? ingredient.packSize}" data-pack-size="${ingredient.id}">
+                  <small>${ingredient.unit}</small>
+                </span>
+              </label>
+              <label>
+                <span>Giá mua</span>
+                <span class="lab-cost-field">
+                  <input type="number" min="0" step="1000" value="${stored.packPrice ?? ingredient.packPrice}" data-pack-price="${ingredient.id}">
+                  <small>đ</small>
+                </span>
+              </label>
+              <span class="lab-cost-line" data-line-cost="${ingredient.id}">0đ</span>
+            </div>
+          `;
+        }).join("")}
+      `;
 
-    if (saved.wasteRate !== undefined) wasteRateInput.value = saved.wasteRate;
-    if (saved.yieldCount !== undefined) yieldInput.value = saved.yieldCount;
-    if (saved.packagingCost !== undefined) packagingInput.value = saved.packagingCost;
-    if (saved.overheadCost !== undefined) overheadInput.value = saved.overheadCost;
+      const recipeSaved = saved[currentRecipe] || {};
+      wasteRateInput.value = recipeSaved.wasteRate !== undefined ? recipeSaved.wasteRate : 5;
+      yieldInput.value = recipeSaved.yieldCount !== undefined ? recipeSaved.yieldCount : 1;
+      packagingInput.value = recipeSaved.packagingCost !== undefined ? recipeSaved.packagingCost : 25000;
+      overheadInput.value = recipeSaved.overheadCost !== undefined ? recipeSaved.overheadCost : 30000;
+    }
 
     function calculate() {
+      const currentIngredients = getIngredients();
       let ingredientCost = 0;
       const ingredientSettings = {};
 
-      ingredients.forEach((ingredient) => {
+      currentIngredients.forEach((ingredient) => {
         const used = labState.scaledAmounts[ingredient.id] || 0;
         const packSizeInput = inputRoot.querySelector(`[data-pack-size="${ingredient.id}"]`);
         const packPriceInput = inputRoot.querySelector(`[data-pack-price="${ingredient.id}"]`);
-        const packSize = Math.max(0.1, Number(packSizeInput.value) || ingredient.packSize);
-        const packPrice = Math.max(0, Number(packPriceInput.value) || 0);
+        
+        const packSize = packSizeInput ? Math.max(0.1, Number(packSizeInput.value) || ingredient.packSize) : ingredient.packSize;
+        const packPrice = packPriceInput ? Math.max(0, Number(packPriceInput.value) || 0) : 0;
         const lineCost = (used / packSize) * packPrice;
 
         ingredientSettings[ingredient.id] = { packSize, packPrice };
         ingredientCost += lineCost;
-        inputRoot.querySelector(`[data-cost-used="${ingredient.id}"]`).textContent = `${formatAmount(used)} ${ingredient.unit}`;
-        inputRoot.querySelector(`[data-line-cost="${ingredient.id}"]`).textContent = formatCurrency(lineCost);
+
+        const usedDisplay = inputRoot.querySelector(`[data-cost-used="${ingredient.id}"]`);
+        if (usedDisplay) usedDisplay.textContent = `${formatAmount(used)} ${ingredient.unit}`;
+        
+        const lineCostDisplay = inputRoot.querySelector(`[data-line-cost="${ingredient.id}"]`);
+        if (lineCostDisplay) lineCostDisplay.textContent = formatCurrency(lineCost);
       });
 
       const wasteRate = Math.min(50, Math.max(0, Number(wasteRateInput.value) || 0));
@@ -258,20 +315,29 @@
       totalCostOutput.textContent = formatCurrency(totalCost);
       unitCostOutput.textContent = formatCurrency(totalCost / yieldCount);
 
-      writeStorage(storageKeys.costs, {
+      const allSaved = readCosts();
+      allSaved[currentRecipe] = {
         ingredients: ingredientSettings,
         wasteRate,
         yieldCount,
         packagingCost,
         overheadCost
-      });
+      };
+      writeStorage(storageKeys.costs, allSaved);
     }
 
     inputRoot.addEventListener("input", calculate);
     [wasteRateInput, yieldInput, packagingInput, overheadInput].forEach((input) => {
       input.addEventListener("input", calculate);
     });
+
     document.addEventListener("charmie:scale-change", calculate);
+    document.addEventListener("charmie:recipe-change", () => {
+      renderInputs();
+      calculate();
+    });
+
+    renderInputs();
     calculate();
   }
 
@@ -317,6 +383,18 @@
 
     let logs = readStorage(storageKeys.logs, []);
     if (!Array.isArray(logs)) logs = [];
+
+    const productSelect = form.querySelector("[data-log-product]");
+
+    document.addEventListener("charmie:recipe-change", () => {
+      if (productSelect) {
+        if (currentRecipe === "jardin-vert") {
+          productSelect.value = "Jardin Vert";
+        } else {
+          productSelect.value = "Le Classique";
+        }
+      }
+    });
 
     function makeId() {
       if (window.crypto && typeof window.crypto.randomUUID === "function") {
@@ -434,8 +512,188 @@
     render();
   }
 
+  function initScorecard() {
+    const sliders = document.querySelectorAll("[data-score-range]");
+    const avgOutput = document.querySelector("[data-score-average]");
+    const adviceOutput = document.querySelector("[data-scorecard-advice]");
+    const fillLogButton = document.querySelector("[data-scorecard-to-log]");
+    if (!sliders.length || !avgOutput || !adviceOutput) return;
+
+    const advices = {
+      classique: {
+        moisture: "Gợi ý về Độ ẩm bánh: Lớp bánh chưa đạt độ ẩm tối ưu. Xem bài viết [Kiểm soát độ ẩm](../kiem-soat-do-am/) để căn chỉnh thời gian nhúng bánh quy và nhiệt độ espresso hợp lý.",
+        smoothness: "Gợi ý về Độ mịn kem: Lớp kem gặp vấn đề kết cấu (lỏng hoặc vón cục). Tham khảo bài viết [Kem mascarpone mịn và ổn định](../kem-mascarpone-on-dinh/) để nắm vững thao tác fold 3 lần và nhiệt độ phô mai.",
+        coffee: "Gợi ý về Độ rõ cà phê: Hương vị cà phê espresso bị lấn át hoặc chưa đủ rõ nét. Hãy xem bài viết [Espresso cho tiramisu](../espresso-cho-tiramisu/) để tính toán tỷ lệ chiết xuất (ratio) và loại hạt phù hợp.",
+        balance: "Gợi ý về Cân bằng ngọt - đắng: Bánh đang bị thiên ngọt hoặc đắng gắt. Đọc bài viết [Đường và cân bằng vị](../duong-va-can-bang-vi/) để tinh chỉnh tỷ lệ đường và độ dày của cacao rây phủ.",
+        aftertaste: "Gợi ý về Hậu vị: Hậu vị trôi nhanh hoặc có vị lạ. Cân nhắc bổ sung rượu Marsala truyền thống hoặc cà phê chất lượng cao theo bài viết [Rượu và hương thơm](../ruou-va-huong-thom/) để giữ hậu vị kéo dài."
+      },
+      "jardin-vert": {
+        moisture: "Gợi ý về Độ ẩm bánh: Lớp bánh chưa đạt độ ẩm tối ưu. Xem bài viết [Matcha trong tiramisu](../matcha-trong-tiramisu/) để điều chỉnh tỷ lệ thấm trà hoặc nhiệt độ dịch thấm trà matcha.",
+        smoothness: "Gợi ý về Độ mịn kem: Lớp kem gặp vấn đề kết cấu (lỏng hoặc vón cục). Tham khảo bài viết [Kem mascarpone mịn và ổn định](../kem-mascarpone-on-dinh/) để nắm vững thao tác fold 3 lần và nhiệt độ phô mai.",
+        coffee: "Gợi ý về Độ rõ trà xanh: Hương vị matcha bị lấn át hoặc chưa đủ rõ nét. Hãy xem bài viết [Matcha trong tiramisu](../matcha-trong-tiramisu/) để tính toán nhiệt độ khuấy trà và tỷ lệ bột matcha phù hợp để không bị đắng chát.",
+        balance: "Gợi ý về Cân bằng ngọt - đắng: Bánh đang bị ngọt nhiều hoặc matcha đắng gắt. Đọc bài viết [Matcha trong tiramisu](../matcha-trong-tiramisu/) để cân bằng tỷ lệ đường với độ chát tự nhiên của trà xanh.",
+        aftertaste: "Gợi ý về Hậu vị: Hậu vị trôi nhanh hoặc có vị lạ. Cân nhắc cách kết hợp bột trà xanh chất lượng cao theo bài viết [Matcha trong tiramisu](../matcha-trong-tiramisu/) để hậu vị thơm dẻ và kéo dài."
+      }
+    };
+
+    const coffeeSlider = document.querySelector('[data-score-range="coffee"]');
+    const coffeeSliderContainer = coffeeSlider ? coffeeSlider.closest(".lab-score-slider") : null;
+    
+    function updateLabels() {
+      if (!coffeeSliderContainer) return;
+      const titleEl = coffeeSliderContainer.querySelector("strong");
+      const maxLabelEl = coffeeSliderContainer.querySelector(".lab-score-labels span:last-child");
+
+      if (currentRecipe === "jardin-vert") {
+        if (titleEl) titleEl.textContent = "3. Độ rõ trà xanh";
+        if (maxLabelEl) maxLabelEl.textContent = "Rõ hương Matcha Uji";
+      } else {
+        if (titleEl) titleEl.textContent = "3. Độ rõ cà phê";
+        if (maxLabelEl) maxLabelEl.textContent = "Rõ hương espresso";
+      }
+    }
+
+    function calculate() {
+      let total = 0;
+      let minVal = 5;
+      let minKey = "";
+
+      sliders.forEach((slider) => {
+        const key = slider.dataset.scoreRange;
+        const val = Number(slider.value);
+        total += val;
+
+        const valLabel = document.querySelector(`[data-score-val="${key}"]`);
+        if (valLabel) valLabel.textContent = val;
+
+        if (val < minVal) {
+          minVal = val;
+          minKey = key;
+        }
+      });
+
+      const avg = total / sliders.length;
+      avgOutput.textContent = avg.toFixed(1);
+
+      if (minVal < 4 && minKey) {
+        const rawAdvice = advices[currentRecipe][minKey];
+        // Parse markdown link to HTML link
+        const htmlAdvice = rawAdvice.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="lab-advice-link" style="text-decoration: underline; color: var(--mocha); font-weight: 500;">$1</a>');
+        adviceOutput.innerHTML = htmlAdvice;
+      } else {
+        adviceOutput.textContent = "Mọi chỉ số đều đang ở mức lý tưởng. Hãy duy trì nhiệt độ bảo quản và công thức chuẩn!";
+      }
+    }
+
+    sliders.forEach((slider) => {
+      slider.addEventListener("input", calculate);
+    });
+
+    if (fillLogButton) {
+      fillLogButton.addEventListener("click", () => {
+        const observationTextarea = document.querySelector("[data-log-observation]");
+        const nextTextarea = document.querySelector("[data-log-next]");
+        const scoreSelect = document.querySelector("[data-log-score]");
+        if (!observationTextarea || !nextTextarea || !scoreSelect) return;
+
+        const scores = Array.from(sliders).map((s) => {
+          const name = s.closest(".lab-score-slider").querySelector("strong").textContent.split(". ")[1];
+          return `${name}: ${s.value}/5`;
+        }).join(", ");
+
+        const avg = (Array.from(sliders).reduce((acc, s) => acc + Number(s.value), 0) / sliders.length).toFixed(1);
+
+        observationTextarea.value = `[Đánh giá cảm quan] ${scores}. Điểm trung bình: ${avg}/5.`;
+        
+        let adviceText = adviceOutput.textContent;
+        if (adviceText.includes("Gợi ý về")) {
+          // Strip out markdown file link for clean text inside textarea
+          adviceText = adviceText.replace(/\[([^\]]+)\]\([^)]+\)/g, "$1");
+          nextTextarea.value = adviceText;
+        } else {
+          nextTextarea.value = "Duy trì công thức và quy trình bảo quản lạnh hiện tại.";
+        }
+
+        scoreSelect.value = String(Math.round(avg));
+
+        const logForm = document.querySelector("[data-log-form]");
+        if (logForm) {
+          logForm.scrollIntoView({ behavior: "smooth" });
+          logForm.style.transition = "background-color 0.3s ease";
+          logForm.style.backgroundColor = "rgba(201, 164, 154, 0.15)";
+          setTimeout(() => {
+            logForm.style.backgroundColor = "";
+          }, 1000);
+        }
+      });
+    }
+
+    document.addEventListener("charmie:recipe-change", () => {
+      updateLabels();
+      calculate();
+    });
+
+    updateLabels();
+    calculate();
+  }
+
+  function initGelatin() {
+    const creamMassOutput = document.querySelector("[data-cream-mass]");
+    const gelatinLevelSelect = document.querySelector("[data-gelatin-level]");
+    const gelatinWeightOutput = document.querySelector("[data-gelatin-weight]");
+    const bloomWaterRow = document.querySelector("[data-bloom-water-row]");
+    const bloomWaterWeightOutput = document.querySelector("[data-bloom-water-weight]");
+    const gelatinTextOutput = document.querySelector("[data-gelatin-text]");
+
+    if (!creamMassOutput || !gelatinLevelSelect || !gelatinWeightOutput || !bloomWaterWeightOutput || !gelatinTextOutput) return;
+
+    const descriptions = {
+      "0": "Không sử dụng gelatin. Kem sẽ tan rất nhanh trong miệng và có cấu trúc mềm mịn truyền thống nhất. Bắt buộc phải giữ lạnh liên tục và chỉ lấy ra ngay trước khi ăn.",
+      "0.005": "Tỷ lệ tối thiểu để giữ kem đứng form nhẹ. Giúp chống rung lắc khi vận chuyển cự ly gần (< 5km) trong túi giữ nhiệt. Kem vẫn tan mượt mà không cảm nhận thấy độ dai.",
+      "0.008": "Khuyên dùng cho đơn giao nhận xa (> 5km) hoặc khi nhiệt độ ngoài trời cao. Đảm bảo cấu trúc đứng vững trong hộp suốt hành trình mà không bị xẹp lớp. Kem tan chậm hơn một chút nhưng vẫn giữ độ ngậy béo.",
+      "0.012": "Cấu trúc đứng rất vững chắc, thích hợp cho tiramisu ổ lớn cần cắt lát vuông vức để bày tủ kính. Bánh giữ dáng tốt ở nhiệt độ phòng nhưng kem sẽ có độ đông nhẹ, giảm bớt độ tan nhanh truyền thống."
+    };
+
+    function calculate() {
+      const mascarponeAmount = labState.scaledAmounts["mascarpone"] || 0;
+      const creamAmount = labState.scaledAmounts["cream"] || 0;
+      const creamMass = mascarponeAmount + creamAmount;
+      creamMassOutput.textContent = formatAmount(creamMass);
+
+      const percentage = Number(gelatinLevelSelect.value) || 0;
+      const gelatinWeight = creamMass * percentage;
+
+      gelatinWeightOutput.textContent = gelatinWeight > 0 ? `${formatAmount(gelatinWeight)} g` : "0 g";
+
+      if (percentage > 0) {
+        if (bloomWaterRow) bloomWaterRow.style.display = "flex";
+        const bloomWaterWeight = gelatinWeight * 5;
+        bloomWaterWeightOutput.textContent = `${formatAmount(bloomWaterWeight)} g`;
+      } else {
+        if (bloomWaterRow) bloomWaterRow.style.display = "none";
+        bloomWaterWeightOutput.textContent = "0 g";
+      }
+
+      gelatinTextOutput.textContent = descriptions[String(percentage)] || "";
+    }
+
+    gelatinLevelSelect.addEventListener("change", calculate);
+    document.addEventListener("charmie:scale-change", calculate);
+    calculate();
+  }
+
+  const recipeSelect = document.querySelector("[data-recipe-select]");
+  if (recipeSelect) {
+    recipeSelect.addEventListener("change", () => {
+      currentRecipe = recipeSelect.value;
+      document.dispatchEvent(new CustomEvent("charmie:recipe-change", { detail: { recipe: currentRecipe } }));
+    });
+  }
+
   initScaler();
   initCosting();
   initDiagnosis();
+  initScorecard();
+  initGelatin();
   initBatchLog();
 })();

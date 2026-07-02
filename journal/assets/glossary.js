@@ -8,6 +8,7 @@
     { term: "Marsala", category: "Nguyên liệu", definition: "Rượu vang tăng cường của Sicily, thường mang nhóm hương trái cây khô và caramel.", article: "ruou-va-huong-thom" },
     { term: "Trứng thanh trùng", category: "Nguyên liệu", definition: "Trứng đã được xử lý nhiệt có kiểm soát để giảm rủi ro vi sinh mà chưa làm đông hoàn toàn.", article: "an-toan-va-chuoi-lanh" },
     { term: "Whipping cream", category: "Nguyên liệu", definition: "Kem sữa có hàm lượng chất béo đủ để giữ bọt khí khi đánh lạnh.", article: "kem-mascarpone-on-dinh" },
+    { term: "Gelatin", category: "Nguyên liệu", definition: "Chất ổn định thu được từ collagen, giúp kem tiramisu tăng khả năng chịu lực nén khi vận chuyển.", article: "gelatin-va-cau-truc-kem" },
 
     { term: "Fold", category: "Kỹ thuật", definition: "Thao tác trộn nhẹ theo vòng gập để kết hợp hai hỗn hợp trong khi hạn chế làm vỡ bọt khí.", article: "kem-mascarpone-on-dinh" },
     { term: "Soft peak", alias: "Chóp mềm", category: "Kỹ thuật", definition: "Trạng thái kem tạo chóp nhưng đầu chóp cong xuống. Thường còn đủ mềm để tiếp tục fold.", article: "kem-mascarpone-on-dinh" },
@@ -16,6 +17,8 @@
     { term: "Mise en place", category: "Kỹ thuật", definition: "Chuẩn bị và sắp xếp đầy đủ nguyên liệu, dụng cụ trước khi bắt đầu thao tác.", article: "lap-ke-hoach-san-xuat" },
     { term: "Rây", category: "Kỹ thuật", definition: "Cho nguyên liệu bột qua lưới mịn để phá cụm và phân bố đều hơn.", article: "cacao-va-lop-ket-thuc" },
     { term: "Nhiệt độ phục vụ", category: "Kỹ thuật", definition: "Nhiệt độ sản phẩm tại lúc ăn; ảnh hưởng rõ đến độ mềm, hương thơm và cảm nhận vị.", article: "danh-gia-cam-quan" },
+    { term: "Sabayon", alias: "Zabaglione", category: "Kỹ thuật", definition: "Kỹ thuật đánh trứng cách thủy để gia nhiệt hỗn hợp lòng đỏ, đường, rượu đến nhiệt độ an toàn mà không làm trứng đông.", article: "thanh-trung-long-do-sabayon" },
+    { term: "Ngâm nở", alias: "Bloom", category: "Kỹ thuật", definition: "Ngâm bột hoặc lá gelatin trong nước lạnh đá theo tỷ lệ 1:5 để gel ngậm đủ nước trước khi gia nhiệt hóa lỏng.", article: "gelatin-va-cau-truc-kem" },
 
     { term: "Nhũ tương", category: "Khoa học", definition: "Hệ gồm hai chất lỏng vốn khó hòa tan, như nước và chất béo, được phân tán và giữ ổn định.", article: "khoa-hoc-cua-tiramisu" },
     { term: "Bọt khí", category: "Khoa học", definition: "Các túi khí nhỏ được giữ trong mạng lưới kem, tạo cảm giác nhẹ và góp phần giữ hình.", article: "khoa-hoc-cua-tiramisu" },
@@ -23,6 +26,8 @@
     { term: "Nước tự do", category: "Khoa học", definition: "Phần nước không được cấu trúc giữ chặt, có thể dịch chuyển hoặc tích tụ dưới đáy hộp.", article: "kiem-soat-do-am" },
     { term: "Tái phân bố độ ẩm", category: "Khoa học", definition: "Quá trình nước di chuyển giữa lớp bánh và lớp kem trong thời gian nghỉ để tiến tới cân bằng.", article: "vi-sao-can-thoi-gian-nghi" },
     { term: "Cảm nhận béo", category: "Khoa học", definition: "Tổng hợp cảm giác phủ miệng, độ mượt và cách chất béo làm thay đổi sự xuất hiện của hương vị.", article: "duong-va-can-bang-vi" },
+    { term: "Salmonella", category: "Khoa học", definition: "Vi khuẩn gây ngộ độc thực phẩm có thể nhiễm trong trứng sống, bị tiêu diệt hoàn toàn khi gia nhiệt từ 68°C trở lên.", article: "thanh-trung-long-do-sabayon" },
+    { term: "Nhiệt độ nóng chảy của gel", category: "Khoa học", definition: "Nhiệt độ mà mạng lưới gelatin tan rã (ở khoảng 35°C - 37°C), tương tự nhiệt độ cơ thể người, giúp kem tan nhanh khi thưởng thức.", article: "gelatin-va-cau-truc-kem" },
 
     { term: "Định mức", category: "Vận hành", definition: "Khối lượng hoặc lượng sử dụng chuẩn cho một sản phẩm hay một mẻ.", article: "scale-cong-thuc" },
     { term: "Hao hụt", category: "Vận hành", definition: "Phần nguyên liệu hoặc thành phẩm mất đi trong cân, trộn, chuyển âu, tạo hình và đóng gói.", article: "scale-cong-thuc" },

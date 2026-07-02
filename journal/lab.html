@@ -22,6 +22,8 @@
         <a href="#batch-scaler">Scale mẻ</a>
         <a href="#troubleshooting">Tra lỗi</a>
         <a href="#costing">Giá vốn</a>
+        <a href="#sensory-scorecard">Cảm quan</a>
+        <a href="#gelatin-calculator">Ổn định Gelatin</a>
         <a href="#batch-log">Nhật ký</a>
         <a class="j-nav-home" href="../index.html">Về cửa hàng</a>
       </div>
@@ -55,6 +57,14 @@
               <input type="number" min="0.5" max="20" step="0.5" value="1" data-multiplier aria-label="Số mẻ">
               <button type="button" data-step="0.5" aria-label="Tăng nửa mẻ">+</button>
             </div>
+          </label>
+
+          <label class="lab-recipe-selector">
+            <span>Công thức bánh</span>
+            <select data-recipe-select>
+              <option value="classique" selected>Le Classique (Cổ điển)</option>
+              <option value="jardin-vert">Jardin Vert (Matcha)</option>
+            </select>
           </label>
 
           <div class="lab-ingredients" data-ingredient-inputs></div>
@@ -147,11 +157,163 @@
       </div>
     </section>
 
+    <section class="j-shell lab-section" id="sensory-scorecard">
+      <div class="lab-section-head">
+        <div>
+          <span class="j-eyebrow">04 · Sensory Scorecard</span>
+          <h2>Đánh giá cảm quan mẻ bánh.</h2>
+        </div>
+        <p>Đánh giá mẻ bánh vừa ra mắt dựa trên 5 tiêu chí chuẩn. Hệ thống sẽ chấm điểm trung bình và gợi ý hướng điều chỉnh tương ứng.</p>
+      </div>
+
+      <div class="lab-scorecard-workspace">
+        <div class="lab-scorecard-sliders">
+          <div class="lab-score-slider">
+            <div class="lab-score-slider-header">
+              <strong>1. Độ ẩm bánh</strong>
+              <span data-score-val="moisture">5</span>
+            </div>
+            <input type="range" min="1" max="5" value="5" step="1" data-score-range="moisture">
+            <div class="lab-score-labels">
+              <span>Khô / Cứng</span>
+              <span>Chấp nhận được</span>
+              <span>Mềm ẩm tối ưu</span>
+            </div>
+          </div>
+
+          <div class="lab-score-slider">
+            <div class="lab-score-slider-header">
+              <strong>2. Độ mịn kem</strong>
+              <span data-score-val="smoothness">5</span>
+            </div>
+            <input type="range" min="1" max="5" value="5" step="1" data-score-range="smoothness">
+            <div class="lab-score-labels">
+              <span>Lỏng / Cục bột</span>
+              <span>Đứng nhẹ</span>
+              <span>Mịn mượt tan nhanh</span>
+            </div>
+          </div>
+
+          <div class="lab-score-slider">
+            <div class="lab-score-slider-header">
+              <strong>3. Độ rõ cà phê</strong>
+              <span data-score-val="coffee">5</span>
+            </div>
+            <input type="range" min="1" max="5" value="5" step="1" data-score-range="coffee">
+            <div class="lab-score-labels">
+              <span>Nhạt nhòa</span>
+              <span>Có vị</span>
+              <span>Rõ hương espresso</span>
+            </div>
+          </div>
+
+          <div class="lab-score-slider">
+            <div class="lab-score-slider-header">
+              <strong>4. Cân bằng ngọt - đắng</strong>
+              <span data-score-val="balance">5</span>
+            </div>
+            <input type="range" min="1" max="5" value="5" step="1" data-score-range="balance">
+            <div class="lab-score-labels">
+              <span>Ngọt hoặc Đắng gắt</span>
+              <span>Hài hòa nhẹ</span>
+              <span>Hòa quyện tinh tế</span>
+            </div>
+          </div>
+
+          <div class="lab-score-slider">
+            <div class="lab-score-slider-header">
+              <strong>5. Hậu vị</strong>
+              <span data-score-val="aftertaste">5</span>
+            </div>
+            <input type="range" min="1" max="5" value="5" step="1" data-score-range="aftertaste">
+            <div class="lab-score-labels">
+              <span>Tan tuột / Chua ngái</span>
+              <span>Thơm nhẹ</span>
+              <span>Thơm dẻ, hạt kéo dài</span>
+            </div>
+          </div>
+        </div>
+
+        <aside class="lab-scorecard-result" aria-live="polite">
+          <span class="lab-result-kicker">Chỉ số cảm quan</span>
+          <div class="lab-scorecard-big-score">
+            <strong data-score-average>5.0</strong>
+            <span>trên 5.0</span>
+          </div>
+          <div class="lab-scorecard-feedback">
+            <strong>Gợi ý cải thiện:</strong>
+            <p data-scorecard-advice>Mọi chỉ số đều đang ở mức lý tưởng. Hãy duy trì nhiệt độ bảo quản và công thức chuẩn!</p>
+          </div>
+          <button type="button" class="lab-scorecard-use-btn" data-scorecard-to-log>Điền kết quả vào Nhật ký mẻ</button>
+        </aside>
+      </div>
+    </section>
+
+    <section class="j-shell lab-section" id="gelatin-calculator">
+      <div class="lab-section-head">
+        <div>
+          <span class="j-eyebrow">05 · Gelatin stabilizer</span>
+          <h2>Tính toán chất ổn định Gelatin.</h2>
+        </div>
+        <p>Tính toán lượng gelatin tối ưu để bảo vệ cấu trúc tiramisu khi vận chuyển (đặc biệt dưới thời tiết nắng tại TP.HCM) mà không làm mất đi độ tan mượt đặc trưng.</p>
+      </div>
+
+      <div class="lab-gelatin-workspace">
+        <div class="lab-gelatin-inputs">
+          <div class="lab-gelatin-info">
+            <p>Khối lượng kem nền hiện tại (tổng Mascarpone + Whipping cream tự động đồng bộ từ Batch Scaler):</p>
+            <div class="lab-cream-mass-display">
+              <strong data-cream-mass>400.0</strong> <span>g</span>
+              <small>(Mascarpone + Whipping cream)</small>
+            </div>
+          </div>
+
+          <label class="lab-select-wrap">
+            <span>Mức độ ổn định mong muốn</span>
+            <select data-gelatin-level>
+              <option value="0">Truyền thống (0% Gelatin) — Ăn ngay tại chỗ, tan nhanh</option>
+              <option value="0.005">Giao hàng tiêu chuẩn (0.5% Gelatin) — Ship gần &lt; 5km, đứng form nhẹ</option>
+              <option value="0.008" selected>Vận chuyển đường dài (0.8% Gelatin) — Ship xa &gt; 5km / Thời tiết nóng</option>
+              <option value="0.012">Cắt miếng trưng bày (1.2% Gelatin) — Tạo hình ổ bánh lớn, đứng vững lâu</option>
+            </select>
+          </label>
+        </div>
+
+        <aside class="lab-gelatin-result" aria-live="polite">
+          <span class="lab-result-kicker">Kết quả định lượng</span>
+          <div class="lab-gelatin-outputs">
+            <div class="lab-gelatin-output-row">
+              <span>Gelatin cần dùng:</span>
+              <strong data-gelatin-weight>3.2 g</strong>
+            </div>
+            <div class="lab-gelatin-output-row" data-bloom-water-row>
+              <span>Nước lạnh ngâm nở (tỷ lệ 1:5):</span>
+              <strong data-bloom-water-weight>16.0 g</strong>
+            </div>
+          </div>
+          <div class="lab-gelatin-description">
+            <strong>Đặc tính kết cấu:</strong>
+            <p data-gelatin-text>Đảm bảo cấu trúc đứng vững khi giao hàng xa trong túi giữ nhiệt. Kem bắt đầu tan chậm hơn một chút nhưng vẫn giữ được độ ngậy béo.</p>
+          </div>
+          <div class="lab-gelatin-guide">
+            <strong>Quy trình thao tác khuyến nghị:</strong>
+            <ol>
+              <li>Ngâm lá hoặc bột gelatin trong nước lạnh đá khoảng 10-15 phút cho nở mềm.</li>
+              <li>Chắt nước (nếu dùng lá) hoặc giữ nguyên chén nước ngâm (nếu dùng bột).</li>
+              <li>Hấp cách thủy hoặc quay microwave khoảng 10-15 giây để gelatin tan chảy hoàn toàn (đạt khoảng 40°C - 50°C, không đun sôi).</li>
+              <li>Lấy 2 muỗng kem mascarpone (ở nhiệt độ phòng) trộn trước vào chén gelatin ấm để cân bằng nhiệt độ (tránh gelatin bị đông cục khi gặp kem lạnh).</li>
+              <li>Từ từ trút hỗn hợp gelatin vào toàn bộ mẻ kem, fold nhẹ nhàng cho đến khi đồng nhất rồi ráp bánh.</li>
+            </ol>
+          </div>
+        </aside>
+      </div>
+    </section>
+
     <section class="lab-log-band" id="batch-log">
       <div class="j-shell lab-section">
         <div class="lab-section-head">
           <div>
-            <span class="j-eyebrow">04 · Nhật ký mẻ</span>
+            <span class="j-eyebrow">06 · Nhật ký mẻ</span>
             <h2>Ghi đủ để lần sau làm tốt hơn.</h2>
           </div>
           <p>Nhật ký được lưu riêng trên trình duyệt hiện tại. Không có dữ liệu nào được gửi ra ngoài.</p>

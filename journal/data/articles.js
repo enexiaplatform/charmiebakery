@@ -644,5 +644,105 @@ window.CHARMIE_ARTICLES = [
       "Thời gian nghỉ là một công đoạn bắt buộc.",
       "Giữ khoảng đệm và cập nhật lịch bằng dữ liệu thực tế."
     ]
+  },
+  {
+    slug: "thanh-trung-long-do-sabayon",
+    level: "Nâng cao",
+    order: 17,
+    title: "Kỹ thuật thanh trùng trứng (Sabayon): An toàn cho Tiramisu truyền thống",
+    summary: "Làm chủ phương pháp Sabayon gia nhiệt cách thủy để diệt khuẩn mà không làm trứng đông.",
+    readTime: "10 phút",
+    image: "../uploads/pasted-1779544702147-0.jpg",
+    intro: "Tiramisu truyền thống Ý dựa trên sự mềm mại từ lòng đỏ trứng đánh bông. Tuy nhiên, trứng sống mang lại rủi ro nhiễm khuẩn Salmonella. Kỹ thuật Sabayon giải quyết vấn đề này bằng cách gia nhiệt lòng đỏ có kiểm soát.",
+    sections: [
+      {
+        title: "Cơ chế diệt khuẩn bằng nhiệt (Salmonella)",
+        body: [
+          "Salmonella Enteritidis là vi khuẩn chính có thể tồn tại trong lòng đỏ trứng sống. Vi khuẩn này bị tiêu diệt hiệu quả ở nhiệt độ từ 60°C trở lên nếu được giữ đủ thời gian. Cụ thể, gia nhiệt hỗn hợp trứng đến 68°C–71°C và giữ trong 15-30 giây là đủ để tiêu diệt hầu hết rủi ro vi sinh.",
+          "Tuy nhiên, lòng đỏ trứng bắt đầu đông tụ ở khoảng 65°C nếu đứng yên, và đông cứng hoàn toàn ở 70°C. Vì vậy, ta cần liên tục khuấy/đánh và bổ sung chất lỏng (như rượu Marsala, nước hoặc cà phê) và đường để tăng nhiệt độ đông tụ lên 78°C–80°C, tạo ra một khoảng nhiệt an toàn để thanh trùng."
+        ]
+      },
+      {
+        title: "Các bước thực hiện Sabayon cách thủy",
+        body: [
+          "Chuẩn bị một nồi nước sôi nhẹ (simmering water) và một âu chịu nhiệt đặt khít lên miệng nồi nhưng không chạm nước đáy. Cho lòng đỏ trứng, đường và một lượng nhỏ chất lỏng (như rượu Marsala hoặc cà phê) vào âu.",
+          "Đánh liên tục bằng phới lồng khi đặt âu lên nồi nước. Dùng nhiệt kế thực phẩm kiểm tra liên tục. Khi hỗn hợp đạt 68°C–70°C, giữ nguyên trạng thái đánh trong ít nhất 15-30 giây để đảm bảo thanh trùng, sau đó nhấc âu ra và tiếp tục đánh nguội để cấu trúc kem ổn định."
+        ]
+      },
+      {
+        title: "Dấu hiệu nhận biết Sabayon đạt chuẩn",
+        body: [
+          "Hỗn hợp chuyển từ màu vàng đậm sang vàng nhạt, thể tích tăng gấp 2-3 lần nhờ các bọt khí siêu nhỏ được giữ lại. Cấu trúc lỏng ban đầu trở nên dày, mịn, tạo vân nhẹ khi nhấc phới.",
+          "Nếu thấy xuất hiện hạt nhỏ lợn cợn ở đáy âu, đó là dấu hiệu một phần trứng đã bị chín do nhiệt độ quá cao hoặc thiếu khuấy. Cần lọc qua rây ngay lập tức để giữ độ mịn cho kem."
+        ]
+      }
+    ],
+    takeaways: [
+      "Salmonella bị diệt hiệu quả ở 68°C - 71°C trong 15-30 giây.",
+      "Thêm đường và chất lỏng giúp tăng nhiệt độ đông tụ của lòng đỏ, tạo khoảng nhiệt an toàn.",
+      "Đánh liên tục trong suốt quá trình đun cách thủy để phân bố nhiệt và giữ độ mịn.",
+      "Dùng nhiệt kế đo chính xác, không đoán bằng mắt."
+    ],
+    safety: "Thanh trùng tại nhà bằng cách thủy đòi hỏi đo nhiệt độ chính xác bằng đầu dò. Nếu sản xuất quy mô công nghiệp hoặc phục vụ nhóm đối tượng nhạy cảm, nên sử dụng lòng đỏ trứng thanh trùng thương mại để đảm bảo tuyệt đối.",
+    sources: [
+      {
+        label: "USDA — Shell Eggs from Farm to Table",
+        url: "https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/eggs/shell-eggs-farm-table"
+      },
+      {
+        label: "ScienceDirect — Egg yolk pasteurization and coagulation",
+        url: "https://www.sciencedirect.com/topics/agricultural-and-biological-sciences/egg-yolk"
+      }
+    ]
+  },
+  {
+    slug: "gelatin-va-cau-truc-kem",
+    level: "Khoa học",
+    order: 18,
+    title: "Gelatin trong tiramisu: Cấu trúc đứng form và cảm quan tan chảy",
+    summary: "Cách tính tỷ lệ gelatin tối ưu để chống rung lắc khi giao hàng mà không làm mất đi cảm giác tan chảy ngay trên đầu lưỡi.",
+    readTime: "9 phút",
+    image: "../uploads/pasted-1779544236945-0.jpg",
+    intro: "Gelatin là chất ổn định phổ biến giúp tiramisu đứng vững trước những va chạm khi vận chuyển. Tuy nhiên, ranh giới giữa một lớp kem mượt mà tự nâng đỡ và một khối kem thạch dai cứng rất mong manh. Hiểu rõ tỷ lệ và nhiệt độ kết hợp sẽ giúp bạn làm chủ ranh giới này.",
+    sections: [
+      {
+        title: "Cơ chế tạo gel và ranh giới tan chảy",
+        body: [
+          "Gelatin là một polymer protein thu được từ collagen. Khi hòa tan trong nước nóng và làm lạnh, các chuỗi protein này liên kết lại với nhau tạo thành một mạng lưới ba chiều giữ nước và béo bên trong. Mạng lưới này giúp kem mascarpone tăng khả năng chịu lực nén và chống lại các rung động cơ học khi đi xe máy.",
+          "Đặc tính quý giá nhất của gelatin là nhiệt độ nóng chảy của gel nằm ở khoảng 35°C–37°C, rất gần với nhiệt độ cơ thể người. Khi đưa vào miệng, gel lập tức tan chảy dưới tác động của nhiệt độ cơ thể, giải phóng vị béo ngậy của phô mai. Nếu dùng quá liều (> 1.5%), nhiệt độ nóng chảy tăng lên, kem sẽ trở nên dai như thạch và không còn cảm giác tan mượt nữa."
+        ]
+      },
+      {
+        title: "Tính toán tỷ lệ theo mục tiêu vận chuyển",
+        body: [
+          "Với tiramisu ăn tại chỗ hoặc phục vụ trong ly hũ thủy tinh, tỷ lệ gelatin khuyên dùng là 0% để giữ kết cấu nguyên bản. Độ béo từ phô mai mascarpone và độ đông tụ nhẹ của lòng đỏ trứng là đủ để giữ hình dạng bánh trong điều kiện lạnh.",
+          "Khi cần giao hàng đi xa hoặc làm bánh ổ sinh nhật lớn, tỷ lệ 0.5% (tính trên khối lượng kem nền gồm Mascarpone và Whipping cream) giúp liên kết các hạt béo lỏng lẻo mà không làm thay đổi cảm giác miệng. Với cự ly xa hơn hoặc thời tiết nắng gắt, tỷ lệ tăng dần lên 0.8% - 1.2%. Luôn cân đo gelatin chính xác bằng cân tiểu ly, không ước lượng bằng mắt."
+        ]
+      },
+      {
+        title: "Kỹ thuật ngâm nở và hòa trộn tránh vón cục",
+        body: [
+          "Lỗi phổ biến nhất khi thêm gelatin vào kem lạnh là gelatin bị đông tụ thành các sợi hoặc hạt dai nhỏ lợn cợn (cục đông). Hiện tượng này xảy ra do gelatin lỏng nóng gặp kem lạnh đột ngột và đông cứng lập tức trước khi kịp phân tán đều.",
+          "Cách xử lý chuẩn là ngâm nở gelatin trong nước lạnh đá theo tỷ lệ 1:5 (1 phần gelatin với 5 phần nước lạnh) để tạo gel ngậm nước đầy đủ. Sau khi đun chảy gelatin (đạt khoảng 40°C–50°C, không đun sôi), lấy khoảng 2 muỗng kem mascarpone ở nhiệt độ phòng trộn đều trực tiếp vào chén gelatin ấm để giảm nhiệt độ hỗn hợp xuống khoảng 25°C–30°C. Từ từ trút hỗn hợp đã làm dịu này ngược lại vào âu kem lớn và fold nhanh tay."
+        ]
+      }
+    ],
+    takeaways: [
+      "Gelatin nâng đỡ cấu trúc nhưng làm giảm tốc độ tan mượt của kem nếu dùng quá mức.",
+      "Nhiệt độ nóng chảy của gelatin ở khoảng 35°C–37°C giúp kem tan chảy bằng nhiệt cơ thể.",
+      "Tỷ lệ chuẩn dao động từ 0.5% (giao hàng gần) đến 1.2% (cắt lát trưng bày).",
+      "Luôn trộn trước gelatin ấm với một phần kem nhỏ để cân bằng nhiệt độ trước khi fold toàn bộ."
+    ],
+    safety: "Khi sử dụng gelatin dạng lá hoặc bột, luôn đảm bảo gelatin được ngâm trong nước lạnh đá. Nước ấm sẽ làm gelatin tan ngay vào nước ngâm khiến hao hụt lượng thực tế.",
+    sources: [
+      {
+        label: "ScienceDirect — Gelatin properties and food applications",
+        url: "https://www.sciencedirect.com/topics/agricultural-and-biological-sciences/gelatin"
+      },
+      {
+        label: "Texture Technologies — Gelatin Bloom Strength and Melting Point",
+        url: "https://texturetechnologies.com/resources/gelatin-bloom-strength"
+      }
+    ]
   }
 ];

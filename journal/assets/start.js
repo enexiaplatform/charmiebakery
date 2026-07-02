@@ -29,7 +29,8 @@
       steps: [
         ["Tiramisu dưới góc nhìn khoa học", "Nhũ tương, bọt khí, mao dẫn và chất béo.", "khoa-hoc-cua-tiramisu/"],
         ["Vì sao cần thời gian nghỉ?", "Theo dõi độ ẩm và hương vị tái phân bố.", "vi-sao-can-thoi-gian-nghi/"],
-        ["Đường và cân bằng vị", "Hiểu vị ngọt như một phần của cấu trúc.", "duong-va-can-bang-vi/"]
+        ["Đường và cân bằng vị", "Hiểu vị ngọt như một phần của cấu trúc.", "duong-va-can-bang-vi/"],
+        ["Gelatin và cấu trúc kem", "Đặc tính tạo gel và ranh giới tan chảy mượt mà.", "gelatin-va-cau-truc-kem/"]
       ],
       action: ["Mở Từ điển Tiramisu", "glossary.html"]
     },
@@ -39,6 +40,7 @@
       description: "Ưu tiên an toàn và khả năng lặp lại trước khi tối ưu sản lượng, chi phí hoặc bao bì.",
       steps: [
         ["An toàn và chuỗi lạnh", "Thiết kế quy trình phù hợp với món lạnh có trứng và sữa.", "an-toan-va-chuoi-lanh/"],
+        ["Kỹ thuật thanh trùng trứng", "Gia nhiệt cách thủy diệt khuẩn Salmonella bằng phương pháp Sabayon.", "thanh-trung-long-do-sabayon/"],
         ["Scale công thức", "Tăng mẻ mà vẫn kiểm soát tải máy và sai số.", "scale-cong-thuc/"],
         ["Lập kế hoạch sản xuất", "Đi ngược từ giờ giao về từng mốc trong bếp.", "lap-ke-hoach-san-xuat/"],
         ["Bao bì quà tặng", "Bảo vệ cấu trúc và trải nghiệm khi mở hộp.", "bao-bi-va-trai-nghiem-qua-tang/"]
