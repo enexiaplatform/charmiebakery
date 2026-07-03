@@ -793,5 +793,55 @@ window.CHARMIE_ARTICLES = [
         url: "https://www.sciencedirect.com/topics/food-science/syneresis"
       }
     ]
+  },
+  {
+    slug: "ca-phe-dac-san-trong-tiramisu",
+    level: "Khoa học",
+    order: 20,
+    title: "Cà phê đặc sản trong tiramisu: Bản giao hưởng của những nốt hương",
+    summary: "Tại sao loại cà phê, nguồn gốc hạt và phương pháp chiết xuất quyết định sự tinh tế của mẻ bánh thủ công.",
+    readTime: "8 phút",
+    image: "../uploads/pasted-1779543950628-0.jpg",
+    intro: "Tiramisu truyền thống thường sử dụng espresso từ hạt Robusta đậm đắng để nổi bật trên nền kem mascarpone béo ngậy. Tuy nhiên, làn sóng cà phê thứ ba mở ra một chương mới cho tiramisu: sử dụng Specialty Coffee (cà phê đặc sản) với các tầng hương trái cây, hoa cỏ và vị chua sáng tự nhiên để biến chiếc bánh thành một tác phẩm nghệ thuật đa tầng vị.",
+    sections: [
+      {
+        title: "Chọn hạt Arabica hay Robusta chất lượng cao?",
+        body: [
+          "Hạt Robusta (đặc biệt là Robusta Fine chế biến ướt hoặc lên men tự nhiên) mang lại hàm lượng caffeine cao, vị đắng sô-cô-la đen đậm đà, độ dày thân vị (body) lớn giúp bánh giữ được vị cà phê mạnh mẽ đi xuyên qua lớp kem béo ngậy.",
+          "Hạt Arabica đặc sản (như Ethiopia, Colombia hay hạt Cầu Đất) chứa hàm lượng axit hữu cơ phong phú hơn, mang nốt hương quả mọng (berries), cam chanh (citrus) hoặc hương hoa nhài tinh tế. Khi Arabica kết hợp với mascarpone dịu ngọt, axit chua thanh của cà phê đóng vai trò cắt bớt cảm giác ngấy (fat-cutter), giúp miếng bánh trở nên thanh thoát và dễ chịu hơn."
+        ]
+      },
+      {
+        title: "Phương pháp chiết xuất: Espresso cô đặc hay Cold Brew chậm?",
+        body: [
+          "Espresso truyền thống vẫn là vua về độ cô đặc (TDS từ 8–10%). Áp suất lớn chiết xuất được nhiều dầu cà phê (crema), tạo ra hậu vị kéo dài và độ đậm đà khó thay thế. Tuy nhiên, espresso cần được làm nguội nhanh để tránh bay hơi các hợp chất thơm dễ biến tính.",
+          "Cold Brew (cà phê ủ lạnh) chiết xuất chậm từ 16-24 giờ là một lựa chọn hiện đại xuất sắc. Nhờ nhiệt độ thấp, cold brew giảm thiểu lượng axit đắng và tannin chát, mang lại hương vị cà phê vô cùng mượt mà, ngọt hậu tự nhiên và làm nổi bật các nốt hương trái cây chín của hạt đặc sản mà không gây đắng gắt."
+        ]
+      },
+      {
+        title: "Kỹ thuật phối trộn hương vị lý tưởng",
+        body: [
+          "Một mẻ tiramisu đặc sản lý tưởng thường sử dụng công thức phối trộn (blend) 70% Arabica đặc sản để lấy hương thơm hoa trái và 30% Robusta chất lượng cao để lấy độ đậm (body) và vị đắng nền tảng. Tỷ lệ này tạo ra sự cân bằng hoàn hảo.",
+          "Nếu dùng rượu đi kèm, hãy chọn loại rượu bổ trợ cho nốt hương tự nhiên của cà phê. Ví dụ: Cà phê Ethiopia có nốt hương cam chanh sẽ rất hợp với rượu Cointreau (rượu cam); trong khi cà phê có nốt hương sô-cô-la hạt ngậy sẽ hòa quyện tuyệt vời với rượu Rum hoặc Kahlúa."
+        ]
+      }
+    ],
+    takeaways: [
+      "Arabica mang nốt hương trái cây thanh thoát và giảm ngấy cho kem mascarpone.",
+      "Robusta Fine bổ sung vị đắng sô-cô-la đen vững chắc và độ dày thân vị.",
+      "Ủ lạnh (Cold Brew) cho vị cà phê mượt mà, ít đắng gắt và giữ trọn hương hoa quả.",
+      "Phối trộn (blend) theo tỷ lệ Arabica/Robusta phù hợp là chìa khóa để giữ cân bằng."
+    ],
+    safety: "Cà phê đặc sản có tính axit cao hơn cà phê thương mại thông thường. Hãy điều chỉnh lượng đường trong kem mascarpone một chút nếu sử dụng cà phê có vị chua sáng mạnh để tránh làm mẻ bánh bị lệch vị chua.",
+    sources: [
+      {
+        label: "Specialty Coffee Association (SCA) — Protocols and Standards",
+        url: "https://sca.coffee/research/protocols-translation"
+      },
+      {
+        label: "Barista Hustle — Extraction and TDS in Coffee Brewing",
+        url: "https://www.baristahustle.com/"
+      }
+    ]
   }
 ];

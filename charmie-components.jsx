@@ -302,6 +302,36 @@ const Customizer = () => {
   const [alcohol, setAlcohol] = useState('thoảng'); // 'không' | 'thoảng' | 'đậm'
   const [copied, setCopied] = useState(false);
 
+  // Greeting Card States
+  const [addCard, setAddCard] = useState(false);
+  const [cardTheme, setCardTheme] = useState('ivory'); // 'ivory' | 'blush' | 'forest' | 'gold'
+  const [cardTo, setCardTo] = useState('');
+  const [cardFrom, setCardFrom] = useState('');
+  const [cardMessage, setCardMessage] = useState('');
+  const [cardTemplate, setCardTemplate] = useState('custom'); // 'custom' | 'birthday' | 'thankyou' | 'love'
+  const [previewTab, setPreviewTab] = useState('cake'); // 'cake' | 'card'
+
+  const templates = {
+    custom: '',
+    birthday: 'Chúc mừng sinh nhật! Tuổi mới thật nhiều niềm vui, ngọt ngào và hạnh phúc trọn vẹn nhé.',
+    thankyou: 'Cảm ơn vì đã luôn đồng hành, chia sẻ và giúp đỡ mình. Mẻ bánh ngọt ngào này thay lời muốn nói.',
+    love: 'Gửi những điều ngọt ngào nhất tới người đặc biệt của mình. Thương yêu và trân trọng mỗi phút giây bên nhau.'
+  };
+
+  const handleTemplateChange = (type) => {
+    setCardTemplate(type);
+    if (type !== 'custom') {
+      setCardMessage(templates[type]);
+    }
+  };
+
+  const cardThemeLabel = (theme) => {
+    if (theme === 'ivory') return 'Classic Ivory';
+    if (theme === 'blush') return 'Rose Blush';
+    if (theme === 'forest') return 'Forest Green';
+    return 'Midnight Gold';
+  };
+
   // Set alcohol to 'không' if base is matcha
   useEffect(() => {
     if (base === 'matcha') {
@@ -377,7 +407,7 @@ const Customizer = () => {
 
   const tasteDescription = `Mẻ Tiramisu được chế tác thủ công theo yêu cầu của bạn, mang ${getSweetnessDesc()}. Lớp ladyfingers thấm ${getStrengthDesc()}, kết hợp cùng ${getCreamDesc()} bồng bềnh. Bánh được hoàn thiện với lớp ${getDustDesc()} trên bề mặt, đi kèm ${getAlcoholDesc()}.`;
 
-  const orderText = `Chào Charmie, mình muốn đặt Tiramisu tùy chỉnh:
+  let orderText = `Chào Charmie, mình muốn đặt Tiramisu tùy chỉnh:
 - Mã bản phối: ${customCode}
 - Tên bản phối: ${getProfileTitle()}
 - Vị nền: ${baseLabel}
@@ -386,6 +416,14 @@ const Customizer = () => {
 - Độ béo kem: ${creamLabel}
 - Lớp bột phủ: ${dustLabel}
 - Rượu thơm: ${alcoholLabel}`;
+
+  if (addCard) {
+    orderText += `
+- Thiệp đi kèm: Có (${cardThemeLabel(cardTheme)})
+- Gửi đến (To): ${cardTo.trim() || '(Để trống)'}
+- Gửi từ (From): ${cardFrom.trim() || '(Để trống)'}
+- Lời nhắn: ${cardMessage.trim() || '(Để trống)'}`;
+  }
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(orderText).then(() => {
@@ -468,22 +506,149 @@ const Customizer = () => {
                 </div>
               </div>
             )}
+
+            {/* Greeting Card Toggle */}
+            <div className="c-cust-group" style={{ borderTop: '1px dashed var(--champagne)', paddingTop: '24px' }}>
+              <div className="c-cust-label">Thiệp chúc mừng đi kèm <span>{addCard ? 'Đã thêm (Miễn phí)' : 'Chưa dùng'}</span></div>
+              <div className="c-cust-options">
+                <button type="button" className={`c-cust-btn ${!addCard ? 'active' : ''}`} onClick={() => { setAddCard(false); setPreviewTab('cake'); }}>Không dùng thiệp</button>
+                <button type="button" className={`c-cust-btn ${addCard ? 'active' : ''}`} onClick={() => { setAddCard(true); setPreviewTab('card'); }}>Viết thiệp tặng kèm</button>
+              </div>
+            </div>
+
+            {/* Greeting Card Fields (Conditional) */}
+            {addCard && (
+              <div className="c-cust-card-fields">
+                {/* Card Theme */}
+                <div className="c-cust-group">
+                  <div className="c-cust-label" style={{ fontSize: '13px' }}>Thiết kế thiệp <span>{cardThemeLabel(cardTheme)}</span></div>
+                  <div className="c-cust-options">
+                    <button type="button" className={`c-cust-btn c-cust-btn--sm ${cardTheme === 'ivory' ? 'active' : ''}`} onClick={() => setCardTheme('ivory')}>Ivory</button>
+                    <button type="button" className={`c-cust-btn c-cust-btn--sm ${cardTheme === 'blush' ? 'active' : ''}`} onClick={() => setCardTheme('blush')}>Blush</button>
+                    <button type="button" className={`c-cust-btn c-cust-btn--sm ${cardTheme === 'forest' ? 'active' : ''}`} onClick={() => setCardTheme('forest')}>Forest</button>
+                    <button type="button" className={`c-cust-btn c-cust-btn--sm ${cardTheme === 'gold' ? 'active' : ''}`} onClick={() => setCardTheme('gold')}>Midnight</button>
+                  </div>
+                </div>
+
+                {/* Message templates */}
+                <div className="c-cust-group" style={{ marginTop: '16px' }}>
+                  <div className="c-cust-label" style={{ fontSize: '13px' }}>Lời chúc mẫu</div>
+                  <div className="c-cust-options">
+                    <button type="button" className={`c-cust-btn c-cust-btn--sm ${cardTemplate === 'custom' ? 'active' : ''}`} onClick={() => handleTemplateChange('custom')}>Tự viết</button>
+                    <button type="button" className={`c-cust-btn c-cust-btn--sm ${cardTemplate === 'birthday' ? 'active' : ''}`} onClick={() => handleTemplateChange('birthday')}>Sinh nhật</button>
+                    <button type="button" className={`c-cust-btn c-cust-btn--sm ${cardTemplate === 'thankyou' ? 'active' : ''}`} onClick={() => handleTemplateChange('thankyou')}>Cảm ơn</button>
+                    <button type="button" className={`c-cust-btn c-cust-btn--sm ${cardTemplate === 'love' ? 'active' : ''}`} onClick={() => handleTemplateChange('love')}>Tình yêu</button>
+                  </div>
+                </div>
+
+                {/* Sender & Recipient */}
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', marginTop: '16px' }}>
+                  <div className="c-cust-group">
+                    <label className="c-cust-input-label" htmlFor="card-to">Gửi đến (To)</label>
+                    <input 
+                      id="card-to"
+                      type="text" 
+                      placeholder="Tên người nhận..." 
+                      className="c-cust-text-input" 
+                      value={cardTo} 
+                      onChange={(e) => setCardTo(e.target.value)}
+                      maxLength={30}
+                    />
+                  </div>
+                  <div className="c-cust-group">
+                    <label className="c-cust-input-label" htmlFor="card-from">Gửi từ (From)</label>
+                    <input 
+                      id="card-from"
+                      type="text" 
+                      placeholder="Tên bạn..." 
+                      className="c-cust-text-input" 
+                      value={cardFrom} 
+                      onChange={(e) => setCardFrom(e.target.value)}
+                      maxLength={30}
+                    />
+                  </div>
+                </div>
+
+                {/* Message Body */}
+                <div className="c-cust-group" style={{ marginTop: '16px' }}>
+                  <label className="c-cust-input-label" htmlFor="card-msg">Nội dung lời nhắn</label>
+                  <textarea 
+                    id="card-msg"
+                    placeholder="Nhập lời chúc chân thành của bạn..." 
+                    rows={3} 
+                    className="c-cust-textarea" 
+                    value={cardMessage} 
+                    onChange={(e) => {
+                      setCardMessage(e.target.value);
+                      setCardTemplate('custom');
+                    }}
+                    maxLength={200}
+                  />
+                  <div style={{ textAlign: 'right', fontSize: '11px', color: 'var(--mocha)', marginTop: '4px' }}>
+                    {cardMessage.length}/200 ký tự
+                  </div>
+                </div>
+              </div>
+            )}
           </FadeIn>
 
           {/* Preview Card */}
           <FadeIn className="c-cust-preview" delay={160}>
-            {/* Visualizer */}
-            <div className="c-cust-visual">
-              <div className={`c-layer-ladyfingers ${base === 'matcha' ? 'matcha' : ''}`} style={{ height: biscuitPct + '%' }}>
-                Ladyfingers ({strengthLabel})
-              </div>
-              <div className="c-layer-cream" style={{ height: creamPct + '%' }}>
-                Kem Mascarpone ({cream === 'thanh' ? 'Thanh' : cream === 'cổ điển' ? 'Mượt' : 'Béo'})
-              </div>
-              <div className={`c-layer-dust ${base === 'matcha' ? 'matcha' : ''}`} style={{ height: dustPct + '%' }}>
-                {base === 'classique' ? 'Cacao' : 'Matcha'} ({dustLabel})
-              </div>
+            {/* Tabs for preview switching */}
+            <div className="c-cust-tabs">
+              <button 
+                type="button" 
+                className={`c-cust-tab ${previewTab === 'cake' ? 'active' : ''}`}
+                onClick={() => setPreviewTab('cake')}
+              >
+                Mẻ bánh của bạn
+              </button>
+              <button 
+                type="button" 
+                className={`c-cust-tab ${previewTab === 'card' ? 'active' : ''}`}
+                onClick={() => {
+                  setPreviewTab('card');
+                  if (!addCard) setAddCard(true);
+                }}
+              >
+                Thiệp chúc mừng {addCard && <span className="tab-indicator">•</span>}
+              </button>
             </div>
+
+            {previewTab === 'cake' ? (
+              /* Visualizer */
+              <div className="c-cust-visual">
+                <div className={`c-layer-ladyfingers ${base === 'matcha' ? 'matcha' : ''}`} style={{ height: biscuitPct + '%' }}>
+                  Ladyfingers ({strengthLabel})
+                </div>
+                <div className="c-layer-cream" style={{ height: creamPct + '%' }}>
+                  Kem Mascarpone ({cream === 'thanh' ? 'Thanh' : cream === 'cổ điển' ? 'Mượt' : 'Béo'})
+                </div>
+                <div className={`c-layer-dust ${base === 'matcha' ? 'matcha' : ''}`} style={{ height: dustPct + '%' }}>
+                  {base === 'classique' ? 'Cacao' : 'Matcha'} ({dustLabel})
+                </div>
+              </div>
+            ) : (
+              /* Greeting Card Preview */
+              <div className={`c-cust-card-preview theme-${cardTheme}`}>
+                <div className="c-cust-card-inner">
+                  <div className="c-cust-card-corner top-left"></div>
+                  <div className="c-cust-card-corner top-right"></div>
+                  <div className="c-cust-card-corner bottom-left"></div>
+                  <div className="c-cust-card-corner bottom-right"></div>
+                  
+                  <div className="c-cust-card-content">
+                    {cardTo && <div className="c-cust-card-to">Gửi: {cardTo}</div>}
+                    <div className="c-cust-card-body">{cardMessage || 'Hãy điền lời nhắn ngọt ngào của bạn gửi kèm ổ bánh tiramisu nghệ thuật...'}</div>
+                    {cardFrom && <div className="c-cust-card-from">Từ: {cardFrom}</div>}
+                  </div>
+                  
+                  <div className="c-cust-card-footer">
+                    <span>Charmie Bakery — Dành để tặng, dành để nhớ</span>
+                  </div>
+                </div>
+              </div>
+            )}
 
             <div className="c-cust-meta">
               <span className="c-cust-badge">Gu của bạn</span>
@@ -511,7 +676,7 @@ const Customizer = () => {
                 {copied ? (
                   <>
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                    Đã sao chép yêu cầu!
+                    Đã sao chép yêu cầu đặt bánh!
                   </>
                 ) : (
                   <>

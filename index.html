@@ -781,19 +781,203 @@
       grid-template-columns: 1fr 1fr;
       gap: 12px;
     }
-    .c-cust-link {
-      padding: 12px;
-      border: 1px solid var(--espresso);
-      color: var(--espresso);
-      border-radius: 8px;
-      text-align: center;
-      font-size: 13.5px;
-      font-weight: 600;
-      transition: var(--trans);
-    }
     .c-cust-link:hover {
       background: var(--espresso);
       color: var(--white);
+    }
+
+    /* ── Greeting Card Customizer CSS ────────────────────────── */
+    .c-cust-btn--sm {
+      padding: 6px 10px;
+      font-size: 12px;
+      min-width: 60px;
+    }
+    .c-cust-input-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--mocha);
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .c-cust-text-input,
+    .c-cust-textarea {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1px solid var(--champagne);
+      background: var(--white);
+      color: var(--espresso);
+      border-radius: 8px;
+      font-size: 13.5px;
+      transition: var(--trans);
+      font-family: inherit;
+    }
+    .c-cust-text-input:focus,
+    .c-cust-textarea:focus {
+      outline: none;
+      border-color: var(--espresso);
+      box-shadow: 0 0 0 2px rgba(58, 42, 34, 0.05);
+    }
+    .c-cust-textarea {
+      resize: vertical;
+    }
+    .c-cust-card-fields {
+      border-top: 1px dashed var(--champagne);
+      margin-top: 16px;
+      padding-top: 16px;
+      animation: fadeIn 0.3s ease-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .c-cust-tabs {
+      display: flex;
+      border-bottom: 1px solid var(--champagne);
+      margin-bottom: 16px;
+      gap: 16px;
+    }
+    .c-cust-tab {
+      background: none;
+      border: none;
+      padding: 8px 4px 12px 4px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--mocha);
+      cursor: pointer;
+      position: relative;
+      transition: var(--trans);
+    }
+    .c-cust-tab:hover {
+      color: var(--espresso);
+    }
+    .c-cust-tab.active {
+      color: var(--espresso);
+    }
+    .c-cust-tab.active::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--espresso);
+    }
+    .c-cust-tab .tab-indicator {
+      color: var(--dusty-rose);
+      font-size: 18px;
+      line-height: 0;
+      position: relative;
+      top: -2px;
+      margin-left: 2px;
+    }
+    .c-cust-card-preview {
+      width: 100%;
+      height: 160px;
+      border-radius: 12px;
+      padding: 16px;
+      box-sizing: border-box;
+      transition: var(--trans);
+      display: flex;
+      flex-direction: column;
+    }
+    .c-cust-card-inner {
+      border: 1px solid transparent;
+      height: 100%;
+      border-radius: 8px;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+    }
+    .c-cust-card-corner {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      border: 1px solid currentColor;
+      opacity: 0.3;
+    }
+    .c-cust-card-corner.top-left { top: 6px; left: 6px; border-right: none; border-bottom: none; }
+    .c-cust-card-corner.top-right { top: 6px; right: 6px; border-left: none; border-bottom: none; }
+    .c-cust-card-corner.bottom-left { bottom: 6px; left: 6px; border-right: none; border-top: none; }
+    .c-cust-card-corner.bottom-right { bottom: 6px; right: 6px; border-left: none; border-top: none; }
+
+    .c-cust-card-content {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      overflow-y: auto;
+      flex-grow: 1;
+      padding: 0 4px;
+    }
+    .c-cust-card-to {
+      font-size: 11px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .c-cust-card-body {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-style: italic;
+      font-size: 15px;
+      line-height: 1.4;
+      white-space: pre-wrap;
+    }
+    .c-cust-card-from {
+      font-size: 11px;
+      align-self: flex-end;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-top: 4px;
+    }
+    .c-cust-card-footer {
+      font-size: 9px;
+      text-align: center;
+      opacity: 0.5;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-weight: 500;
+      border-top: 1px dashed rgba(0,0,0,0.06);
+      padding-top: 6px;
+      margin-top: 6px;
+    }
+
+    /* Card Themes */
+    .c-cust-card-preview.theme-ivory {
+      background: #FAF7F0;
+      color: #4A3525;
+    }
+    .c-cust-card-preview.theme-ivory .c-cust-card-inner {
+      border-color: #DCD1BC;
+    }
+    
+    .c-cust-card-preview.theme-blush {
+      background: #FFF0EE;
+      color: #6C433E;
+    }
+    .c-cust-card-preview.theme-blush .c-cust-card-inner {
+      border-color: #E8C1BD;
+    }
+
+    .c-cust-card-preview.theme-forest {
+      background: #E7EFE3;
+      color: #2A3A22;
+    }
+    .c-cust-card-preview.theme-forest .c-cust-card-inner {
+      border-color: #C4D3BE;
+    }
+
+    .c-cust-card-preview.theme-gold {
+      background: #1E1B18;
+      color: #E8D5B5;
+    }
+    .c-cust-card-preview.theme-gold .c-cust-card-inner {
+      border-color: #E0B463;
+    }
+    .c-cust-card-preview.theme-gold .c-cust-card-footer {
+      border-top-color: rgba(255,255,255,0.06);
     }
 
     @media (max-width: 900px) {
