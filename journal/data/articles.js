@@ -893,5 +893,55 @@ window.CHARMIE_ARTICLES = [
         url: "https://onlinelibrary.wiley.com/journal/17503841"
       }
     ]
+  },
+  {
+    slug: "long-trang-trung-danh-bong-meringue",
+    level: "Khoa học",
+    order: 22,
+    title: "Khoa học của Meringue: Cách cấu trúc bọt khí định hình Tiramisu",
+    summary: "Tại sao lòng trắng trứng đánh bông (meringue) lại là chìa khóa để tạo nên kết cấu kem xốp nhẹ bồng bềnh và khả năng giữ đứng phom dáng hoàn hảo cho Tiramisu.",
+    readTime: "5 phút",
+    image: "../uploads/pasted-1779544573098-0.jpg",
+    intro: "Tiramisu truyền thống của Ý không chỉ dựa vào whipping cream để tạo độ bông xốp. Trên thực tế, nhiều công thức cổ điển sử dụng lòng trắng trứng đánh bông (meringue) phối trộn cùng kem mascarpone. Dưới góc độ hóa học thực phẩm, meringue đóng vai trò như một hệ nhũ tương khí đặc biệt, quyết định trực tiếp tới mật độ bọt khí và độ tan của kem trong khoang miệng.",
+    sections: [
+      {
+        title: "Cấu trúc hóa học của lòng trắng trứng khi đánh bông",
+        body: [
+          "Lòng trắng trứng gồm 90% nước và 10% protein (chủ yếu là ovalbumin, conalbumin và ovomucoid). Ở trạng thái tự nhiên, các chuỗi protein này cuộn tròn và được giữ ổn định bởi các liên kết nội phân tử.",
+          "Khi đánh bông, tác động cơ học đưa không khí vào hỗn hợp, đồng thời làm giãn các chuỗi protein (quá trình biến tính). Các đầu kị nước của protein hướng ra ngoài không khí, trong khi các đầu ưa nước hướng vào pha nước. Khi liên kết lại với nhau, các protein này tạo thành một màng mỏng bao bọc và giữ chặt các bong bóng khí, tạo ra cấu trúc bọt ổn định."
+        ]
+      },
+      {
+        title: "So sánh Meringue và Whipping Cream trong kết cấu",
+        body: [
+          "Whipping cream tạo độ bông xốp dựa trên mạng lưới các giọt chất béo đông tụ bao quanh bọt khí. Kết cấu này mang lại cảm giác ngậy, béo, nhưng mật độ bọt khí nặng hơn và có xu hướng tan chảy nhanh hơn ở nhiệt độ phòng.",
+          "Ngược lại, meringue chứa protein liên kết chặt chẽ tạo thành các ô bọt dai hơn và nhẹ hơn rất nhiều. Khi trộn meringue vào kem mascarpone theo kỹ thuật gấp (folding) nhẹ nhàng, chúng ta đưa vào hàng triệu vi bọt khí. Kết quả là lớp kem Tiramisu có kết cấu bồng bềnh như mây (cloud-like), đứng phom tốt hơn, và khi ăn sẽ tan chảy ngay trên đầu lưỡi, giải phóng hương vị espresso nhanh hơn mà không để lại cảm giác nhờn béo ở hậu vị."
+        ]
+      },
+      {
+        title: "Chọn loại Meringue phù hợp cho Tiramisu an toàn",
+        body: [
+          "Có ba phương pháp làm meringue: kiểu Pháp (đánh trứng sống với đường), kiểu Ý (đánh lòng trắng trứng cùng nước đường nóng 115-118°C), và kiểu Thụy Sĩ (chưng cách thủy lòng trắng trứng với đường lên 60°C trước khi đánh bông).",
+          "Để đảm bảo an toàn vệ sinh thực phẩm (tránh vi khuẩn Salmonella) mà vẫn giữ được cấu trúc bọt tối ưu, Meringue kiểu Ý (Italian Meringue) hoặc Thụy Sĩ (Swiss Meringue) là lựa chọn bắt buộc. Nhiệt độ của nước đường hoặc chưng cách thủy giúp thanh trùng lòng trắng trứng, đồng thời làm biến tính một phần protein để tạo màng bọt dẻo dai và ổn định hơn, hạn chế tối đa hiện tượng tách nước (syneresis) sau khi bánh nằm trong tủ lạnh."
+        ]
+      }
+    ],
+    takeaways: [
+      "Đánh bông lòng trắng trứng biến tính protein, tạo màng bao bọc bong bóng khí tạo cấu trúc bọt khí nhẹ.",
+      "Meringue giúp kem Tiramisu có kết cấu xốp nhẹ như mây, đứng phom lâu hơn so với chỉ dùng whipping cream.",
+      "Meringue tan nhanh trên lưỡi, giải phóng hương vị cà phê và rượu tức thì và giảm cảm giác ngấy béo.",
+      "Bắt buộc dùng meringue kiểu Ý hoặc Thụy Sĩ để thanh trùng lòng trắng trứng sống, tránh nhiễm khuẩn Salmonella."
+    ],
+    safety: "Không bao giờ dùng lòng trắng trứng sống chưa thanh trùng (meringue kiểu Pháp) cho Tiramisu thương mại hoặc phục vụ người có hệ miễn dịch yếu. Luôn kiểm soát nhiệt độ nước đường ở mức 115°C - 118°C khi làm meringue kiểu Ý.",
+    sources: [
+      {
+        label: "Exploratorium — The Science of Egg White Foams",
+        url: "https://www.exploratorium.edu/cooking/eggs/eggscience.html"
+      },
+      {
+        label: "Journal of Food Science — Foaming Properties of Egg White Proteins",
+        url: "https://onlinelibrary.wiley.com/journal/17503841"
+      }
+    ]
   }
 ];

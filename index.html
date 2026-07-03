@@ -705,6 +705,61 @@
       background: #D9E5CC;
     }
 
+    .c-cust-flavor-profile {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 16px;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.45);
+      border-radius: 16px;
+      border: 1px dashed var(--champagne);
+    }
+    .c-cust-flavor-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--espresso);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .c-cust-flavor-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .c-cust-flavor-label {
+      font-size: 11px;
+      color: var(--espresso);
+      font-weight: 500;
+      min-width: 110px;
+    }
+    .c-cust-flavor-bar-bg {
+      flex-grow: 1;
+      height: 6px;
+      background: rgba(217, 203, 187, 0.4);
+      border-radius: 3px;
+      overflow: hidden;
+      position: relative;
+    }
+    .c-cust-flavor-bar-fill {
+      height: 100%;
+      background: var(--espresso);
+      border-radius: 3px;
+      transition: width var(--trans);
+    }
+    .c-cust-flavor-val {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--espresso);
+      min-width: 32px;
+      text-align: right;
+    }
+
     .c-cust-meta {
       display: flex;
       flex-direction: column;

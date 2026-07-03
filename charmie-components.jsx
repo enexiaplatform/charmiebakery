@@ -756,18 +756,69 @@ const Customizer = () => {
             </div>
 
             {previewTab === 'cake' ? (
-              /* Visualizer */
-              <div className="c-cust-visual">
-                <div className={`c-layer-ladyfingers ${base === 'matcha' ? 'matcha' : ''}`} style={{ height: biscuitPct + '%' }}>
-                  Ladyfingers ({strengthLabel})
+              /* Visualizer & Taste Profile */
+              <>
+                <div className="c-cust-visual">
+                  <div className={`c-layer-ladyfingers ${base === 'matcha' ? 'matcha' : ''}`} style={{ height: biscuitPct + '%' }}>
+                    Ladyfingers ({strengthLabel})
+                  </div>
+                  <div className="c-layer-cream" style={{ height: creamPct + '%' }}>
+                    Kem Mascarpone ({cream === 'thanh' ? 'Thanh' : cream === 'cổ điển' ? 'Mượt' : 'Béo'})
+                  </div>
+                  <div className={`c-layer-dust ${base === 'matcha' ? 'matcha' : ''}`} style={{ height: dustPct + '%' }}>
+                    {base === 'classique' ? 'Cacao' : 'Matcha'} ({dustLabel})
+                  </div>
                 </div>
-                <div className="c-layer-cream" style={{ height: creamPct + '%' }}>
-                  Kem Mascarpone ({cream === 'thanh' ? 'Thanh' : cream === 'cổ điển' ? 'Mượt' : 'Béo'})
+
+                <div className="c-cust-flavor-profile">
+                  <div className="c-cust-flavor-title">
+                    <span>Chỉ số hương vị dự kiến</span>
+                    <span style={{ fontSize: '9px', fontWeight: 'normal', color: 'var(--mocha)', textTransform: 'none' }}>*Dựa trên bản phối của bạn</span>
+                  </div>
+
+                  <div className="c-cust-flavor-row">
+                    <span className="c-cust-flavor-label">Độ ngọt</span>
+                    <div className="c-cust-flavor-bar-bg">
+                      <div className="c-cust-flavor-bar-fill" style={{ width: (sweetness === 'nhạt' ? 40 : sweetness === 'vừa' ? 70 : 100) + '%' }}></div>
+                    </div>
+                    <span className="c-cust-flavor-val">{sweetness === 'nhạt' ? '40%' : sweetness === 'vừa' ? '70%' : '100%'}</span>
+                  </div>
+
+                  <div className="c-cust-flavor-row">
+                    <span className="c-cust-flavor-label">{base === 'classique' ? 'Vị đắng cà phê' : 'Vị đắng matcha'}</span>
+                    <div className="c-cust-flavor-bar-bg">
+                      <div className="c-cust-flavor-bar-fill" style={{ 
+                        width: Math.min(100, Math.max(0, (strength === 'nhẹ' ? 30 : strength === 'vừa' ? 65 : 90) + (dust === 'mỏng' ? -5 : dust === 'vừa' ? 0 : 10))) + '%' 
+                      }}></div>
+                    </div>
+                    <span className="c-cust-flavor-val">{Math.min(100, Math.max(0, (strength === 'nhẹ' ? 30 : strength === 'vừa' ? 65 : 90) + (dust === 'mỏng' ? -5 : dust === 'vừa' ? 0 : 10)))}%</span>
+                  </div>
+
+                  <div className="c-cust-flavor-row">
+                    <span className="c-cust-flavor-label">Độ béo kem</span>
+                    <div className="c-cust-flavor-bar-bg">
+                      <div className="c-cust-flavor-bar-fill" style={{ width: (cream === 'thanh' ? 40 : cream === 'cổ điển' ? 75 : 100) + '%' }}></div>
+                    </div>
+                    <span className="c-cust-flavor-val">{cream === 'thanh' ? '40%' : cream === 'cổ điển' ? '75%' : '100%'}</span>
+                  </div>
+
+                  <div className="c-cust-flavor-row">
+                    <span className="c-cust-flavor-label">Hương rượu (cồn)</span>
+                    <div className="c-cust-flavor-bar-bg">
+                      <div className="c-cust-flavor-bar-fill" style={{ width: (alcohol === 'không' ? 0 : alcohol === 'thoảng' ? 50 : 95) + '%' }}></div>
+                    </div>
+                    <span className="c-cust-flavor-val">{alcohol === 'không' ? '0%' : alcohol === 'thoảng' ? '50%' : '95%'}</span>
+                  </div>
+
+                  <div className="c-cust-flavor-row">
+                    <span className="c-cust-flavor-label">{base === 'classique' ? 'Độ đậm cà phê' : 'Độ đậm trà xanh'}</span>
+                    <div className="c-cust-flavor-bar-bg">
+                      <div className="c-cust-flavor-bar-fill" style={{ width: (strength === 'nhẹ' ? 35 : strength === 'vừa' ? 70 : 100) + '%' }}></div>
+                    </div>
+                    <span className="c-cust-flavor-val">{strength === 'nhẹ' ? '35%' : strength === 'vừa' ? '70%' : '100%'}</span>
+                  </div>
                 </div>
-                <div className={`c-layer-dust ${base === 'matcha' ? 'matcha' : ''}`} style={{ height: dustPct + '%' }}>
-                  {base === 'classique' ? 'Cacao' : 'Matcha'} ({dustLabel})
-                </div>
-              </div>
+              </>
             ) : previewTab === 'card' ? (
               /* Greeting Card Preview */
               <div className={`c-cust-card-preview theme-${cardTheme}`}>

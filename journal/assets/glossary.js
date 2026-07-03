@@ -9,6 +9,7 @@
     { term: "Trứng thanh trùng", category: "Nguyên liệu", definition: "Trứng đã được xử lý nhiệt có kiểm soát để giảm rủi ro vi sinh mà chưa làm đông hoàn toàn.", article: "an-toan-va-chuoi-lanh" },
     { term: "Whipping cream", category: "Nguyên liệu", definition: "Kem sữa có hàm lượng chất béo đủ để giữ bọt khí khi đánh lạnh.", article: "kem-mascarpone-on-dinh" },
     { term: "Gelatin", category: "Nguyên liệu", definition: "Chất ổn định thu được từ collagen, giúp kem tiramisu tăng khả năng chịu lực nén khi vận chuyển.", article: "gelatin-va-cau-truc-kem" },
+    { term: "Meringue", category: "Nguyên liệu", definition: "Lòng trắng trứng đánh bông tạo mạng lưới bọt khí dai, nhẹ; khi fold vào mascarpone giúp kem xốp mịn như mây và tan nhanh.", article: "long-trang-trung-danh-bong-meringue" },
 
     { term: "Fold", category: "Kỹ thuật", definition: "Thao tác trộn nhẹ theo vòng gập để kết hợp hai hỗn hợp trong khi hạn chế làm vỡ bọt khí.", article: "kem-mascarpone-on-dinh" },
     { term: "Soft peak", alias: "Chóp mềm", category: "Kỹ thuật", definition: "Trạng thái kem tạo chóp nhưng đầu chóp cong xuống. Thường còn đủ mềm để tiếp tục fold.", article: "kem-mascarpone-on-dinh" },
@@ -28,6 +29,7 @@
     { term: "Cảm nhận béo", category: "Khoa học", definition: "Tổng hợp cảm giác phủ miệng, độ mượt và cách chất béo làm thay đổi sự xuất hiện của hương vị.", article: "duong-va-can-bang-vi" },
     { term: "Salmonella", category: "Khoa học", definition: "Vi khuẩn gây ngộ độc thực phẩm có thể nhiễm trong trứng sống, bị tiêu diệt hoàn toàn khi gia nhiệt từ 68°C trở lên.", article: "thanh-trung-long-do-sabayon" },
     { term: "Nhiệt độ nóng chảy của gel", category: "Khoa học", definition: "Nhiệt độ mà mạng lưới gelatin tan rã (ở khoảng 35°C - 37°C), tương tự nhiệt độ cơ thể người, giúp kem tan nhanh khi thưởng thức.", article: "gelatin-va-cau-truc-kem" },
+    { term: "Syneresis", alias: "Tách nước", category: "Khoa học", definition: "Hiện tượng tách chất lỏng ra khỏi cấu trúc gel hoặc bọt khí sau thời gian bảo quản, thường do bọt khí bị vỡ hoặc protein co lại.", article: "long-trang-trung-danh-bong-meringue" },
 
     { term: "Định mức", category: "Vận hành", definition: "Khối lượng hoặc lượng sử dụng chuẩn cho một sản phẩm hay một mẻ.", article: "scale-cong-thuc" },
     { term: "Hao hụt", category: "Vận hành", definition: "Phần nguyên liệu hoặc thành phẩm mất đi trong cân, trộn, chuyển âu, tạo hình và đóng gói.", article: "scale-cong-thuc" },
