@@ -744,5 +744,54 @@ window.CHARMIE_ARTICLES = [
         url: "https://texturetechnologies.com/resources/gelatin-bloom-strength"
       }
     ]
+  },
+  {
+    slug: "bao-quan-tiramisu-tai-nha",
+    level: "Nền tảng",
+    order: 19,
+    title: "Bảo quản tiramisu tại nhà: Giữ trọn cấu trúc và hương vị",
+    summary: "Quy tắc 3 ngày vàng, kỹ thuật rã đông chậm ngăn mát và cách giữ lớp bột cacao luôn khô mịn.",
+    readTime: "7 phút",
+    image: "../uploads/pasted-1779543992358-0.jpg",
+    intro: "Tiramisu thủ công ngon nhất không phải khi vừa ráp xong, cũng không phải sau một tuần bảo quản. Nó có một 'cửa sổ hương vị' tối ưu nơi mọi thành phần đạt độ chín hoàn hảo.",
+    sections: [
+      {
+        title: "Cửa sổ hương vị và quy tắc 3 ngày vàng",
+        body: [
+          "Tiramisu thủ công không chứa chất bảo quản chỉ nên được thưởng thức trong vòng 3 ngày (72 giờ) kể từ khi hoàn thành. Từ giờ thứ 12 đến 36 là khoảng thời gian 'vàng', khi dịch cà phê thấm đều vào tâm bánh ladyfinger nhưng chưa làm rã cấu trúc xốp, và kem mascarpone đạt độ đứng mịn tối đa.",
+          "Sau ngày thứ 3, mascarpone bắt đầu có xu hướng rỉ nước tự do (syneresis), làm bánh dưới đáy hộp bị nhão nước, trong khi kem mất đi độ ngậy béo đặc trưng và có thể bị ám mùi từ các thực phẩm khác trong tủ lạnh."
+        ]
+      },
+      {
+        title: "Cấp đông và kỹ thuật rã đông chậm ngăn mát",
+        body: [
+          "Nếu cần bảo quản lâu hơn (lên đến 2 tuần), bạn có thể cấp đông tiramisu ngay sau khi ráp lớp (chưa rây cacao). Hộp bánh phải được đậy kín và bọc thêm một lớp màng bọc thực phẩm bên ngoài để tránh hiện tượng cháy lạnh (freezer burn) và ám mùi.",
+          "Khi dùng, quy tắc quan trọng nhất là rã đông chậm trong ngăn mát tủ lạnh từ 6 đến 8 tiếng. Tuyệt đối không rã đông ở nhiệt độ phòng hoặc dùng lò vi sóng. Rã đông chậm giúp các tinh thể đá tan từ từ và được mạng lưới protein-chất béo của kem hấp thụ lại, giữ cấu trúc không bị chảy lỏng hoặc tách nước."
+        ]
+      },
+      {
+        title: "Giữ lớp cacao luôn khô mịn và thẩm mỹ",
+        body: [
+          "Bột cacao rây trên mặt tiramisu rất dễ hút ẩm từ kem và ngưng tụ nước trong tủ lạnh, biến thành một lớp màng ướt màu nâu sẫm, đắng gắt và mất thẩm mỹ. Đây là hiện tượng tự nhiên do chênh lệch độ ẩm.",
+          "Để khắc phục, hãy rây một lớp cacao thật mỏng (như lớp nền) khi ráp bánh. Chỉ rây lớp cacao chính thức dày dặn ngay trước khi ăn hoặc khi chuẩn bị giao đi. Ngoài ra, bạn có thể trộn một tỷ lệ nhỏ bột cacao kháng ẩm (non-melting cocoa powder) để giữ bề mặt bánh luôn khô ráo và đẹp mắt."
+        ]
+      }
+    ],
+    takeaways: [
+      "Ăn ngon nhất trong vòng 12 - 36 giờ đầu, bảo quản lạnh tối đa 5 ngày.",
+      "Cấp đông được nhưng bắt buộc rã đông chậm trong ngăn mát 6 - 8 tiếng.",
+      "Rây cacao sát giờ ăn để tránh bột bị ướt và đắng gắt."
+    ],
+    safety: "Do tiramisu chứa các sản phẩm từ sữa và trứng, luôn giữ bánh trong tủ lạnh dưới 4°C. Không để bánh ở nhiệt độ phòng quá 2 giờ để tránh nguy cơ nhiễm khuẩn.",
+    sources: [
+      {
+        label: "FDA — Refrigerator Thermometers: Cold Food Storage",
+        url: "https://www.fda.gov/consumers/consumer-updates/are-you-storing-food-safely"
+      },
+      {
+        label: "ScienceDirect — Starch and dairy products syneresis during storage",
+        url: "https://www.sciencedirect.com/topics/food-science/syneresis"
+      }
+    ]
   }
 ];

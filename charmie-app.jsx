@@ -28,6 +28,7 @@ const App = () => {
         <BrandStory />
         <JournalPreview />
         <Products cs={t.cardStyle} />
+        <Customizer />
         <Occasions />
         <OrderCTA />
       </main>

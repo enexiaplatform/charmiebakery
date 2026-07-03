@@ -292,6 +292,253 @@ const Products = ({ cs }) => {
   );
 };
 
+/* ── Customizer ────────────────────────────────────────────── */
+const Customizer = () => {
+  const [base, setBase] = useState('classique'); // 'classique' | 'matcha'
+  const [sweetness, setSweetness] = useState('vừa'); // 'nhạt' | 'vừa' | 'đậm'
+  const [strength, setStrength] = useState('vừa'); // 'nhẹ' | 'vừa' | 'đậm'
+  const [cream, setCream] = useState('cổ điển'); // 'thanh' | 'cổ điển' | 'béo'
+  const [dust, setDust] = useState('vừa'); // 'mỏng' | 'vừa' | 'dày'
+  const [alcohol, setAlcohol] = useState('thoảng'); // 'không' | 'thoảng' | 'đậm'
+  const [copied, setCopied] = useState(false);
+
+  // Set alcohol to 'không' if base is matcha
+  useEffect(() => {
+    if (base === 'matcha') {
+      setAlcohol('không');
+    }
+  }, [base]);
+
+  // Option labels
+  const baseLabel = base === 'classique' ? 'Le Classique' : 'Jardin Vert';
+  const sweetnessLabel = sweetness === 'nhạt' ? 'Nhạt (Thanh nhẹ)' : sweetness === 'vừa' ? 'Vừa (Cổ điển)' : 'Đậm vị';
+  const strengthLabel = base === 'classique' 
+    ? (strength === 'nhẹ' ? 'Nhẹ nhàng' : strength === 'vừa' ? 'Đậm đà' : 'Cực đậm')
+    : (strength === 'nhẹ' ? 'Thoảng matcha' : strength === 'vừa' ? 'Matcha vừa' : 'Đậm matcha');
+  const creamLabel = cream === 'thanh' ? 'Thanh nhẹ (Sữa nhiều)' : cream === 'cổ điển' ? 'Mượt mà (Cổ điển)' : 'Béo ngậy (Siêu béo)';
+  const dustLabel = dust === 'mỏng' ? 'Phủ mỏng' : dust === 'vừa' ? 'Vừa đủ' : 'Phủ dày';
+  const alcoholLabel = alcohol === 'không' ? 'Không cồn' : alcohol === 'thoảng' ? 'Thoảng nhẹ' : 'Đậm chất (Rum)';
+
+  // Calculate layer heights
+  const dustPct = dust === 'mỏng' ? 6 : dust === 'vừa' ? 10 : 15;
+  const creamPct = cream === 'thanh' ? 40 : cream === 'cổ điển' ? 48 : 55;
+  const biscuitPct = 100 - dustPct - creamPct;
+
+  // Code string e.g. CLASSIC-S1-ST2-C2-D2-A1
+  const baseCode = base === 'classique' ? 'CLS' : 'JDV';
+  const sweetnessCode = sweetness === 'nhạt' ? 'S1' : sweetness === 'vừa' ? 'S2' : 'S3';
+  const strengthCode = strength === 'nhẹ' ? 'ST1' : strength === 'vừa' ? 'ST2' : 'ST3';
+  const creamCode = cream === 'thanh' ? 'CR1' : cream === 'cổ điển' ? 'CR2' : 'CR3';
+  const dustCode = dust === 'mỏng' ? 'D1' : dust === 'vừa' ? 'D2' : 'D3';
+  const alcoholCode = alcohol === 'không' ? 'A0' : alcohol === 'thoảng' ? 'A1' : 'A2';
+  
+  const customCode = `${baseCode}-${sweetnessCode}-${strengthCode}-${creamCode}-${dustCode}-${alcoholCode}`;
+
+  // Description generator
+  const getSweetnessDesc = () => {
+    if (sweetness === 'nhạt') return 'độ ngọt thanh dịu (giảm 30% đường)';
+    if (sweetness === 'vừa') return 'vị ngọt dịu cân bằng cổ điển';
+    return 'vị ngọt ngào sâu lắng đậm đà';
+  };
+  const getStrengthDesc = () => {
+    if (base === 'classique') {
+      if (strength === 'nhẹ') return 'hương espresso loãng thoảng nhẹ tinh tế';
+      if (strength === 'vừa') return 'espresso đậm đà được pha chế kỹ lưỡng';
+      return 'cốt cà phê cực đậm (double shot) bừng tỉnh';
+    } else {
+      if (strength === 'nhẹ') return 'hương trà xanh Uji dịu thanh';
+      if (strength === 'vừa') return 'vị trà chát nhẹ nguyên bản';
+      return 'độ chát rõ rệt của matcha đậm đặc';
+    }
+  };
+  const getCreamDesc = () => {
+    if (cream === 'thanh') return 'kết cấu kem sữa thanh nhẹ thoáng mát';
+    if (cream === 'cổ điển') return 'lớp kem mascarpone mượt mà sánh mịn';
+    return 'kem mascarpone siêu béo ngậy đặc sánh';
+  };
+  const getDustDesc = () => {
+    if (dust === 'mỏng') return 'bột phủ mỏng nhẹ nhàng';
+    if (dust === 'vừa') return 'bột rây vừa đủ tinh tế';
+    return 'bột rây dày đắng thơm cuốn hút';
+  };
+  const getAlcoholDesc = () => {
+    if (alcohol === 'không') return 'quy trình hoàn toàn không cồn';
+    if (alcohol === 'thoảng') return 'thoảng hương rượu ấm nồng';
+    return 'đậm đà hương vị rượu Rum nồng nàn';
+  };
+
+  const getProfileTitle = () => {
+    if (sweetness === 'nhạt' && strength === 'đậm') return 'Bản Phối Bản Lĩnh (Bold & Calm)';
+    if (cream === 'béo' && alcohol === 'đậm') return 'Bản Phối Nồng Nàn (Warm Velvet)';
+    if (sweetness === 'đậm' && cream === 'thanh') return 'Bản Phối Kẹo Ngọt (Sweet Cloud)';
+    if (cream === 'béo' && strength === 'đậm') return 'Bản Phối Tương Phản (Double Rich)';
+    return `Bản Phối Cá Nhân ${customCode}`;
+  };
+
+  const tasteDescription = `Mẻ Tiramisu được chế tác thủ công theo yêu cầu của bạn, mang ${getSweetnessDesc()}. Lớp ladyfingers thấm ${getStrengthDesc()}, kết hợp cùng ${getCreamDesc()} bồng bềnh. Bánh được hoàn thiện với lớp ${getDustDesc()} trên bề mặt, đi kèm ${getAlcoholDesc()}.`;
+
+  const orderText = `Chào Charmie, mình muốn đặt Tiramisu tùy chỉnh:
+- Mã bản phối: ${customCode}
+- Tên bản phối: ${getProfileTitle()}
+- Vị nền: ${baseLabel}
+- Độ ngọt: ${sweetnessLabel}
+- ${base === 'classique' ? 'Cà phê' : 'Matcha'}: ${strengthLabel}
+- Độ béo kem: ${creamLabel}
+- Lớp bột phủ: ${dustLabel}
+- Rượu thơm: ${alcoholLabel}`;
+
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(orderText).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    });
+  };
+
+  return (
+    <section id="customizer" className="c-customizer">
+      <div className="c-wrap">
+        <FadeIn className="c-sechd" style={{ textAlign: 'center', marginBottom: '56px' }}>
+          <span className="c-eyebrow">◆ Charmie Customizer</span>
+          <h2 className="c-sec-title">Cá nhân hóa mẻ Tiramisu</h2>
+          <p className="c-sec-sub" style={{ maxWidth: '600px', margin: '0 auto' }}>
+            Chúng tôi hiểu mỗi thực khách có một gu thưởng thức riêng. Hãy tùy chọn hương vị lý tưởng, chúng tôi sẽ làm thủ công mẻ bánh của riêng bạn.
+          </p>
+        </FadeIn>
+
+        <div className="c-cust-grid">
+          {/* Controls */}
+          <FadeIn className="c-cust-controls" delay={80}>
+            {/* Base Selector */}
+            <div className="c-cust-group">
+              <div className="c-cust-label">Hương vị nền <span>{baseLabel}</span></div>
+              <div className="c-cust-options">
+                <button type="button" className={`c-cust-btn ${base === 'classique' ? 'active' : ''}`} onClick={() => setBase('classique')}>Le Classique (Cà phê)</button>
+                <button type="button" className={`c-cust-btn ${base === 'matcha' ? 'active' : ''}`} onClick={() => setBase('matcha')}>Jardin Vert (Matcha)</button>
+              </div>
+            </div>
+
+            {/* Sweetness */}
+            <div className="c-cust-group">
+              <div className="c-cust-label">Độ ngọt <span>{sweetnessLabel}</span></div>
+              <div className="c-cust-options">
+                <button type="button" className={`c-cust-btn ${sweetness === 'nhạt' ? 'active' : ''}`} onClick={() => setSweetness('nhạt')}>Nhạt</button>
+                <button type="button" className={`c-cust-btn ${sweetness === 'vừa' ? 'active' : ''}`} onClick={() => setSweetness('vừa')}>Vừa (Cổ điển)</button>
+                <button type="button" className={`c-cust-btn ${sweetness === 'đậm' ? 'active' : ''}`} onClick={() => setSweetness('đậm')}>Đậm vị</button>
+              </div>
+            </div>
+
+            {/* Strength */}
+            <div className="c-cust-group">
+              <div className="c-cust-label">{base === 'classique' ? 'Độ đậm cà phê' : 'Độ đậm Matcha'} <span>{strengthLabel}</span></div>
+              <div className="c-cust-options">
+                <button type="button" className={`c-cust-btn ${strength === 'nhẹ' ? 'active' : ''}`} onClick={() => setStrength('nhẹ')}>Thoảng nhẹ</button>
+                <button type="button" className={`c-cust-btn ${strength === 'vừa' ? 'active' : ''}`} onClick={() => setStrength('vừa')}>Vừa phải</button>
+                <button type="button" className={`c-cust-btn ${strength === 'đậm' ? 'active' : ''}`} onClick={() => setStrength('đậm')}>Đậm đặc</button>
+              </div>
+            </div>
+
+            {/* Cream */}
+            <div className="c-cust-group">
+              <div className="c-cust-label">Độ ngậy kem <span>{creamLabel}</span></div>
+              <div className="c-cust-options">
+                <button type="button" className={`c-cust-btn ${cream === 'thanh' ? 'active' : ''}`} onClick={() => setCream('thanh')}>Thanh nhẹ</button>
+                <button type="button" className={`c-cust-btn ${cream === 'cổ điển' ? 'active' : ''}`} onClick={() => setCream('cổ điển')}>Cổ điển</button>
+                <button type="button" className={`c-cust-btn ${cream === 'béo' ? 'active' : ''}`} onClick={() => setCream('béo')}>Béo ngậy</button>
+              </div>
+            </div>
+
+            {/* Dust */}
+            <div className="c-cust-group">
+              <div className="c-cust-label">Lớp bột phủ mặt <span>{dustLabel}</span></div>
+              <div className="c-cust-options">
+                <button type="button" className={`c-cust-btn ${dust === 'mỏng' ? 'active' : ''}`} onClick={() => setDust('mỏng')}>Phủ mỏng</button>
+                <button type="button" className={`c-cust-btn ${dust === 'vừa' ? 'active' : ''}`} onClick={() => setDust('vừa')}>Vừa đủ</button>
+                <button type="button" className={`c-cust-btn ${dust === 'dày' ? 'active' : ''}`} onClick={() => setDust('dày')}>Phủ dày</button>
+              </div>
+            </div>
+
+            {/* Alcohol (Only for Classique) */}
+            {base === 'classique' && (
+              <div className="c-cust-group">
+                <div className="c-cust-label">Hương vị rượu <span>{alcoholLabel}</span></div>
+                <div className="c-cust-options">
+                  <button type="button" className={`c-cust-btn ${alcohol === 'không' ? 'active' : ''}`} onClick={() => setAlcohol('không')}>Không cồn</button>
+                  <button type="button" className={`c-cust-btn ${alcohol === 'thoảng' ? 'active' : ''}`} onClick={() => setAlcohol('thoảng')}>Thoảng nhẹ</button>
+                  <button type="button" className={`c-cust-btn ${alcohol === 'đậm' ? 'active' : ''}`} onClick={() => setAlcohol('đậm')}>Đậm vị (Rum)</button>
+                </div>
+              </div>
+            )}
+          </FadeIn>
+
+          {/* Preview Card */}
+          <FadeIn className="c-cust-preview" delay={160}>
+            {/* Visualizer */}
+            <div className="c-cust-visual">
+              <div className={`c-layer-ladyfingers ${base === 'matcha' ? 'matcha' : ''}`} style={{ height: biscuitPct + '%' }}>
+                Ladyfingers ({strengthLabel})
+              </div>
+              <div className="c-layer-cream" style={{ height: creamPct + '%' }}>
+                Kem Mascarpone ({cream === 'thanh' ? 'Thanh' : cream === 'cổ điển' ? 'Mượt' : 'Béo'})
+              </div>
+              <div className={`c-layer-dust ${base === 'matcha' ? 'matcha' : ''}`} style={{ height: dustPct + '%' }}>
+                {base === 'classique' ? 'Cacao' : 'Matcha'} ({dustLabel})
+              </div>
+            </div>
+
+            <div className="c-cust-meta">
+              <span className="c-cust-badge">Gu của bạn</span>
+              <h3 className="c-cust-title">{getProfileTitle()}</h3>
+              <p className="c-cust-desc">{tasteDescription}</p>
+            </div>
+
+            <div className="c-cust-details">
+              <div className="c-cust-details-item">
+                <span>Vị nền:</span>
+                <strong>{baseLabel}</strong>
+              </div>
+              <div className="c-cust-details-item">
+                <span>Mã số mẻ tùy chỉnh:</span>
+                <strong>{customCode}</strong>
+              </div>
+              <div className="c-cust-details-item">
+                <span>Chế tác thủ công:</span>
+                <strong>Có (làm tay theo đơn)</strong>
+              </div>
+            </div>
+
+            <div className="c-cust-action-box">
+              <button type="button" className={`c-cust-copy-btn ${copied ? 'copied' : ''}`} onClick={copyToClipboard}>
+                {copied ? (
+                  <>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                    Đã sao chép yêu cầu!
+                  </>
+                ) : (
+                  <>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                    1. Sao chép yêu cầu đặt bánh
+                  </>
+                )}
+              </button>
+              <div className="c-cust-links">
+                <a href="https://instagram.com/charmie.tiramisu" target="_blank" rel="noopener noreferrer" className="c-cust-link">
+                  2. Gửi qua Instagram
+                </a>
+                <a href="https://zalo.me/" target="_blank" rel="noopener noreferrer" className="c-cust-link">
+                  2. Gửi qua Zalo
+                </a>
+              </div>
+              <p style={{ fontSize: '11px', color: 'var(--mocha)', textAlign: 'center', marginTop: '4px' }}>
+                * Bấm sao chép yêu cầu rồi gửi tin nhắn cho Charmie ở nút bên cạnh để đặt hàng!
+              </p>
+            </div>
+          </FadeIn>
+        </div>
+      </div>
+    </section>
+  );
+};
+
 /* ── Occasions ──────────────────────────────────────────────── */
 const OCC = [
   { icon:'💝', label:"Valentine's Day" },
@@ -369,4 +616,4 @@ const Footer = () => (
 );
 
 /* ── exports ────────────────────────────────────────────────── */
-Object.assign(window, { FadeIn, Nav, Hero, Statement, BrandStory, JournalPreview, Products, Occasions, OrderCTA, Footer });
+Object.assign(window, { FadeIn, Nav, Hero, Statement, BrandStory, JournalPreview, Products, Customizer, Occasions, OrderCTA, Footer });
