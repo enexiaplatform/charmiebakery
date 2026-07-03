@@ -843,5 +843,55 @@ window.CHARMIE_ARTICLES = [
         url: "https://www.baristahustle.com/"
       }
     ]
+  },
+  {
+    slug: "muoi-bien-va-doi-vi-giac",
+    level: "Khoa học",
+    order: 21,
+    title: "Muối biển và sự đối vị trong tiramisu: Nghệ thuật cân bằng vị giác",
+    summary: "Tại sao một chút muối biển (fleur de sel) lại có thể khử đắng, tăng ngọt và mở khóa hương vị kem mascarpone.",
+    readTime: "5 phút",
+    image: "../uploads/pasted-1779543992358-0.jpg",
+    intro: "Trong làm bánh chuyên nghiệp, muối không chỉ dành cho các món mặn. Một lượng muối biển cực nhỏ (tỷ lệ dưới 0.1%) hoạt động như một chất xúc tác sinh học mạnh mẽ, làm nổi bật cấu trúc hương vị của tiramisu bằng cách làm dịu vị đắng gắt và tăng cường cảm nhận vị ngọt.",
+    sections: [
+      {
+        title: "Cơ chế sinh học của sự đối vị",
+        body: [
+          "Lưỡi của chúng ta có các tế bào cảm thụ vị giác khác nhau. Khi các ion natri (Na+) từ muối tiếp xúc với thụ thể vị giác, chúng tạm thời ức chế đường truyền tín hiệu đắng gửi về não. Điều này giải thích tại sao một nhúm muối nhỏ vào espresso giúp làm giảm độ chát và đắng gắt của hạt Robusta, khiến vị cà phê trở nên mượt mà và tròn trịa hơn.",
+          "Đồng thời, muối biển kích hoạt thụ thể SGLT1 trên tế bào cảm giác ngọt. Thụ thể này chỉ vận chuyển đường glucose khi có sự hiện diện của natri. Do đó, một lượng muối rất nhỏ thực chất làm tăng cảm nhận độ ngọt của mascarpone mà không cần thêm đường cát, giúp bánh ngọt thanh và không bị ngấy."
+        ]
+      },
+      {
+        title: "Tỷ lệ muối biển lý tưởng và cách thêm vào công thức",
+        body: [
+          "Để đạt được hiệu ứng đối vị tinh tế mà không làm bánh có vị mặn, tỷ lệ muối khuyên dùng là 0.05% - 0.08% trên tổng khối lượng kem nền (khoảng 0.5g - 0.8g muối cho mỗi 1kg kem).",
+          "Nên chọn muối biển hạt mịn chất lượng cao hoặc muối hồng Himalaya vì chúng chứa nhiều khoáng chất vi lượng giúp vị mặn dịu nhẹ hơn muối tinh luyện thông thường. Hãy hòa tan muối hoàn toàn vào hỗn hợp Sabayon ấm hoặc đánh cùng lòng đỏ trứng để muối phân tán đều, tránh hiện tượng lợn cợn hạt muối chưa tan trong kem lạnh."
+        ]
+      },
+      {
+        title: "Sự tương tác với các thành phần khác",
+        body: [
+          "Muối biển hoạt động tốt nhất khi kết hợp với cacao có độ đắng cao (> 70%) rây trên bề mặt bánh. Sự tương tác giữa hạt cacao đắng thơm, kem mascarpone béo ngậy có chút muối nhẹ và ladyfinger đẫm espresso tạo nên một trải nghiệm hương vị vô cùng kích thích.",
+          "Nếu dùng rượu Rum hay Kahlúa, muối biển còn giúp làm dịu cảm giác nóng bỏng của cồn, giúp hậu vị rượu trở nên ngọt dịu và thơm lâu hơn."
+        ]
+      }
+    ],
+    takeaways: [
+      "Natri trong muối biển ức chế thụ thể vị đắng, giúp vị cà phê và cacao trở nên êm dịu hơn.",
+      "Muối kích hoạt thụ thể vận chuyển đường, tăng cảm nhận độ ngọt tự nhiên của kem sữa.",
+      "Tỷ lệ chuẩn cực nhỏ: 0.05% - 0.08% (khoảng 0.5g - 0.8g muối cho mỗi 1kg kem).",
+      "Nên dùng muối biển hạt mịn hoặc muối hồng, hòa tan kỹ trong Sabayon ấm để phân tán đều."
+    ],
+    safety: "Luôn cân đo muối chính xác bằng cân tiểu ly. Vượt quá tỷ lệ 0.1% sẽ khiến kem mascarpone bị lợn cợn vị mặn rõ rệt, phá hỏng tính chất thanh nhẹ của món tráng miệng.",
+    sources: [
+      {
+        label: "Nature Neuroscience — Salt Halves Bitterness and Enhances Sweetness",
+        url: "https://www.nature.com/articles/nn0697_361"
+      },
+      {
+        label: "Journal of Food Science — Role of Sodium Chloride in Sweetness and Bitterness Perception",
+        url: "https://onlinelibrary.wiley.com/journal/17503841"
+      }
+    ]
   }
 ];

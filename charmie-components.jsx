@@ -309,7 +309,15 @@ const Customizer = () => {
   const [cardFrom, setCardFrom] = useState('');
   const [cardMessage, setCardMessage] = useState('');
   const [cardTemplate, setCardTemplate] = useState('custom'); // 'custom' | 'birthday' | 'thankyou' | 'love'
-  const [previewTab, setPreviewTab] = useState('cake'); // 'cake' | 'card'
+  const [previewTab, setPreviewTab] = useState('cake'); // 'cake' | 'card' | 'gift'
+
+  // Gifting & Accessories States
+  const [addGift, setAddGift] = useState(false);
+  const [ribbonColor, setRibbonColor] = useState('cream'); // 'cream' | 'blush' | 'forest' | 'espresso'
+  const [candleType, setCandleType] = useState('none'); // 'none' | 'artistic' | 'basic' | 'number'
+  const [candleDigit, setCandleDigit] = useState('5'); // '0'-'9'
+  const [accSpoon, setAccSpoon] = useState(false);
+  const [accBag, setAccBag] = useState(false);
 
   const templates = {
     custom: '',
@@ -330,6 +338,20 @@ const Customizer = () => {
     if (theme === 'blush') return 'Rose Blush';
     if (theme === 'forest') return 'Forest Green';
     return 'Midnight Gold';
+  };
+
+  const ribbonLabel = (color) => {
+    if (color === 'cream') return 'Classic Cream';
+    if (color === 'blush') return 'Rose Blush';
+    if (color === 'forest') return 'Forest Green';
+    return 'Espresso Brown';
+  };
+
+  const candleLabel = (type, digit) => {
+    if (type === 'none') return 'Không lấy nến';
+    if (type === 'artistic') return 'Nến xoắn nghệ thuật';
+    if (type === 'basic') return 'Nến sinh nhật basic';
+    return `Nến số ${digit}`;
   };
 
   // Set alcohol to 'không' if base is matcha
@@ -362,7 +384,12 @@ const Customizer = () => {
   const dustCode = dust === 'mỏng' ? 'D1' : dust === 'vừa' ? 'D2' : 'D3';
   const alcoholCode = alcohol === 'không' ? 'A0' : alcohol === 'thoảng' ? 'A1' : 'A2';
   
-  const customCode = `${baseCode}-${sweetnessCode}-${strengthCode}-${creamCode}-${dustCode}-${alcoholCode}`;
+  const ribbonCode = addGift ? (ribbonColor === 'cream' ? 'R1' : ribbonColor === 'blush' ? 'R2' : ribbonColor === 'forest' ? 'R3' : 'R4') : 'R0';
+  const candleCode = addGift ? (candleType === 'none' ? 'C0' : candleType === 'artistic' ? 'C1' : candleType === 'basic' ? 'C2' : `C3${candleDigit}`) : 'C0';
+  const spoonCode = addGift ? (accSpoon ? 'SP1' : 'SP0') : 'SP0';
+  const bagCode = addGift ? (accBag ? 'BG1' : 'BG0') : 'BG0';
+
+  const customCode = `${baseCode}-${sweetnessCode}-${strengthCode}-${creamCode}-${dustCode}-${alcoholCode}-${ribbonCode}-${candleCode}-${spoonCode}-${bagCode}`;
 
   // Description generator
   const getSweetnessDesc = () => {
@@ -405,7 +432,10 @@ const Customizer = () => {
     return `Bản Phối Cá Nhân ${customCode}`;
   };
 
-  const tasteDescription = `Mẻ Tiramisu được chế tác thủ công theo yêu cầu của bạn, mang ${getSweetnessDesc()}. Lớp ladyfingers thấm ${getStrengthDesc()}, kết hợp cùng ${getCreamDesc()} bồng bềnh. Bánh được hoàn thiện với lớp ${getDustDesc()} trên bề mặt, đi kèm ${getAlcoholDesc()}.`;
+  let tasteDescription = `Mẻ Tiramisu được chế tác thủ công theo yêu cầu của bạn, mang ${getSweetnessDesc()}. Lớp ladyfingers thấm ${getStrengthDesc()}, kết hợp cùng ${getCreamDesc()} bồng bềnh. Bánh được hoàn thiện với lớp ${getDustDesc()} trên bề mặt, đi kèm ${getAlcoholDesc()}.`;
+  if (addGift) {
+    tasteDescription += ` Bánh được bọc ruy-băng ${ribbonLabel(ribbonColor).toLowerCase()} sang trọng, đi kèm ${candleLabel(candleType, candleDigit).toLowerCase()}.`;
+  }
 
   let orderText = `Chào Charmie, mình muốn đặt Tiramisu tùy chỉnh:
 - Mã bản phối: ${customCode}
@@ -424,6 +454,29 @@ const Customizer = () => {
 - Gửi từ (From): ${cardFrom.trim() || '(Để trống)'}
 - Lời nhắn: ${cardMessage.trim() || '(Để trống)'}`;
   }
+
+  if (addGift) {
+    const accList = [];
+    if (accSpoon) accList.push('Muỗng gỗ & Đĩa giấy');
+    if (accBag) accList.push('Túi giấy quà tặng cao cấp');
+    const accStr = accList.join(', ') || 'Không lấy';
+
+    orderText += `
+- Hộp quà & Phụ kiện: Gói quà cao cấp
+- Ruy-băng gói: ${ribbonLabel(ribbonColor)}
+- Nến sinh nhật: ${candleLabel(candleType, candleDigit)}
+- Phụ kiện thêm: ${accStr}`;
+  } else {
+    orderText += `
+- Hộp quà & Phụ kiện: Hộp tiêu chuẩn`;
+  }
+
+  const ribbonHex = {
+    cream: '#E8D9C4',
+    blush: '#E8C1BD',
+    forest: '#8FA88B',
+    espresso: '#7B5E52'
+  }[ribbonColor];
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(orderText).then(() => {
@@ -590,6 +643,83 @@ const Customizer = () => {
                 </div>
               </div>
             )}
+
+            {/* Gifting & Accessories Toggle */}
+            <div className="c-cust-group" style={{ borderTop: '1px dashed var(--champagne)', paddingTop: '24px' }}>
+              <div className="c-cust-label">Gói quà & Phụ kiện <span>{addGift ? 'Đã thêm (Cao cấp)' : 'Chưa dùng'}</span></div>
+              <div className="c-cust-options">
+                <button type="button" className={`c-cust-btn ${!addGift ? 'active' : ''}`} onClick={() => { setAddGift(false); setPreviewTab('cake'); }}>Hộp tiêu chuẩn</button>
+                <button type="button" className={`c-cust-btn ${addGift ? 'active' : ''}`} onClick={() => { setAddGift(true); setPreviewTab('gift'); }}>Gói quà cao cấp</button>
+              </div>
+            </div>
+
+            {/* Gifting Details (Conditional) */}
+            {addGift && (
+              <div className="c-cust-card-fields">
+                {/* Ribbon Color */}
+                <div className="c-cust-group">
+                  <div className="c-cust-label" style={{ fontSize: '13px' }}>Màu ruy-băng gói hộp <span>{ribbonLabel(ribbonColor)}</span></div>
+                  <div className="c-cust-options">
+                    <button type="button" className={`c-cust-btn c-cust-btn--sm ${ribbonColor === 'cream' ? 'active' : ''}`} onClick={() => setRibbonColor('cream')}>Cream</button>
+                    <button type="button" className={`c-cust-btn c-cust-btn--sm ${ribbonColor === 'blush' ? 'active' : ''}`} onClick={() => setRibbonColor('blush')}>Blush</button>
+                    <button type="button" className={`c-cust-btn c-cust-btn--sm ${ribbonColor === 'forest' ? 'active' : ''}`} onClick={() => setRibbonColor('forest')}>Forest</button>
+                    <button type="button" className={`c-cust-btn c-cust-btn--sm ${ribbonColor === 'espresso' ? 'active' : ''}`} onClick={() => setRibbonColor('espresso')}>Espresso</button>
+                  </div>
+                </div>
+
+                {/* Candle Type */}
+                <div className="c-cust-group" style={{ marginTop: '16px' }}>
+                  <div className="c-cust-label" style={{ fontSize: '13px' }}>Chọn nến tặng kèm <span>{candleLabel(candleType, candleDigit)}</span></div>
+                  <div className="c-cust-options">
+                    <button type="button" className={`c-cust-btn c-cust-btn--sm ${candleType === 'none' ? 'active' : ''}`} onClick={() => setCandleType('none')}>Không lấy</button>
+                    <button type="button" className={`c-cust-btn c-cust-btn--sm ${candleType === 'artistic' ? 'active' : ''}`} onClick={() => setCandleType('artistic')}>Nến xoắn</button>
+                    <button type="button" className={`c-cust-btn c-cust-btn--sm ${candleType === 'basic' ? 'active' : ''}`} onClick={() => setCandleType('basic')}>Nến basic</button>
+                    <button type="button" className={`c-cust-btn c-cust-btn--sm ${candleType === 'number' ? 'active' : ''}`} onClick={() => setCandleType('number')}>Nến số</button>
+                  </div>
+                </div>
+
+                {/* Candle Digit (Conditional) */}
+                {candleType === 'number' && (
+                  <div className="c-cust-group" style={{ marginTop: '12px' }}>
+                    <div className="c-cust-label" style={{ fontSize: '12px' }}>Chọn số nến</div>
+                    <div className="c-cust-options">
+                      {['0','1','2','3','4','5','6','7','8','9'].map(d => (
+                        <button 
+                          key={d} 
+                          type="button" 
+                          className={`c-cust-btn c-cust-btn--xs ${candleDigit === d ? 'active' : ''}`} 
+                          onClick={() => setCandleDigit(d)}
+                          style={{ minWidth: '32px', flex: 'initial', padding: '6px' }}
+                        >
+                          {d}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Accessories checkboxes */}
+                <div className="c-cust-group" style={{ marginTop: '16px' }}>
+                  <div className="c-cust-label" style={{ fontSize: '13px' }}>Đồ đi kèm thêm</div>
+                  <div className="c-cust-options">
+                    <button 
+                      type="button" 
+                      className={`c-cust-btn c-cust-btn--sm ${accSpoon ? 'active' : ''}`} 
+                      onClick={() => setAccSpoon(!accSpoon)}
+                    >
+                      {accSpoon ? '✓ Muỗng gỗ & Đĩa' : 'Muỗng gỗ & Đĩa (Free)'}
+                    </button>
+                    <button 
+                      type="button" 
+                      className={`c-cust-btn c-cust-btn--sm ${accBag ? 'active' : ''}`} 
+                      onClick={() => setAccBag(!accBag)}
+                    >
+                      {accBag ? '✓ Túi giấy quà tặng' : 'Túi giấy cao cấp'}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
           </FadeIn>
 
           {/* Preview Card */}
@@ -613,6 +743,16 @@ const Customizer = () => {
               >
                 Thiệp chúc mừng {addCard && <span className="tab-indicator">•</span>}
               </button>
+              <button 
+                type="button" 
+                className={`c-cust-tab ${previewTab === 'gift' ? 'active' : ''}`}
+                onClick={() => {
+                  setPreviewTab('gift');
+                  if (!addGift) setAddGift(true);
+                }}
+              >
+                Hộp & Phụ kiện {addGift && <span className="tab-indicator">•</span>}
+              </button>
             </div>
 
             {previewTab === 'cake' ? (
@@ -628,7 +768,7 @@ const Customizer = () => {
                   {base === 'classique' ? 'Cacao' : 'Matcha'} ({dustLabel})
                 </div>
               </div>
-            ) : (
+            ) : previewTab === 'card' ? (
               /* Greeting Card Preview */
               <div className={`c-cust-card-preview theme-${cardTheme}`}>
                 <div className="c-cust-card-inner">
@@ -646,6 +786,40 @@ const Customizer = () => {
                   <div className="c-cust-card-footer">
                     <span>Charmie Bakery — Dành để tặng, dành để nhớ</span>
                   </div>
+                </div>
+              </div>
+            ) : (
+              /* Gift Pack Preview */
+              <div className="c-cust-gift-preview" style={{ '--ribbon-color': ribbonHex }}>
+                <div className="c-gift-box-wrapper">
+                  <div className="c-gift-box-lid"></div>
+                  <div className="c-gift-box">
+                    <div className="c-gift-ribbon-v"></div>
+                    <div className="c-gift-ribbon-h"></div>
+                    <div className="c-gift-bow">
+                      <div className="c-gift-bow-left"></div>
+                      <div className="c-gift-bow-right"></div>
+                      <div className="c-gift-bow-center"></div>
+                    </div>
+                    <div className="c-gift-tag">
+                      <span>C</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="c-gift-accessories-list">
+                  {candleType !== 'none' && (
+                    <div className="c-gift-acc-badge">
+                      🕯️ {candleLabel(candleType, candleDigit)}
+                    </div>
+                  )}
+                  {accSpoon && <div className="c-gift-acc-badge">🥄 Muỗng gỗ & đĩa</div>}
+                  {accBag && <div className="c-gift-acc-badge">🛍️ Túi giấy cao cấp</div>}
+                  {!accSpoon && !accBag && candleType === 'none' && (
+                    <div className="c-gift-acc-badge" style={{ opacity: 0.6 }}>
+                      Hộp quà thắt ruy-băng
+                    </div>
+                  )}
                 </div>
               </div>
             )}

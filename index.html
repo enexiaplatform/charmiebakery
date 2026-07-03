@@ -980,6 +980,166 @@
       border-top-color: rgba(255,255,255,0.06);
     }
 
+    /* Gift Preview Styles */
+    .c-cust-gift-preview {
+      width: 100%;
+      height: 160px;
+      background: var(--white);
+      border-radius: 12px;
+      border: 1px solid var(--champagne);
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      position: relative;
+      overflow: hidden;
+      padding: 0 24px;
+      box-sizing: border-box;
+    }
+    .c-gift-box-wrapper {
+      position: relative;
+      width: 120px;
+      height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: 20px;
+    }
+    .c-gift-box {
+      width: 90px;
+      height: 90px;
+      background: #FAF8F4;
+      border: 1px solid #E8D9C4;
+      border-radius: 12px;
+      position: relative;
+      box-shadow: 0 12px 28px rgba(58, 42, 34, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .c-gift-box-lid {
+      width: 96px;
+      height: 16px;
+      background: #FAF8F5;
+      border: 1px solid #E8D9C4;
+      border-radius: 6px;
+      position: absolute;
+      top: 10px;
+      left: 12px;
+      z-index: 10;
+      box-shadow: 0 4px 10px rgba(58, 42, 34, 0.04);
+    }
+    .c-gift-ribbon-v {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 16px;
+      height: 100%;
+      background: var(--ribbon-color, #FAF8F4);
+      transition: background-color var(--trans);
+      z-index: 2;
+    }
+    .c-gift-ribbon-h {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+      width: 100%;
+      height: 16px;
+      background: var(--ribbon-color, #FAF8F4);
+      transition: background-color var(--trans);
+      z-index: 2;
+    }
+    .c-gift-bow {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 32px;
+      height: 32px;
+      z-index: 15;
+    }
+    .c-gift-bow-left, .c-gift-bow-right {
+      position: absolute;
+      top: 8px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50% 50% 0 50%;
+      border: 4px solid var(--ribbon-color, #FAF8F4);
+      background: transparent;
+      transition: border-color var(--trans);
+    }
+    .c-gift-bow-left {
+      left: -12px;
+      transform: rotate(-45deg);
+    }
+    .c-gift-bow-right {
+      right: -12px;
+      border-radius: 50% 50% 50% 0;
+      transform: rotate(45deg);
+    }
+    .c-gift-bow-center {
+      position: absolute;
+      top: 13px;
+      left: 13px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--ribbon-color, #FAF8F4);
+      transition: background-color var(--trans);
+    }
+    .c-gift-tag {
+      position: absolute;
+      top: 24px;
+      left: 24px;
+      width: 20px;
+      height: 28px;
+      background: #FAF8F4;
+      border: 1px solid #7B5E52;
+      transform: rotate(-15deg);
+      z-index: 5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 2px 4px 8px rgba(0,0,0,0.06);
+    }
+    .c-gift-tag span {
+      font-family: 'Playfair Display', serif;
+      font-size: 11px;
+      color: #7B5E52;
+      font-weight: bold;
+    }
+    .c-gift-tag::before {
+      content: '';
+      position: absolute;
+      top: 3px;
+      left: 9px;
+      width: 2px;
+      height: 2px;
+      border-radius: 50%;
+      background: #7B5E52;
+    }
+    .c-gift-accessories-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-left: auto;
+      margin-right: 20px;
+      align-items: flex-end;
+    }
+    .c-gift-acc-badge {
+      background: var(--ivory);
+      border: 1px solid var(--champagne);
+      color: var(--espresso);
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 11.5px;
+      font-weight: 500;
+      white-space: nowrap;
+      animation: fadeIn 0.2s ease-out;
+      box-shadow: 0 2px 6px rgba(58, 42, 34, 0.02);
+    }
+
     @media (max-width: 900px) {
       .c-cust-grid {
         grid-template-columns: 1fr;
