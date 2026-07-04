@@ -295,6 +295,7 @@ const Products = ({ cs }) => {
 /* ── Customizer ────────────────────────────────────────────── */
 const Customizer = () => {
   const [base, setBase] = useState('classique'); // 'classique' | 'matcha'
+  const [size, setSize] = useState('petit'); // 'petit' | 'grand'
   const [sweetness, setSweetness] = useState('vừa'); // 'nhạt' | 'vừa' | 'đậm'
   const [strength, setStrength] = useState('vừa'); // 'nhẹ' | 'vừa' | 'đậm'
   const [cream, setCream] = useState('cổ điển'); // 'thanh' | 'cổ điển' | 'béo'
@@ -376,8 +377,9 @@ const Customizer = () => {
   const creamPct = cream === 'thanh' ? 40 : cream === 'cổ điển' ? 48 : 55;
   const biscuitPct = 100 - dustPct - creamPct;
 
-  // Code string e.g. CLASSIC-S1-ST2-C2-D2-A1
+  // Code string e.g. CLASSIC-PT-S1-ST2-C2-D2-A1
   const baseCode = base === 'classique' ? 'CLS' : 'JDV';
+  const sizeCode = size === 'petit' ? 'PT' : 'GD';
   const sweetnessCode = sweetness === 'nhạt' ? 'S1' : sweetness === 'vừa' ? 'S2' : 'S3';
   const strengthCode = strength === 'nhẹ' ? 'ST1' : strength === 'vừa' ? 'ST2' : 'ST3';
   const creamCode = cream === 'thanh' ? 'CR1' : cream === 'cổ điển' ? 'CR2' : 'CR3';
@@ -389,7 +391,7 @@ const Customizer = () => {
   const spoonCode = addGift ? (accSpoon ? 'SP1' : 'SP0') : 'SP0';
   const bagCode = addGift ? (accBag ? 'BG1' : 'BG0') : 'BG0';
 
-  const customCode = `${baseCode}-${sweetnessCode}-${strengthCode}-${creamCode}-${dustCode}-${alcoholCode}-${ribbonCode}-${candleCode}-${spoonCode}-${bagCode}`;
+  const customCode = `${baseCode}-${sizeCode}-${sweetnessCode}-${strengthCode}-${creamCode}-${dustCode}-${alcoholCode}-${ribbonCode}-${candleCode}-${spoonCode}-${bagCode}`;
 
   // Description generator
   const getSweetnessDesc = () => {
@@ -437,15 +439,25 @@ const Customizer = () => {
     tasteDescription += ` Bánh được bọc ruy-băng ${ribbonLabel(ribbonColor).toLowerCase()} sang trọng, đi kèm ${candleLabel(candleType, candleDigit).toLowerCase()}.`;
   }
 
+  // Calculate price dynamically
+  const calculatePrice = () => {
+    let basePrice = base === 'classique' ? (size === 'petit' ? 320000 : 450000) : (size === 'petit' ? 360000 : 490000);
+    let giftPrice = addGift ? 30000 : 0;
+    return basePrice + giftPrice;
+  };
+  const totalPrice = calculatePrice();
+
   let orderText = `Chào Charmie, mình muốn đặt Tiramisu tùy chỉnh:
 - Mã bản phối: ${customCode}
 - Tên bản phối: ${getProfileTitle()}
 - Vị nền: ${baseLabel}
+- Kích cỡ: ${size === 'petit' ? 'Petit (Hộp nhỏ ~250g)' : 'Grand (Hộp lớn ~400g)'}
 - Độ ngọt: ${sweetnessLabel}
 - ${base === 'classique' ? 'Cà phê' : 'Matcha'}: ${strengthLabel}
 - Độ béo kem: ${creamLabel}
 - Lớp bột phủ: ${dustLabel}
-- Rượu thơm: ${alcoholLabel}`;
+- Rượu thơm: ${alcoholLabel}
+- Ước tính giá: ${totalPrice.toLocaleString('vi-VN')}đ`;
 
   if (addCard) {
     orderText += `
@@ -505,6 +517,15 @@ const Customizer = () => {
               <div className="c-cust-options">
                 <button type="button" className={`c-cust-btn ${base === 'classique' ? 'active' : ''}`} onClick={() => setBase('classique')}>Le Classique (Cà phê)</button>
                 <button type="button" className={`c-cust-btn ${base === 'matcha' ? 'active' : ''}`} onClick={() => setBase('matcha')}>Jardin Vert (Matcha)</button>
+              </div>
+            </div>
+
+            {/* Size Selector */}
+            <div className="c-cust-group">
+              <div className="c-cust-label">Kích cỡ hộp <span>{size === 'petit' ? 'Petit (Hộp nhỏ ~250g)' : 'Grand (Hộp lớn ~400g)'}</span></div>
+              <div className="c-cust-options">
+                <button type="button" className={`c-cust-btn ${size === 'petit' ? 'active' : ''}`} onClick={() => setSize('petit')}>Petit (~250g)</button>
+                <button type="button" className={`c-cust-btn ${size === 'grand' ? 'active' : ''}`} onClick={() => setSize('grand')}>Grand (~400g)</button>
               </div>
             </div>
 
@@ -887,12 +908,20 @@ const Customizer = () => {
                 <strong>{baseLabel}</strong>
               </div>
               <div className="c-cust-details-item">
+                <span>Kích cỡ:</span>
+                <strong>{size === 'petit' ? 'Petit (~250g)' : 'Grand (~400g)'}</strong>
+              </div>
+              <div className="c-cust-details-item">
                 <span>Mã số mẻ tùy chỉnh:</span>
                 <strong>{customCode}</strong>
               </div>
               <div className="c-cust-details-item">
                 <span>Chế tác thủ công:</span>
                 <strong>Có (làm tay theo đơn)</strong>
+              </div>
+              <div className="c-cust-details-item" style={{ borderTop: '1px dashed var(--champagne)', paddingTop: '10px', marginTop: '10px' }}>
+                <span>Ước tính giá:</span>
+                <strong style={{ color: 'var(--espresso)', fontSize: '15px' }}>{totalPrice.toLocaleString('vi-VN')}đ</strong>
               </div>
             </div>
 

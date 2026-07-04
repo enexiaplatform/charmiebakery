@@ -943,5 +943,55 @@ window.CHARMIE_ARTICLES = [
         url: "https://onlinelibrary.wiley.com/journal/17503841"
       }
     ]
+  },
+  {
+    slug: "hoa-hoc-cua-ruou-trong-tiramisu",
+    level: "Khoa học",
+    order: 23,
+    title: "Hóa học của rượu trong Tiramisu: Sự tương tác giữa cồn và phân tử béo",
+    summary: "Tại sao rượu giúp tiramisu tan mượt hơn, cách ethanol tương tác với nhũ tương béo và cơ chế sinh học giải phóng hương thơm trong khoang miệng.",
+    readTime: "6 phút",
+    image: "../uploads/pasted-1779543950628-0.jpg",
+    intro: "Thêm một chút rượu vào tiramisu không chỉ đơn giản là để tạo mùi thơm. Dưới góc nhìn hóa lý thực phẩm, cồn (ethanol) tham gia trực tiếp vào cấu trúc nhũ tương béo của kem mascarpone, làm thay đổi điểm nóng chảy và làm tăng khả năng cảm nhận hương thơm thông qua việc hòa tan các hợp chất hữu cơ bay hơi.",
+    sections: [
+      {
+        title: "Cồn làm mềm chất béo và hạ điểm nóng chảy",
+        body: [
+          "Kem tiramisu là một hệ nhũ tương dầu trong nước phức tạp, được giữ vững bởi cấu trúc mạng lưới tinh thể chất béo từ mascarpone và whipping cream. Khi ta thêm một lượng rượu (ethanol) thích hợp, các phân tử cồn phân cực trung bình sẽ xen kẽ vào các khoảng trống giữa các triglycerid (chất béo sữa), hoạt động tương tự như một chất hóa dẻo (plasticizer).",
+          "Sự can thiệp này làm giảm lực liên kết nội phân tử của mạng lưới chất béo, từ đó làm giảm nhẹ nhiệt độ nóng chảy của kem mascarpone xuống gần hơn với nhiệt độ cơ thể người (~37°C). Nhờ vậy, khi miếng tiramisu chạm vào đầu lưỡi, lớp kem béo ngậy lập tức tan chảy một cách mượt mà, giải phóng tức thì các thành phần hương vị mà không tạo ra cảm giác sáp hay bám ngấy khoang miệng."
+        ]
+      },
+      {
+        title: "Nhũ tương kem: Ranh giới giữa ổn định và tách béo",
+        body: [
+          "Mặc dù cồn giúp làm mềm cấu trúc béo ở lượng nhỏ, nhưng nó lại là một dung môi phân cực mạnh. Khi nồng độ cồn vượt quá giới hạn an toàn (thường là trên 1.5% tổng khối lượng kem), các phân tử ethanol sẽ cạnh tranh khốc liệt để giành nước với lớp protein bảo vệ xung quanh các hạt cầu béo (fat globules).",
+          "Việc khử nước của các protein nhũ hóa này (như casein trong sữa và protein trứng trong lòng đỏ) khiến lớp màng bảo vệ bị biến tính và sụp đổ. Kết quả là các hạt béo tự do va chạm và đông tụ lại với nhau, dẫn đến hiện tượng lợn cợn, tách béo hoặc rỉ nước (syneresis). Do đó, kỹ thuật chuẩn xác là luôn khống chế lượng rượu dưới 1% tổng trọng lượng kem và ưu tiên trộn rượu vào dịch cà phê thấm ladyfingers thay vì đánh trực tiếp vào mascarpone lạnh."
+        ]
+      },
+      {
+        title: "Sự bay hơi của cồn và khứu giác ngược (Retronasal Olfaction)",
+        body: [
+          "Điểm sôi của ethanol chỉ là 78.4°C và nó có áp suất hơi cao hơn nhiều so với nước ở nhiệt độ cơ thể. Khi tiramisu tan chảy trong miệng, cồn bắt đầu bay hơi rất nhanh. Quá trình bay hơi này đóng vai trò như một 'động cơ đẩy', kéo theo các hợp chất hương vị hữu cơ hòa tan trong chất béo của cacao, cà phê và sữa đi theo đường họng lên khoang mũi sau.",
+          "Đây chính là cơ chế khứu giác ngược (retronasal olfaction). Nhờ có cồn, các tầng hương phức tạp như mùi khói từ hạt cà phê rang, vị đắng từ cacao hay độ ngậy của mascarpone được phóng đại và lưu giữ lâu hơn rất nhiều trong cảm nhận của thực khách. Đó chính là lý do vì sao một chút rượu chất lượng cao giúp tiramisu có chiều sâu hương vị vượt trội so với phiên bản hoàn toàn không cồn."
+        ]
+      }
+    ],
+    takeaways: [
+      "Ethanol hoạt động như chất hóa dẻo, làm mềm liên kết chất béo sữa giúp kem tan mượt tức thì khi vào miệng.",
+      "Nồng độ cồn quá cao sẽ phá hủy màng protein bảo vệ hạt cầu béo, gây đông tụ và lợn cợn kem lạnh.",
+      "Cồn bay hơi nhanh ở nhiệt độ cơ thể, vận chuyển các hợp chất thơm lên mũi qua cơ chế khứu giác ngược.",
+      "Tỷ lệ rượu phối trộn trực tiếp vào kem mascarpone nên được giới hạn dưới 1% để đảm bảo độ mịn ổn định."
+    ],
+    safety: "Không bao giờ đổ rượu mạnh có độ cồn cao (>40%) trực tiếp vào hỗn hợp mascarpone đang lạnh sâu, vì sốc dung môi sẽ làm đông đặc protein sữa lập tức. Luôn hòa tan rượu vào hỗn hợp lòng đỏ trứng ấm (Sabayon) hoặc dịch cà phê thấm ladyfingers.",
+    sources: [
+      {
+        label: "Journal of Agricultural and Food Chemistry — Influence of Ethanol on Fat Crystal Networks",
+        url: "https://pubs.acs.org/journal/jafcau"
+      },
+      {
+        label: "Food Hydrocolloids — Emulsion Stability and Alcohol Interactions",
+        url: "https://www.sciencedirect.com/journal/food-hydrocolloids"
+      }
+    ]
   }
 ];
