@@ -168,17 +168,17 @@ const JOURNAL_FEATURES = [
   },
   {
     level: 'Khoa học',
+    title: 'Khoa học của độ giòn',
+    desc: 'Hiệu ứng tương phản cảm quan, cơ chế bảo vệ cấu trúc giòn khỏi ngấm ẩm bằng chất béo.',
+    img: 'uploads/pasted-1779544236945-0.jpg',
+    href: 'journal/khoa-hoc-cua-do-gion-trong-tiramisu/',
+  },
+  {
+    level: 'Khoa học',
     title: 'Hóa học của rượu trong Tiramisu',
     desc: 'Ethanol tương tác với nhũ tương béo thế nào, và cơ chế giải phóng hương vị qua khứu giác ngược.',
     img: 'uploads/pasted-1779543950628-0.jpg',
     href: 'journal/hoa-hoc-cua-ruou-trong-tiramisu/',
-  },
-  {
-    level: 'Khoa học',
-    title: 'Khoa học của Meringue',
-    desc: 'Tại sao lòng trắng trứng đánh bông là chìa khóa cho kết cấu kem xốp nhẹ bồng bềnh và đứng phom.',
-    img: 'uploads/pasted-1779544573098-0.jpg',
-    href: 'journal/long-trang-trung-danh-bong-meringue/',
   },
 ];
 
@@ -302,6 +302,7 @@ const Customizer = () => {
   const [dust, setDust] = useState('vừa'); // 'mỏng' | 'vừa' | 'dày'
   const [alcohol, setAlcohol] = useState('thoảng'); // 'không' | 'thoảng' | 'đậm'
   const [topping, setTopping] = useState('none'); // 'none' | 'gold' | 'chocolate' | 'petals'
+  const [crunch, setCrunch] = useState('none'); // 'none' | 'hazelnut' | 'feuilletine' | 'cacao-nibs'
   const [copied, setCopied] = useState(false);
 
   // Greeting Card States
@@ -372,11 +373,13 @@ const Customizer = () => {
   const creamLabel = cream === 'thanh' ? 'Thanh nhẹ (Sữa nhiều)' : cream === 'cổ điển' ? 'Mượt mà (Cổ điển)' : 'Béo ngậy (Siêu béo)';
   const dustLabel = dust === 'mỏng' ? 'Phủ mỏng' : dust === 'vừa' ? 'Vừa đủ' : 'Phủ dày';
   const alcoholLabel = alcohol === 'không' ? 'Không cồn' : alcohol === 'thoảng' ? 'Thoảng nhẹ' : 'Đậm chất (Rum)';
+  const crunchLabel = crunch === 'none' ? 'Không hạt (Mềm mịn)' : crunch === 'hazelnut' ? 'Hạt phỉ giòn ngọt bùi' : crunch === 'feuilletine' ? 'Vụn bánh giòn Feuilletine' : 'Ngòi ca-cao caramen giòn đắng';
 
   // Calculate layer heights
   const dustPct = dust === 'mỏng' ? 6 : dust === 'vừa' ? 10 : 15;
   const creamPct = cream === 'thanh' ? 40 : cream === 'cổ điển' ? 48 : 55;
-  const biscuitPct = 100 - dustPct - creamPct;
+  const crunchPct = crunch === 'none' ? 0 : 8;
+  const biscuitPct = 100 - dustPct - creamPct - crunchPct;
 
   // Code string e.g. CLASSIC-PT-S1-ST2-C2-D2-A1
   const baseCode = base === 'classique' ? 'CLS' : 'JDV';
@@ -387,13 +390,14 @@ const Customizer = () => {
   const dustCode = dust === 'mỏng' ? 'D1' : dust === 'vừa' ? 'D2' : 'D3';
   const alcoholCode = alcohol === 'không' ? 'A0' : alcohol === 'thoảng' ? 'A1' : 'A2';
   const toppingCode = topping === 'none' ? 'TP0' : topping === 'gold' ? 'TP1' : topping === 'chocolate' ? 'TP2' : 'TP3';
+  const crunchCode = crunch === 'none' ? 'CRN0' : crunch === 'hazelnut' ? 'CRN1' : crunch === 'feuilletine' ? 'CRN2' : 'CRN3';
   
   const ribbonCode = addGift ? (ribbonColor === 'cream' ? 'R1' : ribbonColor === 'blush' ? 'R2' : ribbonColor === 'forest' ? 'R3' : 'R4') : 'R0';
   const candleCode = addGift ? (candleType === 'none' ? 'C0' : candleType === 'artistic' ? 'C1' : candleType === 'basic' ? 'C2' : `C3${candleDigit}`) : 'C0';
   const spoonCode = addGift ? (accSpoon ? 'SP1' : 'SP0') : 'SP0';
   const bagCode = addGift ? (accBag ? 'BG1' : 'BG0') : 'BG0';
 
-  const customCode = `${baseCode}-${sizeCode}-${sweetnessCode}-${strengthCode}-${creamCode}-${dustCode}-${alcoholCode}-${toppingCode}-${ribbonCode}-${candleCode}-${spoonCode}-${bagCode}`;
+  const customCode = `${baseCode}-${sizeCode}-${sweetnessCode}-${strengthCode}-${creamCode}-${dustCode}-${alcoholCode}-${toppingCode}-${crunchCode}-${ribbonCode}-${candleCode}-${spoonCode}-${bagCode}`;
 
   // Description generator
   const getSweetnessDesc = () => {
@@ -433,10 +437,15 @@ const Customizer = () => {
     if (cream === 'béo' && alcohol === 'đậm') return 'Bản Phối Nồng Nàn (Warm Velvet)';
     if (sweetness === 'đậm' && cream === 'thanh') return 'Bản Phối Kẹo Ngọt (Sweet Cloud)';
     if (cream === 'béo' && strength === 'đậm') return 'Bản Phối Tương Phản (Double Rich)';
+    if (crunch !== 'none' && strength === 'đậm') return 'Bản Phối Đa Tầng (Multi-textured)';
     return `Bản Phối Cá Nhân ${customCode}`;
   };
 
   let tasteDescription = `Mẻ Tiramisu được chế tác thủ công theo yêu cầu của bạn, mang ${getSweetnessDesc()}. Lớp ladyfingers thấm ${getStrengthDesc()}, kết hợp cùng ${getCreamDesc()} bồng bềnh. Bánh được hoàn thiện với lớp ${getDustDesc()} trên bề mặt, đi kèm ${getAlcoholDesc()}.`;
+  if (crunch !== 'none') {
+    const crunchDesc = crunch === 'hazelnut' ? 'đế hạt phỉ praline giòn bùi thơm ngọt' : crunch === 'feuilletine' ? 'đế vụn bánh giòn Feuilletine tan nhẹ tinh tế' : 'đế ngòi ca-cao caramen giòn đắng cá tính';
+    tasteDescription += ` Bánh có thêm ${crunchDesc} ở đáy tạo sự đối lập cấu trúc thú vị.`;
+  }
   if (topping !== 'none') {
     const toppingDesc = topping === 'gold' ? 'lấp lánh những vảy vàng 24K thực phẩm sang quý' : topping === 'chocolate' ? 'lớp sô-cô-la bào nghệ thuật thơm ngon' : 'cánh hoa hồng khô hữu cơ lãng mạn';
     tasteDescription += ` Bánh được điểm xuyết bằng ${toppingDesc}.`;
@@ -450,7 +459,8 @@ const Customizer = () => {
     let basePrice = base === 'classique' ? (size === 'petit' ? 320000 : 450000) : (size === 'petit' ? 360000 : 490000);
     let giftPrice = addGift ? 30000 : 0;
     let toppingPrice = topping === 'none' ? 0 : topping === 'gold' ? 25000 : topping === 'chocolate' ? 15000 : 10000;
-    return basePrice + giftPrice + toppingPrice;
+    let crunchPrice = crunch === 'none' ? 0 : crunch === 'cacao-nibs' ? 20000 : 15000;
+    return basePrice + giftPrice + toppingPrice + crunchPrice;
   };
   const totalPrice = calculatePrice();
 
@@ -465,6 +475,7 @@ const Customizer = () => {
 - Lớp bột phủ: ${dustLabel}
 - Rượu thơm: ${alcoholLabel}
 - Trang trí: ${topping === 'none' ? 'Không' : topping === 'gold' ? 'Vảy vàng 24K' : topping === 'chocolate' ? 'Sô-cô-la bào nghệ thuật' : 'Cánh hoa hồng khô hữu cơ'}
+- Lớp giòn kết cấu: ${crunchLabel}
 - Ước tính giá: ${totalPrice.toLocaleString('vi-VN')}đ`;
 
   if (addCard) {
@@ -597,6 +608,17 @@ const Customizer = () => {
                 <button type="button" className={`c-cust-btn ${topping === 'gold' ? 'active' : ''}`} onClick={() => setTopping('gold')}>Vảy vàng 24K</button>
                 <button type="button" className={`c-cust-btn ${topping === 'chocolate' ? 'active' : ''}`} onClick={() => setTopping('chocolate')}>Sô-cô-la bào</button>
                 <button type="button" className={`c-cust-btn ${topping === 'petals' ? 'active' : ''}`} onClick={() => setTopping('petals')}>Cánh hoa hồng</button>
+              </div>
+            </div>
+
+            {/* Textural Crunch Layer */}
+            <div className="c-cust-group">
+              <div className="c-cust-label">Đế bánh giòn kết cấu <span>{crunch === 'none' ? 'Mềm mịn truyền thống' : crunch === 'hazelnut' ? 'Hạt phỉ giòn bùi (+15k)' : crunch === 'feuilletine' ? 'Feuilletine giòn tan (+15k)' : 'Ngòi cacao caramen (+20k)'}</span></div>
+              <div className="c-cust-options">
+                <button type="button" className={`c-cust-btn ${crunch === 'none' ? 'active' : ''}`} onClick={() => setCrunch('none')}>Mặc định</button>
+                <button type="button" className={`c-cust-btn ${crunch === 'hazelnut' ? 'active' : ''}`} onClick={() => setCrunch('hazelnut')}>Hạt phỉ giòn</button>
+                <button type="button" className={`c-cust-btn ${crunch === 'feuilletine' ? 'active' : ''}`} onClick={() => setCrunch('feuilletine')}>Feuilletine giòn</button>
+                <button type="button" className={`c-cust-btn ${crunch === 'cacao-nibs' ? 'active' : ''}`} onClick={() => setCrunch('cacao-nibs')}>Ngòi cacao</button>
               </div>
             </div>
 
@@ -799,6 +821,11 @@ const Customizer = () => {
               /* Visualizer & Taste Profile */
               <>
                 <div className="c-cust-visual" style={{ position: 'relative' }}>
+                  {crunch !== 'none' && (
+                    <div className={`c-layer-crunch crunch-${crunch}`} style={{ height: crunchPct + '%' }}>
+                      Giòn: {crunch === 'hazelnut' ? 'Hạt phỉ' : crunch === 'feuilletine' ? 'Feuilletine' : 'Ngòi cacao'}
+                    </div>
+                  )}
                   <div className={`c-layer-ladyfingers ${base === 'matcha' ? 'matcha' : ''}`} style={{ height: biscuitPct + '%' }}>
                     Ladyfingers ({strengthLabel})
                   </div>
@@ -948,6 +975,10 @@ const Customizer = () => {
               <div className="c-cust-details-item">
                 <span>Kích cỡ:</span>
                 <strong>{size === 'petit' ? 'Petit (~250g)' : 'Grand (~400g)'}</strong>
+              </div>
+              <div className="c-cust-details-item">
+                <span>Đế bánh giòn:</span>
+                <strong>{crunchLabel}</strong>
               </div>
               <div className="c-cust-details-item">
                 <span>Mã số mẻ tùy chỉnh:</span>
