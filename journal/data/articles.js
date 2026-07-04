@@ -993,5 +993,55 @@ window.CHARMIE_ARTICLES = [
         url: "https://www.sciencedirect.com/journal/food-hydrocolloids"
       }
     ]
+  },
+  {
+    slug: "hoa-ly-be-mat-va-do-min",
+    level: "Khoa học",
+    order: 24,
+    title: "Hóa lý bề mặt và độ mịn: Kiểm soát ngấm ẩm và loang lổ bột cacao",
+    summary: "Phân tích hiện tượng mao dẫn hút nước, ngấm ẩm của cacao, sự dịch chuyển của ẩm lên lớp mặt, và kỹ thuật dùng bơ cacao hoặc đường chống ẩm để giữ lớp phủ khô ráo suốt 48h.",
+    readTime: "7 phút",
+    image: "../uploads/pasted-1779544083977-0.jpg",
+    intro: "Lớp bột cacao mịn màng, khô ráo trên bề mặt là dấu ấn thị giác đầu tiên của một ổ Tiramisu artisanal hoàn hảo. Tuy nhiên, dưới góc độ hóa lý thực phẩm, đây lại là một giao diện động chịu ảnh hưởng liên tục bởi sự chuyển pha của hơi nước và hiện tượng mao dẫn của các hạt xốp, dễ dẫn tới hiện tượng ngấm ẩm và loang lổ bề mặt sau vài giờ bảo quản.",
+    sections: [
+      {
+        title: "Hiện tượng dịch chuyển độ ẩm và lực mao dẫn ngược",
+        body: [
+          "Một ổ Tiramisu là cấu trúc xếp lớp xen kẽ giữa pha lỏng-rắn (ladyfingers thấm đẫm dịch cà phê) và pha nhũ tương dầu trong nước (kem mascarpone). Khi bánh được lưu trữ trong tủ lạnh, gradient nồng độ ẩm giữa các lớp dưới và lớp bề mặt tạo ra một động lực dịch chuyển ẩm liên tục hướng lên trên.",
+          "Khi hơi ẩm này đi qua lớp kem và tiếp xúc với bột cacao rắc trên mặt, hiện tượng mao dẫn (capillary action) sẽ xảy ra. Bột cacao bao gồm các hạt cellulose và tinh bột có kết cấu xốp rỗng với đường kính vi mô (10-20 µm). Lực căng bề mặt của nước kết hợp với các kênh mao quản siêu nhỏ giữa các hạt bột hoạt động như những chiếc bơm hút nước tự nhiên, kéo nước lên bề mặt và hòa tan một phần đường trong kem, biến lớp bột mịn màng ban đầu thành một màng keo loang lổ màu nâu sẫm."
+        ]
+      },
+      {
+        title: "Nguyên lý ngấm ẩm và trương nở của bột cacao nguyên chất",
+        body: [
+          "Bột cacao tự nhiên thường chứa 50-58% tinh bột và chất xơ cellulose, chỉ có khoảng 10-12% bơ cacao (chất béo). Cả cellulose và tinh bột đều là các polymer phân cực chứa rất nhiều nhóm hydroxyl (-OH) tự do, có tính ưa nước (hydrophilic) cực mạnh.",
+          "Trong môi trường lạnh có độ ẩm tương đối cao (Relative Humidity > 85%) của tủ lạnh, bột cacao hấp thụ hơi ẩm từ không khí và từ lớp kem bên dưới qua hiện tượng hấp phụ vật lý. Khi phân tử nước liên kết hydro với nhóm hydroxyl của xenluloza, các hạt bột bắt đầu trương nở cơ học, dính vào nhau tạo thành các cụm kết tụ (caking). Sự đông tụ này phá hủy cấu trúc rời xốp, làm mất đi hiệu ứng lấp lánh phản xạ ánh sáng của các hạt bột khô."
+        ]
+      },
+      {
+        title: "Kỹ thuật Artisanal: Tạo rào cản kị nước (Hydrophobic Barrier) 48h",
+        body: [
+          "Để duy trì trạng thái mịn màng và khô ráo cho bề mặt bánh trong suốt 48h, các tiệm bánh artisanal áp dụng hai nguyên lý hóa lý cốt lõi: ngăn chặn ẩm từ dưới lên và kháng ẩm từ trên xuống.",
+          "Biện pháp đầu tiên là rây một lớp bơ cacao bột (Mycryo) hoặc bơ cacao hóa lỏng phun sương siêu mỏng lên bề mặt lớp kem mascarpone trước khi rắc bột cacao. Do bơ cacao là chất béo không phân cực, nó tạo ra một màng chắn kị nước (hydrophobic barrier) ngăn chặn hoàn toàn dòng ẩm mao dẫn dịch chuyển từ kem lên. Biện pháp thứ hai là phối trộn bột cacao với đường chống ẩm (Snow Sugar/Dextrose chống ẩm) - loại đường được bọc phủ một lớp màng chất béo thực vật mỏng có nhiệt độ nóng chảy cao, ngăn không cho các hạt đường hấp phụ nước và giữ cho bề mặt bánh luôn lấp lánh nguyên bản."
+        ]
+      }
+    ],
+    takeaways: [
+      "Độ ẩm dịch chuyển từ các lớp dưới lên bề mặt bánh do gradient nồng độ ẩm và lực mao dẫn trong các kênh xốp của bột cacao.",
+      "Xenluloza và tinh bột ưa nước trong cacao hấp phụ ẩm mạnh mẽ gây trương nở cơ học và kết tụ loang lổ.",
+      "Lớp đệm bơ cacao (Mycryo) tạo rào cản kị nước ngăn chặn hiệu quả sự dịch chuyển ẩm mao dẫn từ lớp kem lên.",
+      "Đường chống ẩm được bọc phủ chất béo giúp kháng ẩm từ môi trường lạnh, duy trì độ lấp lánh mịn màng suốt 48h."
+    ],
+    safety: "Không sử dụng các loại đường chống ẩm kém chất lượng chứa chất béo hydro hóa một phần (partially hydrogenated fats) giàu trans-fat gây hại tim mạch. Luôn giữ bánh trong hộp bảo quản kín ở 2°C - 4°C để duy trì độ ẩm ổn định và tránh ngưng tụ hơi nước khi thay đổi nhiệt độ đột ngột.",
+    sources: [
+      {
+        label: "Journal of Food Engineering — Water Migration and Structure Changes in Multi-domain Foods",
+        url: "https://www.sciencedirect.com/journal/journal-of-food-engineering"
+      },
+      {
+        label: "International Journal of Food Science & Technology — Capillary Condensation and Caking in Food Powders",
+        url: "https://onlinelibrary.wiley.com/journal/13652621"
+      }
+    ]
   }
 ];

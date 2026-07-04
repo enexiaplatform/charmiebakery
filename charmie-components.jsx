@@ -160,25 +160,25 @@ const BrandStory = () => (
 /* ── Products ───────────────────────────────────────────────── */
 const JOURNAL_FEATURES = [
   {
-    level: 'Nền tảng',
-    title: 'Đọc một chiếc tiramisu qua từng lớp',
-    desc: 'Hiểu vai trò của bánh, espresso, mascarpone và cacao trước khi bắt đầu.',
-    img: 'uploads/pasted-1779543950628-0.jpg',
-    href: 'journal/tiramisu-la-gi/',
+    level: 'Khoa học',
+    title: 'Hóa lý bề mặt và độ mịn',
+    desc: 'Phân tích hiện tượng mao dẫn hút nước, ngấm ẩm của cacao và kỹ thuật chống ẩm bề mặt 48h.',
+    img: 'uploads/pasted-1779544083977-0.jpg',
+    href: 'journal/hoa-ly-be-mat-va-do-min/',
   },
   {
     level: 'Khoa học',
-    title: 'Tiramisu dưới góc nhìn khoa học',
-    desc: 'Nhũ tương, bọt khí, mao dẫn và sự di chuyển của độ ẩm trong thời gian nghỉ.',
-    img: 'uploads/pasted-1779544083977-0.jpg',
-    href: 'journal/khoa-hoc-cua-tiramisu/',
+    title: 'Hóa học của rượu trong Tiramisu',
+    desc: 'Ethanol tương tác với nhũ tương béo thế nào, và cơ chế giải phóng hương vị qua khứu giác ngược.',
+    img: 'uploads/pasted-1779543950628-0.jpg',
+    href: 'journal/hoa-hoc-cua-ruou-trong-tiramisu/',
   },
   {
-    level: 'Nâng cao',
-    title: 'An toàn và chuỗi lạnh',
-    desc: 'Trứng thanh trùng, bảo quản lạnh và những nguyên tắc cần có khi làm để bán.',
-    img: 'uploads/pasted-1779544702147-0.jpg',
-    href: 'journal/an-toan-va-chuoi-lanh/',
+    level: 'Khoa học',
+    title: 'Khoa học của Meringue',
+    desc: 'Tại sao lòng trắng trứng đánh bông là chìa khóa cho kết cấu kem xốp nhẹ bồng bềnh và đứng phom.',
+    img: 'uploads/pasted-1779544573098-0.jpg',
+    href: 'journal/long-trang-trung-danh-bong-meringue/',
   },
 ];
 
@@ -301,6 +301,7 @@ const Customizer = () => {
   const [cream, setCream] = useState('cổ điển'); // 'thanh' | 'cổ điển' | 'béo'
   const [dust, setDust] = useState('vừa'); // 'mỏng' | 'vừa' | 'dày'
   const [alcohol, setAlcohol] = useState('thoảng'); // 'không' | 'thoảng' | 'đậm'
+  const [topping, setTopping] = useState('none'); // 'none' | 'gold' | 'chocolate' | 'petals'
   const [copied, setCopied] = useState(false);
 
   // Greeting Card States
@@ -385,13 +386,14 @@ const Customizer = () => {
   const creamCode = cream === 'thanh' ? 'CR1' : cream === 'cổ điển' ? 'CR2' : 'CR3';
   const dustCode = dust === 'mỏng' ? 'D1' : dust === 'vừa' ? 'D2' : 'D3';
   const alcoholCode = alcohol === 'không' ? 'A0' : alcohol === 'thoảng' ? 'A1' : 'A2';
+  const toppingCode = topping === 'none' ? 'TP0' : topping === 'gold' ? 'TP1' : topping === 'chocolate' ? 'TP2' : 'TP3';
   
   const ribbonCode = addGift ? (ribbonColor === 'cream' ? 'R1' : ribbonColor === 'blush' ? 'R2' : ribbonColor === 'forest' ? 'R3' : 'R4') : 'R0';
   const candleCode = addGift ? (candleType === 'none' ? 'C0' : candleType === 'artistic' ? 'C1' : candleType === 'basic' ? 'C2' : `C3${candleDigit}`) : 'C0';
   const spoonCode = addGift ? (accSpoon ? 'SP1' : 'SP0') : 'SP0';
   const bagCode = addGift ? (accBag ? 'BG1' : 'BG0') : 'BG0';
 
-  const customCode = `${baseCode}-${sizeCode}-${sweetnessCode}-${strengthCode}-${creamCode}-${dustCode}-${alcoholCode}-${ribbonCode}-${candleCode}-${spoonCode}-${bagCode}`;
+  const customCode = `${baseCode}-${sizeCode}-${sweetnessCode}-${strengthCode}-${creamCode}-${dustCode}-${alcoholCode}-${toppingCode}-${ribbonCode}-${candleCode}-${spoonCode}-${bagCode}`;
 
   // Description generator
   const getSweetnessDesc = () => {
@@ -435,6 +437,10 @@ const Customizer = () => {
   };
 
   let tasteDescription = `Mẻ Tiramisu được chế tác thủ công theo yêu cầu của bạn, mang ${getSweetnessDesc()}. Lớp ladyfingers thấm ${getStrengthDesc()}, kết hợp cùng ${getCreamDesc()} bồng bềnh. Bánh được hoàn thiện với lớp ${getDustDesc()} trên bề mặt, đi kèm ${getAlcoholDesc()}.`;
+  if (topping !== 'none') {
+    const toppingDesc = topping === 'gold' ? 'lấp lánh những vảy vàng 24K thực phẩm sang quý' : topping === 'chocolate' ? 'lớp sô-cô-la bào nghệ thuật thơm ngon' : 'cánh hoa hồng khô hữu cơ lãng mạn';
+    tasteDescription += ` Bánh được điểm xuyết bằng ${toppingDesc}.`;
+  }
   if (addGift) {
     tasteDescription += ` Bánh được bọc ruy-băng ${ribbonLabel(ribbonColor).toLowerCase()} sang trọng, đi kèm ${candleLabel(candleType, candleDigit).toLowerCase()}.`;
   }
@@ -443,7 +449,8 @@ const Customizer = () => {
   const calculatePrice = () => {
     let basePrice = base === 'classique' ? (size === 'petit' ? 320000 : 450000) : (size === 'petit' ? 360000 : 490000);
     let giftPrice = addGift ? 30000 : 0;
-    return basePrice + giftPrice;
+    let toppingPrice = topping === 'none' ? 0 : topping === 'gold' ? 25000 : topping === 'chocolate' ? 15000 : 10000;
+    return basePrice + giftPrice + toppingPrice;
   };
   const totalPrice = calculatePrice();
 
@@ -457,6 +464,7 @@ const Customizer = () => {
 - Độ béo kem: ${creamLabel}
 - Lớp bột phủ: ${dustLabel}
 - Rượu thơm: ${alcoholLabel}
+- Trang trí: ${topping === 'none' ? 'Không' : topping === 'gold' ? 'Vảy vàng 24K' : topping === 'chocolate' ? 'Sô-cô-la bào nghệ thuật' : 'Cánh hoa hồng khô hữu cơ'}
 - Ước tính giá: ${totalPrice.toLocaleString('vi-VN')}đ`;
 
   if (addCard) {
@@ -580,6 +588,17 @@ const Customizer = () => {
                 </div>
               </div>
             )}
+
+            {/* Premium Toppings */}
+            <div className="c-cust-group">
+              <div className="c-cust-label">Trang trí bề mặt <span>{topping === 'none' ? 'Chỉ phủ bột' : topping === 'gold' ? 'Vảy vàng 24K (+25k)' : topping === 'chocolate' ? 'Sô-cô-la bào (+15k)' : 'Cánh hoa hồng khô (+10k)'}</span></div>
+              <div className="c-cust-options">
+                <button type="button" className={`c-cust-btn ${topping === 'none' ? 'active' : ''}`} onClick={() => setTopping('none')}>Mặc định</button>
+                <button type="button" className={`c-cust-btn ${topping === 'gold' ? 'active' : ''}`} onClick={() => setTopping('gold')}>Vảy vàng 24K</button>
+                <button type="button" className={`c-cust-btn ${topping === 'chocolate' ? 'active' : ''}`} onClick={() => setTopping('chocolate')}>Sô-cô-la bào</button>
+                <button type="button" className={`c-cust-btn ${topping === 'petals' ? 'active' : ''}`} onClick={() => setTopping('petals')}>Cánh hoa hồng</button>
+              </div>
+            </div>
 
             {/* Greeting Card Toggle */}
             <div className="c-cust-group" style={{ borderTop: '1px dashed var(--champagne)', paddingTop: '24px' }}>
@@ -779,7 +798,7 @@ const Customizer = () => {
             {previewTab === 'cake' ? (
               /* Visualizer & Taste Profile */
               <>
-                <div className="c-cust-visual">
+                <div className="c-cust-visual" style={{ position: 'relative' }}>
                   <div className={`c-layer-ladyfingers ${base === 'matcha' ? 'matcha' : ''}`} style={{ height: biscuitPct + '%' }}>
                     Ladyfingers ({strengthLabel})
                   </div>
@@ -789,6 +808,25 @@ const Customizer = () => {
                   <div className={`c-layer-dust ${base === 'matcha' ? 'matcha' : ''}`} style={{ height: dustPct + '%' }}>
                     {base === 'classique' ? 'Cacao' : 'Matcha'} ({dustLabel})
                   </div>
+                  {topping !== 'none' && (
+                    <div style={{
+                      position: 'absolute',
+                      top: '12px',
+                      right: '12px',
+                      background: topping === 'gold' ? '#D4AF37' : topping === 'chocolate' ? '#3D2314' : '#E5A9AC',
+                      color: topping === 'gold' ? '#1A1A1A' : '#FFFFFF',
+                      fontSize: '9px',
+                      fontWeight: 'bold',
+                      padding: '3px 8px',
+                      borderRadius: '20px',
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.5px',
+                      boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
+                      zIndex: 10
+                    }}>
+                      ✨ {topping === 'gold' ? 'Vảy vàng 24K' : topping === 'chocolate' ? 'Sô-cô-la bào' : 'Hoa hồng khô'}
+                    </div>
+                  )}
                 </div>
 
                 <div className="c-cust-flavor-profile">
