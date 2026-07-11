@@ -1093,5 +1093,55 @@ window.CHARMIE_ARTICLES = [
         url: "https://www.sciencedirect.com/journal/food-research-international"
       }
     ]
+  },
+  {
+    slug: "houjicha-va-phan-ung-pyrazine",
+    level: "Khoa học",
+    order: 26,
+    title: "Hóa học của Houjicha trong Tiramisu: Phản ứng Pyrazine và sự biến chuyển hương vị",
+    summary: "Hiểu cơ chế Maillard khi rang trà ở nhiệt độ cao, cách pyrazine tạo chiều sâu hương vị ấm áp và tỷ lệ phối trộn tối ưu cho kem mascarpone.",
+    readTime: "6 phút",
+    image: "../uploads/pasted-1779544083977-0.jpg",
+    intro: "Tiramisu hiện đại không chỉ gói gọn trong vị đắng trầm của cà phê hay sắc tươi mát của Uji Matcha. Houjicha (trà xanh rang) đang nổi lên như một nguyên liệu trung hòa xuất sắc. Dưới góc độ hóa lý thực phẩm, quá trình rang sấy trà ở nhiệt độ cao làm thay đổi căn bản cấu trúc hóa học, tạo ra các hợp chất pyrazine mang hương thơm ấm nồng của hạt và caramel, tạo nên một bản phối tiramisu vô cùng ấm áp.",
+    sections: [
+      {
+        title: "Phản ứng Maillard và sự hình thành phân tử Alkylpyrazine",
+        body: [
+          "Houjicha được tạo ra bằng cách rang lá trà xanh (thường là Bancha hoặc Sencha) ở nhiệt độ rất cao, dao động từ 150°C đến 200°C. Dưới tác động của nhiệt lượng mạnh mẽ này, các catechin (chất gây chát chính trong trà) bị phân hủy đáng kể, làm giảm tối đa vị đắng chát nguyên bản của trà xanh.",
+          "Đồng thời, phản ứng Maillard xảy ra giữa các axit amin tự do (đặc biệt là L-theanine) và đường khử trong lá trà. Quá trình này tổng hợp nên các phân tử Alkylpyrazine — hợp chất dị vòng chứa nitơ. Pyrazine chịu trách nhiệm chính cho hương thơm đặc trưng của hạt rang, mùi khói nhẹ, caramel và gỗ sồi. Khi đưa vào tiramisu, các nốt hương pyrazine này tạo ra chiều sâu khứu giác tương tự như espresso rang sẫm màu, nhưng mang hậu vị trà thanh khiết."
+        ]
+      },
+      {
+        title: "Sự thăng hoa của Caffeine và lợi ích cảm quan",
+        body: [
+          "Một đặc tính hóa học quan trọng khác của quá trình rang trà là sự thăng hoa của caffeine. Ở nhiệt độ trên 178°C, các phân tử caffeine trong lá trà chuyển trực tiếp từ thể rắn sang thể khí (thăng hoa) và bay hơi khỏi bề mặt lá. Kết quả là Houjicha thành phẩm chứa lượng caffeine cực kỳ thấp so với Matcha hoặc Espresso.",
+          "Điều này làm cho Tiramisu vị Houjicha trở thành một lựa chọn tráng miệng lý tưởng cho buổi tối, giảm thiểu tối đa kích ứng thần kinh gây mất ngủ. Hơn nữa, sự vắng mặt của caffeine liều lượng lớn và catechin đắng giúp kem mascarpone giữ được trọn vẹn vị ngậy béo tự nhiên mà không cần tăng lượng đường để che giấu vị đắng gắt."
+        ]
+      },
+      {
+        title: "Kỹ thuật phân tán bột Houjicha tránh tách nước và vón cục",
+        body: [
+          "Bột Houjicha có kích thước hạt rất mịn (khoảng 5-10 µm) và chứa hàm lượng xenluloza cao. Khi trộn trực tiếp vào kem mascarpone lạnh chứa béo cao, các hạt trà khô ưa nước này sẽ lập tức hút ẩm cục bộ từ kem, tạo thành các hạt vón cục nhỏ không thể tan và có thể gây hiện tượng tách béo sữa do lực cơ học khuấy mạnh.",
+          "Kỹ thuật chuẩn xác là ngâm nở bột Houjicha trong dịch chất lỏng ấm (nước ấm hoặc sữa ấm khoảng 50°C) theo tỷ lệ 1:3 để tạo một hỗn hợp sệt mịn (paste). Để nguội hoàn toàn rồi mới fold nhẹ nhàng vào hỗn hợp kem mascarpone và whipping cream. Kỹ thuật này giúp phân tán đều các hạt hương thơm pyrazine mà không phá vỡ cấu trúc nhũ tương béo ổn định của kem."
+        ]
+      }
+    ],
+    takeaways: [
+      "Quá trình rang nhiệt độ cao (200°C) phân hủy catechin chát và kích hoạt phản ứng Maillard tạo Alkylpyrazine.",
+      "Pyrazine mang nốt hương rang ngậy, caramel và gỗ sồi ấm áp, tạo hương vị trung hòa hoàn hảo giữa cà phê và trà.",
+      "Caffeine thăng hoa ở nhiệt độ rang giúp Houjicha có hàm lượng caffeine cực thấp, thích hợp ăn tối.",
+      "Luôn hòa tan bột trà rang với nước/sữa ấm thành hỗn hợp sệt mịn trước khi fold vào kem mascarpone để tránh vón cục."
+    ],
+    safety: "Do bột Houjicha hút ẩm mạnh hơn bột Matcha, hãy đảm bảo rây bột lên mặt bánh sát giờ phục vụ để tránh bề mặt bánh bị hút ẩm loang lổ sẫm màu.",
+    sources: [
+      {
+        label: "Journal of Agricultural and Food Chemistry — Volatile Compounds in Roasted Green Tea (Hojicha)",
+        url: "https://pubs.acs.org/journal/jafcau"
+      },
+      {
+        label: "ScienceDirect — Caffeine sublimation and Maillard reaction in tea processing",
+        url: "https://www.sciencedirect.com/"
+      }
+    ]
   }
 ];

@@ -301,6 +301,7 @@ const Customizer = () => {
   const [cream, setCream] = useState('cổ điển'); // 'thanh' | 'cổ điển' | 'béo'
   const [dust, setDust] = useState('vừa'); // 'mỏng' | 'vừa' | 'dày'
   const [alcohol, setAlcohol] = useState('thoảng'); // 'không' | 'thoảng' | 'đậm'
+  const [origin, setOrigin] = useState('classic'); // For Classique: 'classic' | 'specialty' | 'blend'. For Matcha: 'uji' | 'shizuoka' | 'houjicha'
   const [topping, setTopping] = useState('none'); // 'none' | 'gold' | 'chocolate' | 'petals'
   const [crunch, setCrunch] = useState('none'); // 'none' | 'hazelnut' | 'feuilletine' | 'cacao-nibs'
   const [copied, setCopied] = useState(false);
@@ -357,10 +358,13 @@ const Customizer = () => {
     return `Nến số ${digit}`;
   };
 
-  // Set alcohol to 'không' if base is matcha
+  // Set alcohol and origin appropriately if base changes
   useEffect(() => {
     if (base === 'matcha') {
       setAlcohol('không');
+      setOrigin('uji');
+    } else {
+      setOrigin('classic');
     }
   }, [base]);
 
@@ -369,11 +373,22 @@ const Customizer = () => {
   const sweetnessLabel = sweetness === 'nhạt' ? 'Nhạt (Thanh nhẹ)' : sweetness === 'vừa' ? 'Vừa (Cổ điển)' : 'Đậm vị';
   const strengthLabel = base === 'classique' 
     ? (strength === 'nhẹ' ? 'Nhẹ nhàng' : strength === 'vừa' ? 'Đậm đà' : 'Cực đậm')
-    : (strength === 'nhẹ' ? 'Thoảng matcha' : strength === 'vừa' ? 'Matcha vừa' : 'Đậm matcha');
+    : (origin === 'houjicha'
+        ? (strength === 'nhẹ' ? 'Thoảng hương trà rang' : strength === 'vừa' ? 'Trà rang vừa' : 'Đậm vị trà rang')
+        : (strength === 'nhẹ' ? 'Thoảng matcha' : strength === 'vừa' ? 'Matcha vừa' : 'Đậm matcha'));
+
   const creamLabel = cream === 'thanh' ? 'Thanh nhẹ (Sữa nhiều)' : cream === 'cổ điển' ? 'Mượt mà (Cổ điển)' : 'Béo ngậy (Siêu béo)';
   const dustLabel = dust === 'mỏng' ? 'Phủ mỏng' : dust === 'vừa' ? 'Vừa đủ' : 'Phủ dày';
   const alcoholLabel = alcohol === 'không' ? 'Không cồn' : alcohol === 'thoảng' ? 'Thoảng nhẹ' : 'Đậm chất (Rum)';
   const crunchLabel = crunch === 'none' ? 'Không hạt (Mềm mịn)' : crunch === 'hazelnut' ? 'Hạt phỉ giòn ngọt bùi' : crunch === 'feuilletine' ? 'Vụn bánh giòn Feuilletine' : 'Ngòi ca-cao caramen giòn đắng';
+
+  const originLabel = base === 'classique'
+    ? (origin === 'classic' ? 'Robusta Buôn Ma Thuột (Đậm đắng cựu trào)' : origin === 'specialty' ? 'Arabica Ethiopia Specialty (+20k)' : 'Blend 70/30 Arabica & Robusta (+10k)')
+    : (origin === 'uji' ? 'Uji Matcha Kyoto (Umami sâu lắng)' : origin === 'shizuoka' ? 'Shizuoka Matcha (Chát đậm, thơm nồng)' : 'Houjicha Shizuoka Trà rang (+15k)');
+
+  const originCleanLabel = base === 'classique'
+    ? (origin === 'classic' ? 'Robusta Buôn Ma Thuột' : origin === 'specialty' ? 'Arabica Ethiopia Specialty' : 'Blend 70/30 Arabica & Robusta')
+    : (origin === 'uji' ? 'Uji Matcha Kyoto' : origin === 'shizuoka' ? 'Shizuoka Matcha' : 'Houjicha Shizuoka Trà rang');
 
   // Calculate layer heights
   const dustPct = dust === 'mỏng' ? 6 : dust === 'vừa' ? 10 : 15;
@@ -381,7 +396,7 @@ const Customizer = () => {
   const crunchPct = crunch === 'none' ? 0 : 8;
   const biscuitPct = 100 - dustPct - creamPct - crunchPct;
 
-  // Code string e.g. CLASSIC-PT-S1-ST2-C2-D2-A1
+  // Code string e.g. CLS-PT-S2-ST2-CR2-D2-A1-OG1-TP0-CRN0
   const baseCode = base === 'classique' ? 'CLS' : 'JDV';
   const sizeCode = size === 'petit' ? 'PT' : 'GD';
   const sweetnessCode = sweetness === 'nhạt' ? 'S1' : sweetness === 'vừa' ? 'S2' : 'S3';
@@ -389,6 +404,7 @@ const Customizer = () => {
   const creamCode = cream === 'thanh' ? 'CR1' : cream === 'cổ điển' ? 'CR2' : 'CR3';
   const dustCode = dust === 'mỏng' ? 'D1' : dust === 'vừa' ? 'D2' : 'D3';
   const alcoholCode = alcohol === 'không' ? 'A0' : alcohol === 'thoảng' ? 'A1' : 'A2';
+  const originCode = origin === 'classic' ? 'OG1' : origin === 'blend' ? 'OG2' : origin === 'specialty' ? 'OG3' : origin === 'uji' ? 'OG4' : origin === 'shizuoka' ? 'OG5' : 'OG6';
   const toppingCode = topping === 'none' ? 'TP0' : topping === 'gold' ? 'TP1' : topping === 'chocolate' ? 'TP2' : 'TP3';
   const crunchCode = crunch === 'none' ? 'CRN0' : crunch === 'hazelnut' ? 'CRN1' : crunch === 'feuilletine' ? 'CRN2' : 'CRN3';
   
@@ -397,7 +413,7 @@ const Customizer = () => {
   const spoonCode = addGift ? (accSpoon ? 'SP1' : 'SP0') : 'SP0';
   const bagCode = addGift ? (accBag ? 'BG1' : 'BG0') : 'BG0';
 
-  const customCode = `${baseCode}-${sizeCode}-${sweetnessCode}-${strengthCode}-${creamCode}-${dustCode}-${alcoholCode}-${toppingCode}-${crunchCode}-${ribbonCode}-${candleCode}-${spoonCode}-${bagCode}`;
+  const customCode = `${baseCode}-${sizeCode}-${sweetnessCode}-${strengthCode}-${creamCode}-${dustCode}-${alcoholCode}-${originCode}-${toppingCode}-${crunchCode}-${ribbonCode}-${candleCode}-${spoonCode}-${bagCode}`;
 
   // Description generator
   const getSweetnessDesc = () => {
@@ -411,9 +427,15 @@ const Customizer = () => {
       if (strength === 'vừa') return 'espresso đậm đà được pha chế kỹ lưỡng';
       return 'cốt cà phê cực đậm (double shot) bừng tỉnh';
     } else {
-      if (strength === 'nhẹ') return 'hương trà xanh Uji dịu thanh';
-      if (strength === 'vừa') return 'vị trà chát nhẹ nguyên bản';
-      return 'độ chát rõ rệt của matcha đậm đặc';
+      if (origin === 'houjicha') {
+        if (strength === 'nhẹ') return 'hương trà rang Houjicha thoảng nhẹ ấm áp';
+        if (strength === 'vừa') return 'vị trà rang Houjicha thơm nồng vừa vặn';
+        return 'vị trà rang Houjicha đậm đà sâu lắng';
+      } else {
+        if (strength === 'nhẹ') return 'hương trà xanh Uji dịu thanh';
+        if (strength === 'vừa') return 'vị trà chát nhẹ nguyên bản';
+        return 'độ chát rõ rệt của matcha đậm đặc';
+      }
     }
   };
   const getCreamDesc = () => {
@@ -441,7 +463,7 @@ const Customizer = () => {
     return `Bản Phối Cá Nhân ${customCode}`;
   };
 
-  let tasteDescription = `Mẻ Tiramisu được chế tác thủ công theo yêu cầu của bạn, mang ${getSweetnessDesc()}. Lớp ladyfingers thấm ${getStrengthDesc()}, kết hợp cùng ${getCreamDesc()} bồng bềnh. Bánh được hoàn thiện với lớp ${getDustDesc()} trên bề mặt, đi kèm ${getAlcoholDesc()}.`;
+  let tasteDescription = `Mẻ Tiramisu được chế tác thủ công theo yêu cầu của bạn trên nền hạt/trà ${originCleanLabel}, mang ${getSweetnessDesc()}. Lớp ladyfingers thấm ${getStrengthDesc()}, kết hợp cùng ${getCreamDesc()} bồng bềnh. Bánh được hoàn thiện với lớp ${getDustDesc()} trên bề mặt, đi kèm ${getAlcoholDesc()}.`;
   if (crunch !== 'none') {
     const crunchDesc = crunch === 'hazelnut' ? 'đế hạt phỉ praline giòn bùi thơm ngọt' : crunch === 'feuilletine' ? 'đế vụn bánh giòn Feuilletine tan nhẹ tinh tế' : 'đế ngòi ca-cao caramen giòn đắng cá tính';
     tasteDescription += ` Bánh có thêm ${crunchDesc} ở đáy tạo sự đối lập cấu trúc thú vị.`;
@@ -460,7 +482,10 @@ const Customizer = () => {
     let giftPrice = addGift ? 30000 : 0;
     let toppingPrice = topping === 'none' ? 0 : topping === 'gold' ? 25000 : topping === 'chocolate' ? 15000 : 10000;
     let crunchPrice = crunch === 'none' ? 0 : crunch === 'cacao-nibs' ? 20000 : 15000;
-    return basePrice + giftPrice + toppingPrice + crunchPrice;
+    let originPrice = base === 'classique'
+      ? (origin === 'classic' ? 0 : origin === 'specialty' ? 20000 : 10000)
+      : (origin === 'uji' ? 0 : origin === 'shizuoka' ? 0 : 15000);
+    return basePrice + giftPrice + toppingPrice + crunchPrice + originPrice;
   };
   const totalPrice = calculatePrice();
 
@@ -468,6 +493,7 @@ const Customizer = () => {
 - Mã bản phối: ${customCode}
 - Tên bản phối: ${getProfileTitle()}
 - Vị nền: ${baseLabel}
+- Nguồn gốc hạt/trà: ${originCleanLabel}
 - Kích cỡ: ${size === 'petit' ? 'Petit (Hộp nhỏ ~250g)' : 'Grand (Hộp lớn ~400g)'}
 - Độ ngọt: ${sweetnessLabel}
 - ${base === 'classique' ? 'Cà phê' : 'Matcha'}: ${strengthLabel}
@@ -537,6 +563,31 @@ const Customizer = () => {
                 <button type="button" className={`c-cust-btn ${base === 'classique' ? 'active' : ''}`} onClick={() => setBase('classique')}>Le Classique (Cà phê)</button>
                 <button type="button" className={`c-cust-btn ${base === 'matcha' ? 'active' : ''}`} onClick={() => setBase('matcha')}>Jardin Vert (Matcha)</button>
               </div>
+            </div>
+
+            {/* Origin Selector */}
+            <div className="c-cust-group">
+              <div className="c-cust-label">{base === 'classique' ? 'Loại hạt cà phê' : 'Nguồn gốc trà đặc sản'} <span>{originLabel}</span></div>
+              <div className="c-cust-options">
+                {base === 'classique' ? (
+                  <>
+                    <button type="button" className={`c-cust-btn ${origin === 'classic' ? 'active' : ''}`} onClick={() => setOrigin('classic')}>Robusta</button>
+                    <button type="button" className={`c-cust-btn ${origin === 'blend' ? 'active' : ''}`} onClick={() => setOrigin('blend')}>Blend 70/30</button>
+                    <button type="button" className={`c-cust-btn ${origin === 'specialty' ? 'active' : ''}`} onClick={() => setOrigin('specialty')}>Arabica Ethiopia</button>
+                  </>
+                ) : (
+                  <>
+                    <button type="button" className={`c-cust-btn ${origin === 'uji' ? 'active' : ''}`} onClick={() => setOrigin('uji')}>Uji Matcha</button>
+                    <button type="button" className={`c-cust-btn ${origin === 'shizuoka' ? 'active' : ''}`} onClick={() => setOrigin('shizuoka')}>Shizuoka Matcha</button>
+                    <button type="button" className={`c-cust-btn ${origin === 'houjicha' ? 'active' : ''}`} onClick={() => setOrigin('houjicha')}>Trà rang Houjicha</button>
+                  </>
+                )}
+              </div>
+              {origin === 'houjicha' && (
+                <div style={{ fontSize: '11px', color: 'var(--mocha)', marginTop: '6px', fontStyle: 'italic' }}>
+                  * Xem bài viết khoa học về Houjicha tại Charmie Journal: <a href="journal/houjicha-va-phan-ung-pyrazine/" target="_blank" style={{ color: 'var(--dusty-rose)', textDecoration: 'underline' }}>Hóa học của Houjicha</a>
+                </div>
+              )}
             </div>
 
             {/* Size Selector */}
@@ -826,14 +877,14 @@ const Customizer = () => {
                       Giòn: {crunch === 'hazelnut' ? 'Hạt phỉ' : crunch === 'feuilletine' ? 'Feuilletine' : 'Ngòi cacao'}
                     </div>
                   )}
-                  <div className={`c-layer-ladyfingers ${base === 'matcha' ? 'matcha' : ''}`} style={{ height: biscuitPct + '%' }}>
-                    Ladyfingers ({strengthLabel})
+                  <div className={`c-layer-ladyfingers ${base === 'matcha' ? (origin === 'houjicha' ? 'houjicha' : 'matcha') : ''}`} style={{ height: biscuitPct + '%' }}>
+                    {origin === 'houjicha' ? 'Houjicha' : 'Ladyfingers'} ({strengthLabel})
                   </div>
                   <div className="c-layer-cream" style={{ height: creamPct + '%' }}>
                     Kem Mascarpone ({cream === 'thanh' ? 'Thanh' : cream === 'cổ điển' ? 'Mượt' : 'Béo'})
                   </div>
-                  <div className={`c-layer-dust ${base === 'matcha' ? 'matcha' : ''}`} style={{ height: dustPct + '%' }}>
-                    {base === 'classique' ? 'Cacao' : 'Matcha'} ({dustLabel})
+                  <div className={`c-layer-dust ${base === 'matcha' ? (origin === 'houjicha' ? 'houjicha' : 'matcha') : ''}`} style={{ height: dustPct + '%' }}>
+                    {base === 'classique' ? 'Cacao' : (origin === 'houjicha' ? 'Trà rang' : 'Matcha')} ({dustLabel})
                   </div>
                   {topping !== 'none' && (
                     <div style={{
@@ -971,6 +1022,10 @@ const Customizer = () => {
               <div className="c-cust-details-item">
                 <span>Vị nền:</span>
                 <strong>{baseLabel}</strong>
+              </div>
+              <div className="c-cust-details-item">
+                <span>{base === 'classique' ? 'Hạt cà phê:' : 'Trà đặc sản:'}</span>
+                <strong>{originCleanLabel}</strong>
               </div>
               <div className="c-cust-details-item">
                 <span>Kích cỡ:</span>
